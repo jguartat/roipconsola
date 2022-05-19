@@ -1,0 +1,11 @@
+Para obtener el audio cuando se marca hacia una extensión y luego redirigirlo a otro lugar
+	https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+Application_EAGI
+	https://github.com/nadirhamid/asterisk-audiofork
+Para poder conectarlo a protectia
+	https://openvpn.net/vpn-server-resources/connecting-to-access-server-with-linux/
+
+download sip.js
+	https://github.com/onsip/SIP.js/releases
+
+Animaciones para bootstrap
+	https://animate.style/

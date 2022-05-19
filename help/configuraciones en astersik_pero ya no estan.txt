@@ -1,0 +1,88 @@
+esto había puesto en  pjsip.endpoint_custom.conf
+
+
+[115](+)
+type=endpoint
+aors=115
+auth=115-auth
+dtls_auto_generate_cert=yes
+webrtc=yes
+;Setting webrtc=yes is a shortcut for setting the following options:
+use_avpf=yes
+media_encryption=dtls
+dtls_verify=fingerprint
+dtls_setup=actpass
+ice_support=yes
+media_use_received_transport=yes
+rtcp_mux=yes
+dtls_ca_file=/etc/asterisk/keys/integration/webserver.crt
+dtls_cert_file=/etc/asterisk/keys/integration/certificate.pem
+context=default
+disallow=all
+allow=opus,ulaw
+
+[108](+)
+type=endpoint
+aors=108
+auth=108-auth
+dtls_auto_generate_cert=yes
+webrtc=yes
+;Setting webrtc=yes is a shortcut for setting the following options:
+use_avpf=yes
+media_encryption=dtls
+dtls_verify=fingerprint
+dtls_setup=actpass
+ice_support=yes
+media_use_received_transport=yes
+rtcp_mux=yes
+dtls_ca_file=/etc/asterisk/keys/integration/webserver.crt
+dtls_cert_file=/etc/asterisk/keys/integration/certificate.pem
+context=default
+disallow=all
+allow=opus,ulaw
+
+
+
+esto había puesto en pjsip_custom.conf
+
+websocket_enabled=true
+transport=ws,wss
+avpf=yes
+encryption=yes
+
+
+
+esto había puesto en pjsip_custom_post.conf
+
+
+websocket_enabled=true
+transport=ws,wss
+avpf=yes
+encryption=yes
+
+
+
+
+esto había puesto en sip_custom.conf
+
+websocket_enabled=true
+transport=ws,wss
+avpf=yes
+encryption=yes
+
+
+esto había puesto en sip_custom_post.conf
+
+
+websocket_enabled=true
+transport=ws,wss
+avpf=yes
+encryption=yes
+
+
+esto había puesto en sip_general_custom.conf
+
+websocket_enabled=true
+transport=ws,wss
+avpf=yes
+encryption=yes

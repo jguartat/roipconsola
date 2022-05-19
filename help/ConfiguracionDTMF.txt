@@ -1,0 +1,9 @@
+Recepción de DTMF
+	Para el user agent (cliente web) estoy utilizando 115
+		Que recibiría DTMF
+		Configuración:
+			Señalización DTMF: INFO SIP (aplicación/dtmf-relay)
+	Para softphone (simular radio) estoy utilizando 108
+		Que enviaría DTMF
+		Configuración:
+			Señalización DTMF: RFC 4733 || Automático
