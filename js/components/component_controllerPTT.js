@@ -31,7 +31,7 @@ export class Component_ControllerPTT{
 		};
 		this.objJsSip.peerconnectionEvent=()=>{
 			this.card.children('.card-body').css({
-				'background': 'url("./img/marine-radio-active.png")',
+				'background': 'url("./img/logoi+d-active.png")',
 				'text-align':'-webkit-right',
 				'background-repeat':'no-repeat'
 			});
@@ -115,7 +115,7 @@ export class Component_ControllerPTT{
 			bodyCard=$(document.createElement('div'))
 				.addClass('card-body text-dark')
 				.css({
-					'background': 'url("./img/marine-radio.png")',
+					'background': 'url("./img/logoi+d-deactive.png")',
 					'text-align':'-webkit-right',
 					'background-repeat':'no-repeat'
 				});

@@ -19,6 +19,12 @@ export class Component_Header{
 		this.btnDeactiveAll=$(document.createElement('button'))
 			.addClass('btn btn-outline-danger')
 			.text('Desactivar todo');
+
+
+
+		this.imglogoProtectIA=$(document.createElement('img'))
+			.attr('src','/RoipConsola/img/logoprotectia.png')
+			.css({'width':'15%'});
 	}
 	createMenuButtons(){
 		let menubtn=$(document.createElement('div'))
@@ -63,6 +69,8 @@ export class Component_Header{
 			console.log("Desactivar todos los grupos");
 			service_Observer.disconnectAllGroupsObservable.notify(1);
 		});
+
+		menubtn.append(this.imglogoProtectIA);
 		return menubtn;
 	}
 	get get_component(){
@@ -79,8 +87,6 @@ export class Component_Header{
 		container.append(this.brand);
 		container.append(this.createMenuButtons());
 		component.append(container);
-
-		
 
 		return component;
 	}
