@@ -5,6 +5,12 @@ export class Service_Observers{
 	constructor(){
 		this.connectAllGroupsObservable=new Observable(null);
 		this.disconnectAllGroupsObservable=new Observable(null);
+		
+		let statePTT={
+			"connected":false,
+			"pushbutton":"off"
+		};
+		this.connectToPTTusbObservable=new Observable(statePTT);
 	}
 }
 export var service_Observer=new Service_Observers();

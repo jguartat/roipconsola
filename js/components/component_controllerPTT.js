@@ -1,6 +1,9 @@
 'use strict';
 import {Component_PlayStop} from './component_playstop.js';
 import {Cl_JsSip} from '../class/class_jssip.js';
+import {service_PTTusb} from '../services/service_pttusb.js';
+import {Observer} from '../../libs/observerPattern/class/class_observer.js';
+import {service_Observer} from '../services/service_observers.js';
 export class Component_ControllerPTT{
 	constructor(objGroup){
 		this.objGroup=objGroup;
@@ -9,13 +12,21 @@ export class Component_ControllerPTT{
 				.addClass('card border-light mb-4');
 		this.icoClose=$(document.createElement('i'))
 			.addClass('bi bi-x-lg');
+		this.chkPTTusb=$(document.createElement('input'))
+			.addClass('form-check-input')
+			.attr({'type':'checkbox','value':'','aria-label':'...'});
+		this.btnHeader=$(document.createElement('div'))
+			.addClass('d-grid gap-2 d-sm-flex justify-content-sm-end');
 		this.header=this.createHeader(this.objGroup.ext);
 		this.title=this.createTitle(this.objGroup.name);
 		this.btnPTT=this.createBtnPTT();
+		this.isbtnPPTpressed=false;
 		this.btnPlayStop=new Component_PlayStop();
 		this.btnControllers=this.createBtnsControllers();
-
 		this.closeEvent=()=>{};
+
+		this.connectToPTTusbObserver=new Observer();
+		this.setObserverEvent();
 	}
 	connect(){
 		this.objJsSip.connect();
@@ -44,7 +55,7 @@ export class Component_ControllerPTT{
 	disconnect(){
 		this.objJsSip.disconnect();
 	}
-	createHeader(text){
+	createHeader_(text){
 		let randomColorHeader=()=>{
 			let listColor=["#26ABE2","#594bac","#7E4BAC"],
 				min=0,max=listColor.length-1,
@@ -57,7 +68,26 @@ export class Component_ControllerPTT{
 				.text('Ext: '+text);
 			header.append(this.icoClose);
 		this.icoClose
-		.mouseover(e=>{this.icoClose.css({'color': 'cornflowerblue','cursor':'pointer'});})
+		.mouseover(e=>{this.icoClose.css({'color': '#b1b1b1','cursor':'pointer'});})
+		.mouseleave(e=>{this.icoClose.css({'color': 'white'});});
+		return header;
+	}
+	createHeader(text){
+		let randomColorHeader=()=>{
+			let listColor=["#26ABE2","#594bac","#7E4BAC"],
+				min=0,max=listColor.length-1,
+				index=Math.floor(Math.random() * (max - min + 1) + min);
+			return listColor[index];
+		}
+		let header=$(document.createElement('div'))
+				.addClass('card-header d-flex w-100 justify-content-between text-white')
+				.css({'background-color':randomColorHeader()})
+				.text('Ext: '+text);
+		this.btnHeader.append(this.icoClose);
+		header.append(this.btnHeader);
+
+		this.icoClose
+		.mouseover(e=>{this.icoClose.css({'color': '#b1b1b1','cursor':'pointer'});})
 		.mouseleave(e=>{this.icoClose.css({'color': 'white'});});
 		return header;
 	}
@@ -79,10 +109,12 @@ export class Component_ControllerPTT{
 		btnptt
 		.mousedown(e=>{ 
 			console.log("presionar");
+			this.isbtnPPTpressed=true;
 			this.objJsSip.sendDTMF('1',160);
 		})
 		.mouseup(e=>{
 			console.log("soltar");
+			this.isbtnPPTpressed=false;
 			this.objJsSip.sendDTMF('0',160);
 		});
 
@@ -109,6 +141,35 @@ export class Component_ControllerPTT{
 		controllers.append(ctrlAudio);
 
 		return controllers;
+	}
+	showCheckPTTusb(){
+		this.btnHeader.prepend(this.chkPTTusb);
+		this.chkPTTusb
+		.mouseover(e=>{this.chkPTTusb.css({'cursor':'pointer'})});
+	}
+	hideCheckPTTusb(){
+		this.chkPTTusb.remove();
+	}
+	setObserverEvent(){
+		this.connectToPTTusbObserver.set_trigger=(subject)=>{
+			console.log("subject cambio de valor:",subject.value);
+			if(subject.value.connected==true){
+				this.showCheckPTTusb();
+			}else{
+				this.hideCheckPTTusb();
+			}
+
+			if(this.chkPTTusb.is(':checked') && !this.isbtnPPTpressed){
+				if(subject.value.pushbutton=='on'){
+					console.log("presionar");
+					this.objJsSip.sendDTMF('1',160);
+				}else{
+					console.log("soltar");
+					this.objJsSip.sendDTMF('0',160);
+				}
+			}
+		}
+		service_Observer.connectToPTTusbObservable.subscribe(this.connectToPTTusbObserver);
 	}
 	get get_component(){
 		let card=this.card,

@@ -9,3 +9,10 @@ download sip.js
 
 Animaciones para bootstrap
 	https://animate.style/
+
+Instalación de FreePBX en Oracle VM VirtualBox
+	https://www.youtube.com/watch?v=ywvm1cvAY0g&t=342s
+
+
+
+Seleccione la red con acceso a internet y a la vez seleccioné la red de virtualbox precione el boton derecho del mouse y puse crear puente y se perdió la conexión con teamviewer
