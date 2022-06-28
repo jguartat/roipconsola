@@ -11,6 +11,7 @@ export class Service_Observers{
 			"pushbutton":"off"
 		};
 		this.connectToPTTusbObservable=new Observable(statePTT);
+		this.changeUsersListObservable=new Observable(false);
 	}
 }
 export var service_Observer=new Service_Observers();

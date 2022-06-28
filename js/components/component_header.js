@@ -2,6 +2,8 @@
 import {service_Observer} from '../services/service_observers.js';
 export class Component_Header{
 	constructor(brand){
+		this.container=$(document.createElement('div'))
+			.addClass('container-fluid');
 		this.imglogo=$(document.createElement('img'))
 			.addClass('d-inline-block align-text-top')
 			.attr('src','/RoipConsola/img/logototem.png');
@@ -71,22 +73,36 @@ export class Component_Header{
 		});
 
 		menubtn.append(this.imglogoProtectIA);
-		return menubtn;
+		this.container.append(menubtn);
+	}
+	createMenuNavBar(list){
+		let navbar=$(document.createElement('div'))
+				.addClass('collapse navbar-collapse'),
+			ul=$(document.createElement('ul'))
+				.addClass('navbar-nav');
+		navbar.append(ul);
+		list.forEach(item=>{
+			let li=$(document.createElement('li'))
+					.addClass('nav-item'),
+				a=$(document.createElement('a'))
+					.addClass('nav-link')
+					.attr('href',item.path)
+					.text(item.name);
+			li.append(a);
+			ul.append(li);
+		});
+		this.container.append(navbar);	
 	}
 	get get_component(){
 		this.brand
 			.addClass('d-flex');
-			//.addClass('d-flex w-100 justify-content-between');
 		let component=$(document.createElement('nav')).
-				addClass('navbar navbar-expand-lg navbar-light bg-light'),
-			container=$(document.createElement('div')).
-				addClass('container-fluid');
+				addClass('navbar navbar-expand-lg navbar-light bg-light');
 		this.brand.append(this.imglogo);
 		this.h1.prepend(this.icoBrand);
 		this.brand.append(this.h1);
-		container.append(this.brand);
-		container.append(this.createMenuButtons());
-		component.append(container);
+		this.container.append(this.brand);
+		component.append(this.container);
 
 		return component;
 	}

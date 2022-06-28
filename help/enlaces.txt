@@ -13,6 +13,7 @@ Animaciones para bootstrap
 Instalación de FreePBX en Oracle VM VirtualBox
 	https://www.youtube.com/watch?v=ywvm1cvAY0g&t=342s
 
-
+Setear ip del freepbx
+https://wiki.freepbx.org/display/PPS/How+to+set+Network+Settings+from+the+CLI
 
 Seleccione la red con acceso a internet y a la vez seleccioné la red de virtualbox precione el boton derecho del mouse y puse crear puente y se perdió la conexión con teamviewer
