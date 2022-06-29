@@ -1,48 +1,32 @@
 'use strict';
 import {Component_Header} from './component_header.js';
-import {Component_UserForm} from './component_userForm.js';
-import {Component_ListUserForm} from './component_listUserForm.js';
+import {Component_LoginForm} from './component_loginForm.js';
 import {Component_Toast} from './component_toast.js';
-export class Component_View_Administration{
+
+export class Component_View_Login{
 	constructor(){
 		this.toast=new Component_Toast('Hello','info','right now');
 		this.header=this.createHeader();
 		this.form=this.createForm();
-		this.usersList=this.createList(this.form);
 		this.container=this.createContainer();
-
-		this.menu=[
-			{name:'Comunicación',path:'comunications'},
-			{name:'Administración',path:'administration'}
-		];
+		this.menu=[];
 	}
 	createHeader(){
 		let header=new Component_Header("RoipConsola");
 		return header;
 	}
 	createForm(){
-		let form=new Component_UserForm();
+		let form=new Component_LoginForm();
 		form.toast=this.toast;
 		return form;
-	}
-	createList(form){
-		let list=new Component_ListUserForm(form);
-		list.requestUsers();
-		list.toast=this.toast;
-		return list;
 	}
 	createContainer(){
 		let container=$(document.createElement('div')).addClass('container mt-4'),
 			row=$(document.createElement('div')).addClass('row justify-content-center'),
-			columForm=$(document.createElement('div')).addClass('col-12 col-sm-6 bg-light p-4'),
-			columUserList=$(document.createElement('div')).addClass('col-12 col-sm-4');
+			columForm=$(document.createElement('div')).addClass('col-12 col-sm-5 bg-light p-4');
 		row.append(columForm);
-		row.append(columUserList);
 		container.append(row);
-
 		columForm.append(this.form.get_component);
-		columUserList.append(this.usersList.get_component);
-		
 		return container;
 	}
 	load(){
@@ -52,4 +36,4 @@ export class Component_View_Administration{
 		this.header.createMenuNavBar(this.menu);
 	}
 }
-export var component_view_administration=new Component_View_Administration();
+export var component_view_login=new Component_View_Login();

@@ -24,11 +24,55 @@ class UsersControllers{
 		}
 	}
 	async getOne(req,res){
-		let user=await ObjUsers.Users.findOne({where:{uuid:req.params.uuid}});
-		if (user===null){
-			res.status(404).json({text:'user not found'});
-		}else{
-			res.status(500).json(user);
+		let result={message:'',data:null,error:{status:0,description:""}};
+		try{
+			let user=await ObjUsers.Users.findOne({where:{uuid:req.params.uuid}});
+			if (user===null){
+				result.message='user not found';
+				result.error.status=1;
+				result.error.description='user is not in database'
+				res.status(404).json(result);
+			}else{
+				result.message='user was found';
+				result.data=user;
+				result.error.status=0;
+				res.status(200).json(user);
+			}
+		}catch(err){
+			result.message='user was not found';
+			result.error.status=1;
+			result.error.description=err;
+			res.status(500).json(result);
+		}
+	}
+	async login(req,res){
+		let result={message:'',data:null,error:{status:0,description:""}};
+		try{
+			let user=await ObjUsers.Users.findOne({where:{email:req.body.email}});
+			
+			if (user===null){
+				result.message='user not found';
+				result.error.status=1;
+				result.error.description='user is not in database'
+				res.status(404).json(result);
+			}else{
+				const resultPassword=bcrypt.compareSync(req.body.password,user.password);
+				if(resultPassword){
+					result.message='user was found';
+					result.data=user;
+					result.error.status=0;
+					res.status(200).json(result);
+				}else{
+					result.message='user was found';
+					result.error.status=0;
+					res.status(404).json(result);	
+				}
+			}
+		}catch(err){
+			result.message='user was not found';
+			result.error.status=1;
+			result.error.description=err;
+			res.status(500).json(result);
 		}
 	}
 	async create(req,res){

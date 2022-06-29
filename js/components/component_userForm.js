@@ -107,7 +107,7 @@ export class Component_UserForm{
 		this.title.prepend(this.icoTitle);
 	}
 	createFormInputsElements(e){
-		let formFloating=$(document.createElement('div'))			
+		let formFloating=$(document.createElement('div'))
 			.addClass('form-floating mb-3'),
 			label=$(document.createElement('label'))
 			.attr('for',e.input.attr('id'))
@@ -147,60 +147,60 @@ export class Component_UserForm{
 			title:'Administración',
 			message:response.description,
 			textTime:'justo ahora',
-			type:'success'
+			type:'warning'
 		});
 		this.toast.show();
 		return response;
 	}
 	passwordIsValid(){
-		let response={'value':true,'description':"Password es válido"};
+		let response={'value':true,'description':"Contraseña válida"};
 		let hasLowerCaseLetter=/[a-z]/g,
 			hasUpperCaseLetter= /[A-Z]/g,
 			hasNumber = /[0-9]/g;
 		if(!this.inputPassword.val().match(hasLowerCaseLetter)){
 			response.value=false;
-			response.description="Debe contener una letra minúscula";
+			response.description="Contraseña debe contener una letra minúscula";
 			this.toast.set_component({
 				title:'Administración',
 				message:response.description,
 				textTime:'justo ahora',
-				type:'success'
+				type:'warning'
 			});
 			this.toast.show();
 			return response;
 		}
 		if(!this.inputPassword.val().match(hasUpperCaseLetter)){
 			response.value=false;
-			response.description="Debe contener una letra mayúscula";
+			response.description="Contraseña debe contener una letra mayúscula";
 			this.toast.set_component({
 				title:'Administración',
 				message:response.description,
 				textTime:'justo ahora',
-				type:'success'
+				type:'warning'
 			});
 			this.toast.show();
 			return response;
 		}
 		if(!this.inputPassword.val().match(hasNumber)){
 			response.value=false;
-			response.description="Debe contener un número";
+			response.description="Contraseña debe contener un número";
 			this.toast.set_component({
 				title:'Administración',
 				message:response.description,
 				textTime:'justo ahora',
-				type:'success'
+				type:'warning'
 			});
 			this.toast.show();
 			return response;
 		}
 		if(this.inputPassword.val().length<8){
 			response.value=false;
-			response.description="Debe tener mínimo 8 caracteres";
+			response.description="Contraseña debe tener mínimo 8 caracteres";
 			this.toast.set_component({
 				title:'Administración',
 				message:response.description,
 				textTime:'justo ahora',
-				type:'success'
+				type:'warning'
 			});
 			this.toast.show();
 			return response;	
@@ -232,6 +232,7 @@ export class Component_UserForm{
 		});
 		this.btnCleanForm.click(e=>{
 			this.cleanForm();
+			this.set_edit=false;
 		});
 
 		return menubtn;

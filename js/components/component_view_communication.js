@@ -9,8 +9,8 @@ export class Component_View_Communication{
 		this.container=this.createContainer();
 
 		this.menu=[
-			{name:'Comunicación',path:'#/comunications'},
-			{name:'Administración',path:'#/administration'}
+			{name:'Comunicación',path:'comunications'},
+			{name:'Administración',path:'administration'}
 		];
 	}
 	createHeader(){

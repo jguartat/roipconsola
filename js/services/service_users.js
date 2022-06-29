@@ -31,6 +31,20 @@ export class Service_Users{
 		.fail(function(xhr,status,err){console.log("Error: ",err);})
 		.always();
 	}
+	loginUser(user,callback){
+		$.ajax({
+			type:"POST",
+			url:`${this.API_URI}/users/login`,
+			dataType:"json",
+			data:user
+		})
+		.done(function(data){
+			console.log(data);
+			callback(data);
+		})
+		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.always();
+	}
 	saveUser(user,callback){
 		$.ajax({
 			type:"POST",

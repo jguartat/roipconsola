@@ -6,7 +6,7 @@ export class Component_Header{
 			.addClass('container-fluid');
 		this.imglogo=$(document.createElement('img'))
 			.addClass('d-inline-block align-text-top')
-			.attr('src','/RoipConsola/img/logototem.png');
+			.attr('src','./img/logototem.png');
 		this.brand=$(document.createElement('a'))
 			.addClass('navbar-brand');
 		this.icoBrand=$(document.createElement('i'))
@@ -25,7 +25,7 @@ export class Component_Header{
 
 
 		this.imglogoProtectIA=$(document.createElement('img'))
-			.attr('src','/RoipConsola/img/logoprotectia.png')
+			.attr('src','./img/logoprotectia.png')
 			.css({'width':'15%'});
 	}
 	createMenuButtons(){
