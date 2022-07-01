@@ -1,10 +1,14 @@
 'use strict';
 const bcrypt=require('bcrypt');
+const jsonwebtoken=require('jsonwebtoken');
 const ObjUsers=require('../models/users-model.js');
 
 class UsersControllers{
-	constructor(){}
-	async list(req,res){
+	constructor(){
+		this.secretkey="]2ck'j878&re34_4wrdvmn ,m@8}6";
+		this.tokenExpiresIn=24*60*60;
+	}
+	list=async(req,res)=>{
 		console.log("lista de usuarios");
 		let result={message:'',data:null,error:{status:0,description:""}};
 		try{
@@ -23,7 +27,7 @@ class UsersControllers{
 			res.status(500).json(result);
 		}
 	}
-	async getOne(req,res){
+	getOne=async(req,res)=>{
 		let result={message:'',data:null,error:{status:0,description:""}};
 		try{
 			let user=await ObjUsers.Users.findOne({where:{uuid:req.params.uuid}});
@@ -45,7 +49,8 @@ class UsersControllers{
 			res.status(500).json(result);
 		}
 	}
-	async login(req,res){
+	login=async(req,res)=>{
+		req.body.admin=eval(req.body.admin);
 		let result={message:'',data:null,error:{status:0,description:""}};
 		try{
 			let user=await ObjUsers.Users.findOne({where:{email:req.body.email}});
@@ -57,15 +62,21 @@ class UsersControllers{
 				res.status(404).json(result);
 			}else{
 				const resultPassword=bcrypt.compareSync(req.body.password,user.password);
-				if(resultPassword){
+				const validProfile=user.admin || (req.body.admin==user.admin?true:false);
+				if(resultPassword && validProfile){
 					result.message='user was found';
 					result.data=user;
+					result.accessToken=jsonwebtoken.sign(
+						{uuid:user.uuid},
+						this.secretkey,
+						{expiresIn:this.tokenExpiresIn}
+					);
 					result.error.status=0;
 					res.status(200).json(result);
 				}else{
-					result.message='user was found';
-					result.error.status=0;
-					res.status(404).json(result);	
+					result.message='user was not found';
+					result.error.status=1;
+					res.status(200).json(result);	
 				}
 			}
 		}catch(err){
@@ -75,7 +86,7 @@ class UsersControllers{
 			res.status(500).json(result);
 		}
 	}
-	async create(req,res){
+	create=async(req,res)=>{
 		req.body.admin=eval(req.body.admin);
 		req.body.password=bcrypt.hashSync(req.body.password,10);
 		let user=ObjUsers.Users.build(req.body);
@@ -91,7 +102,7 @@ class UsersControllers{
 			res.status(500).json(result);
 		}
 	}
-	async delete(req,res){
+	delete=async(req,res)=>{
 		let result={message:'',error:{status:0,description:""}};
 		try{
 			await ObjUsers.Users.destroy({where:{uuid:req.params.uuid}});
@@ -104,7 +115,7 @@ class UsersControllers{
 			res.status(500).json(result);
 		}
 	}
-	async update(req,res){
+	update=async(req,res)=>{
 		req.body.admin=eval(req.body.admin);
 		if((req.body.password!=null || req.body.password!=undefined)){
 			if(req.body.password.length==0){delete req.body.password;}

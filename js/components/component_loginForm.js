@@ -2,6 +2,8 @@
 import {Cl_User} from '../class/class_user.js';
 import {Service_Users} from '../services/service_users.js';
 import {router} from '../routing/router.js';
+import {service_Cookie} from '../services/service_cookie.js';
+import {service_Encryption} from '../services/service_encryption.js';
 
 export class Component_LoginForm{
 	constructor(){
@@ -153,9 +155,19 @@ export class Component_LoginForm{
 			});
 			promise.then(result=>{
 				if(result.error.status==0){
-					router.load('');
+					service_Cookie.setCookie('accessToken',result.accessToken,1);
+					let dataUser=JSON.stringify(result.data);
+					service_Cookie.setCookie('dataUser',service_Encryption.encrypt(dataUser),1);
+					service_Cookie.setCookie('loggedInAs',service_Encryption.encrypt((objuser.admin?'admin':'operator')),1);
+					router.load('comunications');
 				}else{
-					
+					this.toast.set_component({
+						title:'Administración',
+						message:'Usuario no encontrado',
+						textTime:'justo ahora',
+						type:'warning'
+					});
+					this.toast.show();
 				}
 			});
 

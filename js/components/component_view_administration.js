@@ -3,6 +3,7 @@ import {Component_Header} from './component_header.js';
 import {Component_UserForm} from './component_userForm.js';
 import {Component_ListUserForm} from './component_listUserForm.js';
 import {Component_Toast} from './component_toast.js';
+import {Service_Permissions} from '../services/service_permissions.js';
 export class Component_View_Administration{
 	constructor(){
 		this.toast=new Component_Toast('Hello','info','right now');
@@ -12,7 +13,6 @@ export class Component_View_Administration{
 		this.container=this.createContainer();
 
 		this.menu=[
-			{name:'Comunicación',path:'comunications'},
 			{name:'Administración',path:'administration'}
 		];
 	}
@@ -46,10 +46,15 @@ export class Component_View_Administration{
 		return container;
 	}
 	load(){
+		let menu=Service_Permissions.getMenu();
+		if(menu==[]){menu=this.menu;}
+		this.header.createBrand();
+		this.header.createMenuNavBar(menu);
+		this.header.createMenuButtons();
+
 		$('body').append(this.header.get_component);
 		$('body').append(this.container);
 		$('body').append(this.toast.get_component);
-		this.header.createMenuNavBar(this.menu);
 	}
 }
 export var component_view_administration=new Component_View_Administration();

@@ -1,6 +1,7 @@
 'use strict';
 import {Component_Header} from './component_header.js';
 import {Component_List} from './component_list.js';
+import {Service_Permissions} from '../services/service_permissions.js';
 export class Component_View_Communication{
 	constructor(){
 		this.header=this.createHeader();
@@ -8,9 +9,9 @@ export class Component_View_Communication{
 		this.list=this.createList();
 		this.container=this.createContainer();
 
+		//Default menu
 		this.menu=[
-			{name:'Comunicación',path:'comunications'},
-			{name:'Administración',path:'administration'}
+			{name:'Comunicación',path:'comunications'}
 		];
 	}
 	createHeader(){
@@ -40,10 +41,14 @@ export class Component_View_Communication{
 		return controllers;
 	}
 	load(){
+		let menu=Service_Permissions.getMenu();
+		if(menu==[]){menu=this.menu;}
+		this.header.createBrand();
+		this.header.createMenuNavBar(menu);
+		this.header.createMenuButtons();
+
 		$('body').append(this.header.get_component);
 		$('body').append(this.container);
-		this.header.createMenuNavBar(this.menu);
-		this.header.createMenuButtons();
 	}
 }
 export var component_view_communication=new Component_View_Communication();

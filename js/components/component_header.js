@@ -2,6 +2,8 @@
 import {service_Observer} from '../services/service_observers.js';
 export class Component_Header{
 	constructor(brand){
+		this.menubtn=$(document.createElement('div'))
+			.addClass('d-grid gap-2 d-sm-flex justify-content-sm-end');
 		this.container=$(document.createElement('div'))
 			.addClass('container-fluid');
 		this.imglogo=$(document.createElement('img'))
@@ -29,9 +31,14 @@ export class Component_Header{
 			.css({'width':'15%'});
 	}
 	createMenuButtons(){
-		let menubtn=$(document.createElement('div'))
-				.addClass('d-grid gap-2 d-sm-flex justify-content-sm-end'),
-			icoActiveAll=$(document.createElement('i'))
+		if(window.location.pathname=="/comunications"){
+			this.createMenuButtonsComunications();
+		}
+		this.menubtn.append(this.imglogoProtectIA);
+		this.container.append(this.menubtn);
+	}
+	createMenuButtonsComunications(){
+		let icoActiveAll=$(document.createElement('i'))
 				.addClass('bi bi-plugin'),
 			icoDeactiveAll=$(document.createElement('i'))
 				.addClass('bi bi-plug-fill');
@@ -56,12 +63,10 @@ export class Component_Header{
 				$(e.target).not('i').css({'box-shadow':'rgba(89, 75, 172, 0.3) 0px 0px 0px 4px'});
 			});
 
-
-
 		this.btnDeactiveAll.append(icoDeactiveAll);
 
-		menubtn.append(this.btnActiveAll);
-		menubtn.append(this.btnDeactiveAll);
+		this.menubtn.append(this.btnActiveAll);
+		this.menubtn.append(this.btnDeactiveAll);
 
 		this.btnActiveAll.click(e=>{
 			console.log("Activar todos los grupos");
@@ -71,9 +76,6 @@ export class Component_Header{
 			console.log("Desactivar todos los grupos");
 			service_Observer.disconnectAllGroupsObservable.notify(1);
 		});
-
-		menubtn.append(this.imglogoProtectIA);
-		this.container.append(menubtn);
 	}
 	createMenuNavBar(list){
 		let navbar=$(document.createElement('div'))
@@ -93,15 +95,17 @@ export class Component_Header{
 		});
 		this.container.append(navbar);	
 	}
-	get get_component(){
+	createBrand(){
 		this.brand
 			.addClass('d-flex');
-		let component=$(document.createElement('nav')).
-				addClass('navbar navbar-expand-lg navbar-light bg-light');
 		this.brand.append(this.imglogo);
 		this.h1.prepend(this.icoBrand);
 		this.brand.append(this.h1);
 		this.container.append(this.brand);
+	}
+	get get_component(){
+		let component=$(document.createElement('nav')).
+				addClass('navbar navbar-expand-lg navbar-light bg-light');
 		component.append(this.container);
 
 		return component;

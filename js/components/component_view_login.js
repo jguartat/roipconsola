@@ -30,10 +30,13 @@ export class Component_View_Login{
 		return container;
 	}
 	load(){
+		this.header.createBrand();
+		this.header.createMenuNavBar(this.menu);
+		this.header.createMenuButtons();
+
 		$('body').append(this.header.get_component);
 		$('body').append(this.container);
 		$('body').append(this.toast.get_component);
-		this.header.createMenuNavBar(this.menu);
 	}
 }
 export var component_view_login=new Component_View_Login();
