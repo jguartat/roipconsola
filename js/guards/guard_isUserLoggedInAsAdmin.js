@@ -7,7 +7,7 @@ export class Guard_isUserLoggedInAsAdmin{
 		this.router=router;
 	}
 	canActivate(){
-		let loggedInAs=service_Encryption.decrypt(service_Cookie.checkCookie('loggedInAs'));
+		let loggedInAs=service_Encryption.decrypt(service_Cookie.getCookie('loggedInAs'));
 		if(loggedInAs!="admin"){
 			this.router.load('comunications');
 			return false;
