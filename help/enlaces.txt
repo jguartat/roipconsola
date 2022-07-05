@@ -14,6 +14,23 @@ Instalación de FreePBX en Oracle VM VirtualBox
 	https://www.youtube.com/watch?v=ywvm1cvAY0g&t=342s
 
 Setear ip del freepbx
-https://wiki.freepbx.org/display/PPS/How+to+set+Network+Settings+from+the+CLI
+	https://wiki.freepbx.org/display/PPS/How+to+set+Network+Settings+from+the+CLI
 
-Seleccione la red con acceso a internet y a la vez seleccioné la red de virtualbox precione el boton derecho del mouse y puse crear puente y se perdió la conexión con teamviewer
+Rutas en javascript
+	https://dev.to/alexcamachogz/creando-un-router-con-vanilla-javascript-27pl
+	https://www.mmfilesi.com/blog/sistema-de-rutas-con-javascript/
+	https://tecnops.es/sistema-rutas-solo-javascript/
+
+Nginx para manejar las rutas en javascript
+	https://stackoverflow.com/questions/9184959/rewriting-nginx-for-pushstate-urls
+
+Cookies
+	https://www.w3schools.com/js/js_cookies.asp
+	https://developer.mozilla.org/es/docs/Web/API/Document/cookie
+	https://linuxhint.com/javascript-delete-cookie/
+
+Sequelize
+	https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
+
+Generar uuid
+	https://www.uuidgenerator.net/version4
