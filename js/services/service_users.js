@@ -1,15 +1,21 @@
 'use strict';
+import {service_Cookie} from './service_cookie.js';
+import {environment} from '../../environments/environment.js';
 
 export class Service_Users{
 	API_URI= '';
 	constructor(){
-		this.API_URI='http://localhost:4000/api';
+		this.API_URI=environment.api_uri;
+	}
+	getToken(){
+		return service_Cookie.getCookie('accessToken');
 	}
 	getUsers(callback){
 		$.ajax({
 			type:"GET",
 			url:`${this.API_URI}/users`,
-			dataType:"json"
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
 		})
 		.done(function(data){
 			console.log(data);
@@ -22,7 +28,8 @@ export class Service_Users{
 		$.ajax({
 			type:"GET",
 			url:`${this.API_URI}/users/${uuid}`,
-			dataType:"json"
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
 		})
 		.done(function(data){
 			console.log(data);
@@ -50,7 +57,8 @@ export class Service_Users{
 			type:"POST",
 			url:`${this.API_URI}/users`,
 			dataType:"json",
-			data:user
+			data:user,
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
 		})
 		.done(function(data){
 			console.log(data);
@@ -63,7 +71,8 @@ export class Service_Users{
 		$.ajax({
 			type:"DELETE",
 			url:`${this.API_URI}/users/${uuid}`,
-			dataType:"json"
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
 		})
 		.done(function(data){
 			console.log(data);
@@ -77,7 +86,8 @@ export class Service_Users{
 			type:"PUT",
 			url:`${this.API_URI}/users/${uuid}`,
 			dataType:"json",
-			data:user	
+			data:user,
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
 		})
 		.done(function(data){
 			console.log(data);

@@ -1,12 +1,11 @@
 'use strict';
 require("./models/index.js");
-const express= require("express");
-const morgan= require("morgan");
-const cors= require("cors");
-
-const indexRoutes= require("./routes/indexRoutes.js");
-const usersRoutes= require("./routes/usersRoutes.js");
-
+const express=require("express");
+const morgan=require("morgan");
+const cors=require("cors");
+const indexRoutes=require("./routes/indexRoutes.js");
+const usersRoutes=require("./routes/usersRoutes.js");
+const environment=require("./environments/environment.js");
 
 class Server{
 	constructor(){
@@ -15,7 +14,7 @@ class Server{
 		this.routes();
 	}
 	config(){
-		this.app.set('port',4000);
+		this.app.set('port',environment.api_port);
 		this.app.use(morgan('dev'));
 		this.app.use(cors());
 		this.app.use(express.json());

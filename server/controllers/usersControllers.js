@@ -2,10 +2,11 @@
 const bcrypt=require('bcrypt');
 const jsonwebtoken=require('jsonwebtoken');
 const ObjUsers=require('../models/users-model.js');
+const environment=require('../environments/environment.js');
 
 class UsersControllers{
 	constructor(){
-		this.secretkey="]2ck'j878&re34_4wrdvmn ,m@8}6";
+		this.secretkey=environment.secretkey;
 		this.tokenExpiresIn=24*60*60;
 	}
 	list=async(req,res)=>{
@@ -132,6 +133,37 @@ class UsersControllers{
 			result.error.description=err;
 			res.status(500).json(result);
 		}
+	}
+	verifyToken=(req,res,next)=>{
+		let result={message:'',error:{status:0,description:''}};
+		if(!req.headers.authorization){
+			result.message='unauthorized request';
+			result.error.status=1;
+			result.error.description='no authorization token';
+			return res.status(401).json(result);
+		}
+		const token=req.headers.authorization.split(" ")[1];
+		try{
+			let payload=jsonwebtoken.verify(token,this.secretkey);
+			if(token === null){
+				result.message='unauthorized request';
+				result.error.status=1;
+				result.error.description='no authorization token';
+				return res.status(401).json(result);
+			}
+			req.uuid=payload.uuid;
+			next();
+		}catch(err){
+			result.message='unauthorized request';
+			result.error.status=1;
+			result.error.description=err;
+			return res.status(401).json(result);
+		}
+
+
+
+
+			
 	}
 }
 

@@ -1,6 +1,7 @@
 'use strict';
 import {WS} from '../class/class_ws.js';
 import {service_Observer} from './service_observers.js';
+import {environment} from '../../environments/environment.js';
 
 class Service_PTTusb{
 	constructor(ip,port,protocol){
@@ -51,4 +52,4 @@ class Service_PTTusb{
 	};
 }
 
-export var service_PTTusb=new Service_PTTusb('localhost',3000,'pttusb-protocol');
+export var service_PTTusb=new Service_PTTusb(environment.pptusb_ip,environment.pttusb_port,environment.pttusb_protocol);

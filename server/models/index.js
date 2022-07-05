@@ -1,6 +1,7 @@
 'use strict';
 const {Sequelize} = require('sequelize');
 const ObjUsers = require('./users-model.js');
+const environment = require('../environments/environment.js');
 class PostgresCnx{
 	cnx=null;
 	urlCnx="";
@@ -13,11 +14,11 @@ class PostgresCnx{
 		this.config();
 	}
 	config(){
-		this.user="postgres";
-		this.password="j0$u3p0$79r3$";
-		this.dbname="totemroip";
-		this.ip="localhost";
-		this.port=5432;
+		this.user=environment.postgres_user;
+		this.password=environment.postgres_password;
+		this.dbname=environment.postgres_dbname;
+		this.ip=environment.postgres_ip;
+		this.port=environment.postgres_port;
 		this.urlCnx=`postgres://${this.user}:${this.password}@${this.ip}:${this.port}/${this.dbname}`;
 	}
 	async start(){

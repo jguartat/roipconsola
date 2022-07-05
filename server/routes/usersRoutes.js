@@ -8,12 +8,12 @@ class UsersRoutes{
 		this.config();
 	}
 	config(){
-		this.router.get('/',usersControllers.list);
-		this.router.get('/:uuid',usersControllers.getOne);
+		this.router.get('/',usersControllers.verifyToken,usersControllers.list);
+		this.router.get('/:uuid',usersControllers.verifyToken,usersControllers.getOne);
 		this.router.post('/login',usersControllers.login);
-		this.router.post('/',usersControllers.create);
-		this.router.delete('/:uuid',usersControllers.delete);
-		this.router.put('/:uuid',usersControllers.update);
+		this.router.post('/',usersControllers.verifyToken,usersControllers.create);
+		this.router.delete('/:uuid',usersControllers.verifyToken,usersControllers.delete);
+		this.router.put('/:uuid',usersControllers.verifyToken,usersControllers.update);
 	}
 
 }
