@@ -31,7 +31,8 @@ export class Router{
 			if(route.component!=null && route.component!=undefined){
 				if(this.isAuthorized(route)){
 					history.pushState({ubicacion:"RoipConsola"},"RoipConsola",path);
-					route.component.load();
+					let view=new route.component();
+					view.load();
 				}
 			}else if(route.redirectTo!=null && route.redirectTo!=undefined){
 				this.load(route.redirectTo.replace("/",""));

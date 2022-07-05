@@ -39,4 +39,3 @@ export class Component_View_Login{
 		$('body').append(this.toast.get_component);
 	}
 }
-export var component_view_login=new Component_View_Login();

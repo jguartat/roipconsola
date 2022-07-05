@@ -51,4 +51,3 @@ export class Component_View_Communication{
 		$('body').append(this.container);
 	}
 }
-export var component_view_communication=new Component_View_Communication();

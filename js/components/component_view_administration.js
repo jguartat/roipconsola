@@ -57,4 +57,3 @@ export class Component_View_Administration{
 		$('body').append(this.toast.get_component);
 	}
 }
-export var component_view_administration=new Component_View_Administration();
