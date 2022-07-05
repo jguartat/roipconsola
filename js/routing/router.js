@@ -11,20 +11,6 @@ export class Router{
 		URL = pathname.replace(this.root,"");
 		this.load(URL);
 	}
-	isAuthorized_(route){
-		let authorized=true;
-		if(route.canActivate!=null && route.canActivate!=undefined){
-			for(let i=0;i<route.canActivate.length;i++){
-				let guard=new route.canActivate[i]();
-				authorized=guard.canActivate();
-				if(authorized){
-					i=i+route.canActivate.length;
-				}
-				i++;
-			}
-		}
-		return authorized;
-	}
 	isAuthorized(route){
 		let authorized=false;
 		if(route.canActivate!=null && route.canActivate!=undefined){

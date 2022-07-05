@@ -24,6 +24,14 @@ class Service_Cookie{
 	checkCookie(cname){
 		return this.getCookie(cname)==""?false:true;
 	}
+	deleteAllCookies(){
+		let cookieArray=document.cookie.split("; ");
+		cookieArray.forEach(cookie=>{
+			let s=cookie.indexOf("=");
+			name=cookie.substring(0,s);
+			document.cookie=`${name}= ;max-age=0`;
+		});
+	}
 }
 
 export const service_Cookie=new Service_Cookie();

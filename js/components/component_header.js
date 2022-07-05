@@ -1,5 +1,8 @@
 "use strict";
 import {service_Observer} from '../services/service_observers.js';
+import {service_Cookie} from '../services/service_cookie.js';
+import {service_Encryption} from '../services/service_encryption.js';
+import {router} from '../routing/router.js';
 export class Component_Header{
 	constructor(brand){
 		this.menubtn=$(document.createElement('div'))
@@ -27,8 +30,54 @@ export class Component_Header{
 
 
 		this.imglogoProtectIA=$(document.createElement('img'))
-			.attr('src','./img/logoprotectia.png')
+			.attr({
+				'src':'./img/logoprotectia.png',
+				'role':'button',
+				'tabindex':"0",
+				'data-bs-container':"body",
+				'data-bs-toggle':'popover',
+				'data-bs-placement':'bottom',
+				'data-bs-trigger':"focus"
+			})
 			.css({'width':'15%'});
+		this.btnLogout=$(document.createElement('button'))
+			.addClass('btn btn-outline-danger')
+			.text('Cerrar sesión');
+		this.popover=this.createPopOver();
+	}
+	createPopOver(){
+		if(!service_Cookie.checkCookie('dataUser')){
+			return null;
+		}
+		let dataUser=JSON.parse(service_Encryption.decrypt(service_Cookie.getCookie('dataUser'))),
+			loggedInAs=service_Encryption.decrypt(service_Cookie.getCookie('loggedInAs'));
+		let content=$(document.createElement('ul'))
+				.addClass('list-group list-group-flush'),
+			liUserType=$(document.createElement('li'))
+				.addClass('list-group-item')
+				.text(loggedInAs=='admin'?'Administrador':'Operador'),
+			liBtnLogout=$(document.createElement('li'))
+				.addClass('list-group-item');
+
+		liBtnLogout.append(this.btnLogout);
+		content.append(liUserType);
+		content.append(liBtnLogout);
+
+		let popover=new bootstrap.Popover(this.imglogoProtectIA.get(0),{
+			'animation':true,
+			'fallbackPlacements':['bottom'],
+			'html':true,
+			'title':`${dataUser.email}`,
+			'content':content.get(0)
+		});
+		this.btnLogout.click(e=>{
+			service_Cookie.deleteAllCookies();
+			this.popover.disable();
+			this.popover.dispose();
+			this.popover=null;
+			router.load('login');
+		});
+		return popover;
 	}
 	createMenuButtons(){
 		if(window.location.pathname=="/comunications"){
