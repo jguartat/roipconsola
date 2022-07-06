@@ -34,3 +34,9 @@ Sequelize
 
 Generar uuid
 	https://www.uuidgenerator.net/version4
+
+Para instalar nginx en sangoma
+	https://sourceexample.com/article/en/f475f01ecf2fea95b91d8e202f74611d/
+	https://www.youtube.com/watch?v=IOfKvc61tk4
+		sudo dhc client
+		sudo yum update
