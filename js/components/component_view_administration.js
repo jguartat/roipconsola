@@ -13,7 +13,7 @@ export class Component_View_Administration{
 		this.container=this.createContainer();
 
 		this.menu=[
-			{name:'Administración',path:'administration'}
+			{name:'Administración',path:'administration',active:true}
 		];
 	}
 	createHeader(){

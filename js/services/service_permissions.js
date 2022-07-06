@@ -6,16 +6,17 @@ export class Service_Permissions{
 	static getMenu(){
 		let loggedInAs=service_Encryption.decrypt(service_Cookie.getCookie('loggedInAs'));
 		let menu=[];
+		let pathname=window.location.pathname.replace("/","");
 		switch(loggedInAs){
 			case 'admin':
 				menu=[
-					{name:'Comunicación',path:'comunications'},
-					{name:'Administración',path:'administration'}
+					{name:'Comunicación',path:'comunications',active:pathname=='comunications'},
+					{name:'Administración',path:'administration',active:pathname=='administration'}
 				]
 				break;
 			case 'operator':
 				menu=[
-					{name:'Comunicación',path:'comunications'}
+					{name:'Comunicación',path:'comunications',active:pathname=='comunications'}
 				];
 				break;
 		}

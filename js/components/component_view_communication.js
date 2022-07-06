@@ -11,7 +11,7 @@ export class Component_View_Communication{
 
 		//Default menu
 		this.menu=[
-			{name:'Comunicación',path:'comunications'}
+			{name:'Comunicación',path:'comunications',active:true}
 		];
 	}
 	createHeader(){

@@ -22,10 +22,10 @@ export class Component_Header{
 			.text(brand);
 		this.btnActiveAll=$(document.createElement('button'))
 			.addClass('btn')
-			.text('Activar todo');
+			.text('Activar todo ');
 		this.btnDeactiveAll=$(document.createElement('button'))
 			.addClass('btn btn-outline-danger')
-			.text('Desactivar todo');
+			.text('Desactivar todo ');
 
 
 
@@ -41,7 +41,7 @@ export class Component_Header{
 			})
 			.css({'width':'15%'});
 		this.btnLogout=$(document.createElement('button'))
-			.addClass('btn btn-outline-danger')
+			.addClass('btn btn-outline-danger mt-3')
 			.text('Cerrar sesión');
 		this.popover=this.createPopOver();
 	}
@@ -54,11 +54,14 @@ export class Component_Header{
 		let content=$(document.createElement('ul'))
 				.addClass('list-group list-group-flush'),
 			liUserType=$(document.createElement('li'))
-				.addClass('list-group-item')
-				.text(loggedInAs=='admin'?'Administrador':'Operador'),
+				.addClass('list-group-item fw-lighter fs-6')
+				.text(loggedInAs=='admin'?' Administrador':' Operador'),
+			liIconUser=$(document.createElement('i'))
+				.addClass('bi bi-person-circle'),
 			liBtnLogout=$(document.createElement('li'))
 				.addClass('list-group-item');
 
+		liUserType.prepend(liIconUser);
 		liBtnLogout.append(this.btnLogout);
 		content.append(liUserType);
 		content.append(liBtnLogout);
@@ -136,11 +139,18 @@ export class Component_Header{
 			let li=$(document.createElement('li'))
 					.addClass('nav-item'),
 				a=$(document.createElement('a'))
-					.addClass('nav-link')
-					.attr('href',item.path)
+					.addClass(`nav-link ${item.active?'active':''}`)
+					.attr('routerLink',item.path)
 					.text(item.name);
 			li.append(a);
 			ul.append(li);
+		});
+		ul.find('a').click(e=>{
+			let page=$(e.target).attr('routerLink');
+			router.load(page);
+		})
+		.mouseover(e=>{
+			$(e.target).css({'cursor':'pointer'});
 		});
 		this.container.append(navbar);	
 	}
