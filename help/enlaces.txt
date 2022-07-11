@@ -40,3 +40,9 @@ Para instalar nginx en sangoma
 	https://www.youtube.com/watch?v=IOfKvc61tk4
 		sudo dhc client
 		sudo yum update
+
+	pkill nginx
+	service nginx reload
+	service nginx stop
+	service nginx status
+	service nginx start

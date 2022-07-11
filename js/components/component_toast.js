@@ -117,6 +117,9 @@ export class Component_Toast{
 			.text(this.message);
 		return body;
 	}
+	set set_hiddenEvent(callback){
+		this.toast.get(0).addEventListener('hidden.bs.toast',callback);
+	}
 	get get_component(){
 		let position=$(document.createElement('div'))
 			.addClass('position-fixed bottom-0 end-0 p-3')

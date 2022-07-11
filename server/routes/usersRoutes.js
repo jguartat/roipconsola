@@ -14,6 +14,7 @@ class UsersRoutes{
 		this.router.post('/',usersControllers.verifyToken,usersControllers.create);
 		this.router.delete('/:uuid',usersControllers.verifyToken,usersControllers.delete);
 		this.router.put('/:uuid',usersControllers.verifyToken,usersControllers.update);
+		this.router.put('/changepassword/:uuid',usersControllers.verifyToken,usersControllers.changePassword);
 	}
 
 }

@@ -96,4 +96,19 @@ export class Service_Users{
 		.fail(function(xhr,status,err){console.log("Error: ",err);})
 		.always();	
 	}
+	updateUserPassword(uuid,datapass,callback){
+		$.ajax({
+			type:"PUT",
+			url:`${this.API_URI}/users/changepassword/${uuid}`,
+			dataType:"json",
+			data:datapass,
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			callback(data);
+		})
+		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.always();	
+	}
 }

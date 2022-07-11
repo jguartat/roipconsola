@@ -134,6 +134,47 @@ class UsersControllers{
 			res.status(500).json(result);
 		}
 	}
+	changePassword=async(req,res)=>{
+		let result={message:'',error:{status:0,description:""}};
+		if((req.body.currentpassword!=null || req.body.currentpassword!=undefined)){
+			if(req.body.currentpassword.length==0){
+				result.message='password not valid';
+				result.status=1;
+				result.description='password should be 8 characters long';
+				res.status(404).json(result);
+			}
+		}
+		if((req.body.newpassword!=null || req.body.newpassword!=undefined)){
+			if(req.body.newpassword.length==0){
+				result.message='new password not valid';
+				result.status=1;
+				result.description='new password should be 8 characters long';
+				res.status(200).json(result);
+			}
+		}
+		try{
+			let user=await ObjUsers.Users.findOne({where:{uuid:req.params.uuid}});
+			let resultPassword=bcrypt.compareSync(req.body.currentpassword,user.password);
+			if(user===null || !resultPassword){
+				result.message='user not found';
+				result.error.status=1;
+				result.error.description='user is not in database'
+				res.status(200).json(result);
+			}else{
+				req.body.password=bcrypt.hashSync(req.body.newpassword,10);
+				delete req.body.currentpassword;
+				delete req.body.newpassword;
+				await ObjUsers.Users.update(req.body,{where:{uuid:req.params.uuid}});
+				result.message='user has been updated';
+				res.status(200).json(result);
+			}
+		}catch(err){
+			result.message='user has not been updated';
+			result.error.status=1;
+			result.error.description=err;
+			res.status(500).json(result);
+		}
+	}
 	verifyToken=(req,res,next)=>{
 		let result={message:'',error:{status:0,description:''}};
 		if(!req.headers.authorization){
@@ -159,11 +200,6 @@ class UsersControllers{
 			result.error.description=err;
 			return res.status(401).json(result);
 		}
-
-
-
-
-			
 	}
 }
 

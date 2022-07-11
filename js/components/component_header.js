@@ -40,6 +40,12 @@ export class Component_Header{
 				'data-bs-trigger':"focus"
 			})
 			.css({'width':'15%'});
+		this.lnkChangePassword=$(document.createElement('a'))
+			.addClass('text-decoration-underline')
+			.attr({
+				'routerLink':'changepassword',
+			})
+			.text('Cambiar contraseña');
 		this.btnLogout=$(document.createElement('button'))
 			.addClass('btn btn-outline-danger mt-3')
 			.text('Cerrar sesión');
@@ -58,12 +64,17 @@ export class Component_Header{
 				.text(loggedInAs=='admin'?' Administrador':' Operador'),
 			liIconUser=$(document.createElement('i'))
 				.addClass('bi bi-person-circle'),
+			liChangePassword=$(document.createElement('li'))
+				.addClass('list-group-item'),
 			liBtnLogout=$(document.createElement('li'))
 				.addClass('list-group-item');
 
 		liUserType.prepend(liIconUser);
+		liChangePassword.append(this.lnkChangePassword);
 		liBtnLogout.append(this.btnLogout);
+		
 		content.append(liUserType);
+		content.append(liChangePassword);
 		content.append(liBtnLogout);
 
 		let popover=new bootstrap.Popover(this.imglogoProtectIA.get(0),{
@@ -80,6 +91,13 @@ export class Component_Header{
 			this.popover=null;
 			router.load('login');
 		});
+		this.lnkChangePassword
+			.click(e=>{
+				router.load('changepassword');
+			})
+			.mouseover(e=>{
+				$(e.target).css({'cursor':'pointer'});
+			});
 		return popover;
 	}
 	createMenuButtons(){
