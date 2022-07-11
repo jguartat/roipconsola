@@ -96,7 +96,7 @@ export class Service_Users{
 		.fail(function(xhr,status,err){console.log("Error: ",err);})
 		.always();	
 	}
-	updateUserPassword(uuid,datapass,callback){
+	updateUserPassword(uuid,datapass,resolve,reject){
 		$.ajax({
 			type:"PUT",
 			url:`${this.API_URI}/users/changepassword/${uuid}`,
@@ -106,9 +106,13 @@ export class Service_Users{
 		})
 		.done(function(data){
 			console.log(data);
-			callback(data);
+			resolve(data);
 		})
-		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
 		.always();	
 	}
 }

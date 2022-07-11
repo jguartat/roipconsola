@@ -83,7 +83,62 @@ export class Component_ChangePasswordForm{
 		let response={'value':true,'description':"Contraseña no está vacía"};
 		if(inputElement.val().length==0){
 			response.value=false;
-			response.description="Contraseña no debe estar vacía";
+			response.description="Contraseña actual no debe estar vacía";
+			this.toast.set_component({
+				title:'Administración',
+				message:response.description,
+				textTime:'justo ahora',
+				type:'warning'
+			});
+			this.toast.show();
+			return response;	
+		}
+		return response;
+	}
+	passwordIsValid(inputElement){
+		let response={'value':true,'description':"Contraseña válida"};
+		let hasLowerCaseLetter=/[a-z]/g,
+			hasUpperCaseLetter= /[A-Z]/g,
+			hasNumber = /[0-9]/g;
+		if(!inputElement.val().match(hasLowerCaseLetter)){
+			response.value=false;
+			response.description="La nueva contraseña debe contener una letra minúscula";
+			this.toast.set_component({
+				title:'Administración',
+				message:response.description,
+				textTime:'justo ahora',
+				type:'warning'
+			});
+			this.toast.show();
+			return response;
+		}
+		if(!inputElement.val().match(hasUpperCaseLetter)){
+			response.value=false;
+			response.description="La nueva contraseña debe contener una letra mayúscula";
+			this.toast.set_component({
+				title:'Administración',
+				message:response.description,
+				textTime:'justo ahora',
+				type:'warning'
+			});
+			this.toast.show();
+			return response;
+		}
+		if(!inputElement.val().match(hasNumber)){
+			response.value=false;
+			response.description="La nueva contraseña debe contener un número";
+			this.toast.set_component({
+				title:'Administración',
+				message:response.description,
+				textTime:'justo ahora',
+				type:'warning'
+			});
+			this.toast.show();
+			return response;
+		}
+		if(inputElement.val().length<8){
+			response.value=false;
+			response.description="La nueva contraseña debe tener mínimo 8 caracteres";
 			this.toast.set_component({
 				title:'Administración',
 				message:response.description,
@@ -98,8 +153,8 @@ export class Component_ChangePasswordForm{
 	isComplete(){
 		let response=true;
 		response=response && this.passwordIsFull(this.inputCurrentPassword).value;
-		response=response && this.passwordIsFull(this.inputNewPassword).value;
-		response=response && this.passwordIsFull(this.inputNewPasswordConfirm).value;
+		response=response && this.passwordIsValid(this.inputNewPassword).value;
+		response=response && this.passwordIsValid(this.inputNewPasswordConfirm).value;
 		return response
 	}
 	createFormButtonsElements(){
@@ -124,7 +179,7 @@ export class Component_ChangePasswordForm{
 			if(!this.isComplete()){return;}
 			if(this.inputNewPassword.val()===this.inputNewPasswordConfirm.val()){
 				let promise=new Promise((resolve,reject)=>{
-					this.usersService.updateUserPassword(uuidUserToEdit,jsonnewpass,resolve);
+					this.usersService.updateUserPassword(uuidUserToEdit,jsonnewpass,resolve,reject);
 				});
 				
 				promise.then(result=>{
@@ -141,15 +196,15 @@ export class Component_ChangePasswordForm{
 						this.toast.set_hiddenEvent=()=>{
 							router.load('login');
 						}
-					}else{
-						this.toast.set_component({
-							title:'Administración',
-							message:`No se pudo guardar su nueva contraseña`,
-							textTime:'justo ahora',
-							type:'danger'
-						});
-						this.toast.show();
 					}
+				},result=>{
+					this.toast.set_component({
+						title:'Administración',
+						message:`No se pudo actualizar contraseña`,
+						textTime:'justo ahora',
+						type:'danger'
+					});
+					this.toast.show();
 				});
 			}else{
 				this.toast.set_component({

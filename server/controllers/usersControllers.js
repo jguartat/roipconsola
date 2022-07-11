@@ -156,10 +156,10 @@ class UsersControllers{
 			let user=await ObjUsers.Users.findOne({where:{uuid:req.params.uuid}});
 			let resultPassword=bcrypt.compareSync(req.body.currentpassword,user.password);
 			if(user===null || !resultPassword){
-				result.message='user not found';
+				result.message='password is incorrect';
 				result.error.status=1;
-				result.error.description='user is not in database'
-				res.status(200).json(result);
+				result.error.description='password does not match';
+				res.status(400).json(result);
 			}else{
 				req.body.password=bcrypt.hashSync(req.body.newpassword,10);
 				delete req.body.currentpassword;
