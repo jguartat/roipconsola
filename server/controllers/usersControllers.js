@@ -57,7 +57,7 @@ class UsersControllers{
 			let user=await ObjUsers.Users.findOne({where:{email:req.body.email}});
 			
 			if (user===null){
-				result.message='user not found';
+				result.message='user was not found';
 				result.error.status=1;
 				result.error.description='user is not in database'
 				res.status(404).json(result);
@@ -77,7 +77,7 @@ class UsersControllers{
 				}else{
 					result.message='user was not found';
 					result.error.status=1;
-					res.status(200).json(result);	
+					res.status(404).json(result);	
 				}
 			}
 		}catch(err){

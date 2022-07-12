@@ -2,6 +2,9 @@
 import {Service_Users} from '../services/service_users.js';
 import {Cl_User} from '../class/class_user.js';
 import {service_Observer} from '../services/service_observers.js';
+import {service_Cookie} from '../services/service_cookie.js';
+import {router} from '../routing/router.js';
+
 export class Component_UserForm{
 	constructor(){
 		this.head=$(document.createElement('div'))
@@ -245,89 +248,130 @@ export class Component_UserForm{
 		this.inputIsAdmin.prop("checked",user.admin);
 	}
 	async saveNewUser(){
-		let objuser=new Cl_User(this.inputEmail.val(),this.inputPassword.val());
-		objuser.admin=this.inputIsAdmin.is(':checked');
-		let jsonuser=objuser.json();
-		delete jsonuser.uuid;
-		if(!this.isComplete()){return;}
-		if(this.inputPassword.val()===this.inputPasswordConfirm.val()){
-			let promise=new Promise((resolve,reject)=>{
-				this.usersService.saveUser(jsonuser,resolve);
-			}),
-			result=await promise;
-			/*promise.then(result=>{
-				console.log(result);
-				this.cleanForm();
-			});*/
-			if(result.error.status==0){
-				this.cleanForm();
-				this.toast.set_component({
-					title:'Administración',
-					message:`Nuevo usuario ${objuser.email} guardado`,
-					textTime:'justo ahora',
-					type:'success'
-				});
-				this.toast.show();
-				service_Observer.changeUsersListObservable.notify(true);
+		try{
+			let objuser=new Cl_User(this.inputEmail.val(),this.inputPassword.val());
+			objuser.admin=this.inputIsAdmin.is(':checked');
+			let jsonuser=objuser.json();
+			delete jsonuser.uuid;
+			if(!this.isComplete()){return;}
+			if(this.inputPassword.val()===this.inputPasswordConfirm.val()){
+				let promise=new Promise((resolve,reject)=>{
+					this.usersService.saveUser(jsonuser,resolve,reject);
+				}),
+				result=await promise;
+				if(result.error.status==0){
+					this.cleanForm();
+					this.toast.set_component({
+						title:'Administración',
+						message:`Nuevo usuario ${objuser.email} guardado`,
+						textTime:'justo ahora',
+						type:'success'
+					});
+					this.toast.show();
+					service_Observer.changeUsersListObservable.notify(true);
+				}else{
+					this.toast.set_component({
+						title:'Administración',
+						message:`No se pudo guardar el nuevo usuario ${objuser.email}`,
+						textTime:'justo ahora',
+						type:'danger'
+					});
+					this.toast.show();
+				}
 			}else{
 				this.toast.set_component({
-					title:'Administración',
-					message:`No se pudo guardar el nuevo usuario ${objuser.email}`,
-					textTime:'justo ahora',
-					type:'danger'
-				});
+						title:'Administración',
+						message:'No coinciden las contraseñas',
+						textTime:'justo ahora',
+						type:'warning'
+					});
 				this.toast.show();
 			}
-		}else{
+		}catch(data){
+			let message='Usted no está autorizado para hacer ésta petición',
+				type='danger';
+			if(data.error.description.name=='TokenExpiredError'){
+				message="Su sesión ha terminado. ¡Vuelva a loguearse!";
+				type='warning';
+				service_Cookie.deleteAllCookies();
+				this.toast.set_hiddenEvent=()=>{
+					router.load('login');
+				}
+			}
 			this.toast.set_component({
 					title:'Administración',
-					message:'No coinciden las contraseñas',
+					message:message,
 					textTime:'justo ahora',
-					type:'warning'
+					type:type
 				});
 			this.toast.show();
 		}
 	}
 	async updateUser(){
-		let uuidUserToEdit=this.userToEdit.uuid,
-			objuser=new Cl_User(this.inputEmail.val(),this.inputPassword.val());
-		objuser.admin=this.inputIsAdmin.is(':checked');
-		let jsonuser=objuser.json();
-		delete jsonuser.uuid;
-		if(!this.isComplete()){return;}
-		if(this.inputPassword.val()===this.inputPasswordConfirm.val()){
-			if(this.userToEdit.password==objuser.password){delete jsonuser.password;}
-			let promise=new Promise((resolve,reject)=>{
-				this.usersService.updateUser(uuidUserToEdit,jsonuser,resolve);
-			}),
-			result=await promise;
-			if(result.error.status==0){
-				this.cleanForm();
-				this.toast.set_component({
-					title:'Administración',
-					message:`Usuario ${this.userToEdit.email} ha sido actualizado`,
-					textTime:'justo ahora',
-					type:'success'
-				});
-				this.toast.show();
-				service_Observer.changeUsersListObservable.notify(true);
+		try{
+			let uuidUserToEdit=this.userToEdit.uuid,
+				objuser=new Cl_User(this.inputEmail.val(),this.inputPassword.val());
+			objuser.admin=this.inputIsAdmin.is(':checked');
+			let jsonuser=objuser.json();
+			delete jsonuser.uuid;
+			if(!this.isComplete()){return;}
+			if(this.inputPassword.val()===this.inputPasswordConfirm.val()){
+				if(this.userToEdit.password==objuser.password){delete jsonuser.password;}
+				let promise=new Promise((resolve,reject)=>{
+					this.usersService.updateUser(uuidUserToEdit,jsonuser,resolve,reject);
+				}),
+				result=await promise;
+				if(result.error.status==0){
+					this.cleanForm();
+					this.toast.set_component({
+						title:'Administración',
+						message:`Usuario ${this.userToEdit.email} ha sido actualizado`,
+						textTime:'justo ahora',
+						type:'success'
+					});
+					this.toast.show();
+					service_Observer.changeUsersListObservable.notify(true);
+				}else{
+					this.toast.set_component({
+						title:'Administración',
+						message:`No se pudo actualizar el nuevo usuario ${this.userToEdit.email}`,
+						textTime:'justo ahora',
+						type:'danger'
+					});
+					this.toast.show();
+				}
 			}else{
 				this.toast.set_component({
-					title:'Administración',
-					message:`No se pudo actualizar el nuevo usuario ${this.userToEdit.email}`,
-					textTime:'justo ahora',
-					type:'danger'
-				});
+						title:'Administración',
+						message:'No coinciden las contraseñas',
+						textTime:'justo ahora',
+						type:'warning'
+					});
 				this.toast.show();
 			}
-		}else{
+		}catch(data){
+			let message='Usted no está autorizado para hacer ésta petición',
+				type='danger';
+			if(data.error.description.name=='TokenExpiredError'){
+				message="Su sesión ha terminado. ¡Vuelva a loguearse!";
+				type='warning';
+				service_Cookie.deleteAllCookies();
+				this.toast.set_hiddenEvent=()=>{
+					router.load('login');
+				}
+			}
 			this.toast.set_component({
 					title:'Administración',
-					message:'No coinciden las contraseñas',
+					message:message,
 					textTime:'justo ahora',
-					type:'warning'
+					type:type
 				});
 			this.toast.show();
 		}
+
+
+
+
+			
 	}
 }

@@ -3,6 +3,8 @@ import {Cl_User} from '../class/class_user.js';
 import {Service_Users} from '../services/service_users.js';
 import {Observer} from '../../libs/observerPattern/class/class_observer.js';
 import {service_Observer} from '../services/service_observers.js';
+import {service_Cookie} from '../services/service_cookie.js';
+import {router} from '../routing/router.js';
 
 export class Component_ListUserForm{
 	constructor(userForm){
@@ -20,32 +22,49 @@ export class Component_ListUserForm{
 		this.setObserverEvent();
 	}
 	async requestUsers(){
-		let objUsersList={},
-			promise=new Promise((resolve,reject)=>{
-				let listUsers= this.usersService.getUsers(resolve);	
-			}),
-			result= await promise;
-			/*promise.then(result=>{
-				console.log(result);
-			});*/
-		if(result.error.status==0){
-			result.data.forEach(userdb=>{
-				let user=new Cl_User(userdb.email,userdb.password);
-				user.admin=userdb.admin;
-				user.uuid=userdb.uuid;
-				objUsersList[user.uuid]=user;
-			});
-		}else{
+		try{
+			let objUsersList={},
+				promise=new Promise((resolve,reject)=>{
+					let listUsers= this.usersService.getUsers(resolve,reject);	
+				}),
+				result= await promise;
+			if(result.error.status==0){
+				result.data.forEach(userdb=>{
+					let user=new Cl_User(userdb.email,userdb.password);
+					user.admin=userdb.admin;
+					user.uuid=userdb.uuid;
+					objUsersList[user.uuid]=user;
+				});
+			}else{
+				this.toast.set_component({
+					title:'Administración',
+					message:'No se pudo cargar la lista de usuarios',
+					textTime:'justo ahora',
+					type:'danger'
+				});
+				this.toast.show();
+			}
+			this.objUsersList=objUsersList;
+			this.fill();
+		}catch(data){
+			let message='Usted no está autorizado para hacer ésta petición',
+				type='danger';
+			if(data.error.description.name=='TokenExpiredError'){
+				message="Su sesión ha terminado. ¡Vuelva a loguearse!";
+				type='warning';
+				service_Cookie.deleteAllCookies();
+				this.toast.set_hiddenEvent=()=>{
+					router.load('login');
+				}
+			}
 			this.toast.set_component({
-				title:'Administración',
-				message:'No se pudo cargar la lista de usuarios',
-				textTime:'justo ahora',
-				type:'danger'
-			});
+					title:'Administración',
+					message:message,
+					textTime:'justo ahora',
+					type:type
+				});
 			this.toast.show();
 		}
-		this.objUsersList=objUsersList;		
-		this.fill();
 	}
 	fill(){
 		for(let key in this.objUsersList){
@@ -88,7 +107,7 @@ export class Component_ListUserForm{
 
 			elemContentIco.click(e=>{
 				let promise=new Promise((resolve,reject)=>{
-					this.usersService.deleteUser(this.objUsersList[key].uuid,resolve);
+					this.usersService.deleteUser(this.objUsersList[key].uuid,resolve,reject);
 				});
 				promise.then(result=>{
 					if(result.error.status==0){
@@ -109,8 +128,25 @@ export class Component_ListUserForm{
 						});
 						this.toast.show();
 					}
+				},result=>{
+					let message='Usted no está autorizado para hacer ésta petición',
+						type='danger';
+					if(result.error.description.name=='TokenExpiredError'){
+						message="Su sesión ha terminado. ¡Vuelva a loguearse!";
+						type='warning';
+						service_Cookie.deleteAllCookies();
+						this.toast.set_hiddenEvent=()=>{
+							router.load('login');
+						}
+					}
+					this.toast.set_component({
+							title:'Administración',
+							message:message,
+							textTime:'justo ahora',
+							type:type
+						});
+					this.toast.show();
 				});
-				
 			})
 			.mouseover(e=>{
 				elemContentIco.css({'color': 'red'});

@@ -151,7 +151,7 @@ export class Component_LoginForm{
 			if(!this.isComplete()){return;}
 
 			let promise=new Promise((resolve,reject)=>{
-				this.usersService.loginUser(jsonuser,resolve);
+				this.usersService.loginUser(jsonuser,resolve,reject);
 			});
 			promise.then(result=>{
 				if(result.error.status==0){
@@ -160,15 +160,15 @@ export class Component_LoginForm{
 					service_Cookie.setCookie('dataUser',service_Encryption.encrypt(dataUser),1);
 					service_Cookie.setCookie('loggedInAs',service_Encryption.encrypt((objuser.admin?'admin':'operator')),1);
 					router.load('comunications');
-				}else{
-					this.toast.set_component({
-						title:'Administración',
-						message:'Usuario no encontrado',
-						textTime:'justo ahora',
-						type:'warning'
-					});
-					this.toast.show();
 				}
+			},result=>{
+				this.toast.set_component({
+					title:'Administración',
+					message:'Usuario no encontrado',
+					textTime:'justo ahora',
+					type:'warning'
+				});
+				this.toast.show();
 			});
 
 		});

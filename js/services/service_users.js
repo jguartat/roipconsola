@@ -10,7 +10,7 @@ export class Service_Users{
 	getToken(){
 		return service_Cookie.getCookie('accessToken');
 	}
-	getUsers(callback){
+	getUsers(resolve,reject){
 		$.ajax({
 			type:"GET",
 			url:`${this.API_URI}/users`,
@@ -19,12 +19,16 @@ export class Service_Users{
 		})
 		.done(function(data){
 			console.log(data);
-			callback(data);
+			resolve(data);
 		})
-		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
 		.always();
 	}
-	getUser(uuid,callback){
+	getUser(uuid,resolve,reject){
 		$.ajax({
 			type:"GET",
 			url:`${this.API_URI}/users/${uuid}`,
@@ -33,12 +37,16 @@ export class Service_Users{
 		})
 		.done(function(data){
 			console.log(data);
-			callback(data);
+			resolve(data);
 		})
-		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
 		.always();
 	}
-	loginUser(user,callback){
+	loginUser(user,resolve,reject){
 		$.ajax({
 			type:"POST",
 			url:`${this.API_URI}/users/login`,
@@ -47,12 +55,16 @@ export class Service_Users{
 		})
 		.done(function(data){
 			console.log(data);
-			callback(data);
+			resolve(data);
 		})
-		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
 		.always();
 	}
-	saveUser(user,callback){
+	saveUser(user,resolve,reject){
 		$.ajax({
 			type:"POST",
 			url:`${this.API_URI}/users`,
@@ -62,12 +74,16 @@ export class Service_Users{
 		})
 		.done(function(data){
 			console.log(data);
-			callback(data);
+			resolve(data);
 		})
-		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
 		.always();
 	}
-	deleteUser(uuid,callback){
+	deleteUser(uuid,resolve,reject){
 		$.ajax({
 			type:"DELETE",
 			url:`${this.API_URI}/users/${uuid}`,
@@ -76,12 +92,16 @@ export class Service_Users{
 		})
 		.done(function(data){
 			console.log(data);
-			callback(data);
+			resolve(data);
 		})
-		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
 		.always();
 	}
-	updateUser(uuid,user,callback){
+	updateUser(uuid,user,resolve,reject){
 		$.ajax({
 			type:"PUT",
 			url:`${this.API_URI}/users/${uuid}`,
@@ -91,9 +111,13 @@ export class Service_Users{
 		})
 		.done(function(data){
 			console.log(data);
-			callback(data);
+			resolve(data);
 		})
-		.fail(function(xhr,status,err){console.log("Error: ",err);})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
 		.always();	
 	}
 	updateUserPassword(uuid,datapass,resolve,reject){

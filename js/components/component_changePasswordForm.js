@@ -198,12 +198,22 @@ export class Component_ChangePasswordForm{
 						}
 					}
 				},result=>{
+					let message='Usted no está autorizado para hacer ésta petición',
+						type='danger';
+					if(result.error.description.name=='TokenExpiredError'){
+						message="Su sesión ha terminado. ¡Vuelva a loguearse!";
+						type='warning';
+						service_Cookie.deleteAllCookies();
+						this.toast.set_hiddenEvent=()=>{
+							router.load('login');
+						}
+					}
 					this.toast.set_component({
-						title:'Administración',
-						message:`No se pudo actualizar contraseña`,
-						textTime:'justo ahora',
-						type:'danger'
-					});
+							title:'Administración',
+							message:message,
+							textTime:'justo ahora',
+							type:type
+						});
 					this.toast.show();
 				});
 			}else{

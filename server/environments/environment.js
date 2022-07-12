@@ -7,7 +7,8 @@ let environment_prod={
 	postgres_password:'j0$u3p0$79r3$',
 	postgres_dbname:'totemroip',
 	postgres_ip:'localhost',
-	postgres_port:5432
+	postgres_port:5432,
+	system_accesskey:''
 };
 
 let environment_dev={
