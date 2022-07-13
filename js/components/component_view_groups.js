@@ -1,10 +1,10 @@
 'use strict';
 import {Component_Header} from './component_header.js';
-import {Component_UserForm} from './component_userForm.js';
-import {Component_ListUserForm} from './component_listUserForm.js';
+import {Component_GroupForm} from './component_groupForm.js';
+import {Component_ListGroupForm} from './component_listGroupForm.js';
 import {Component_Toast} from './component_toast.js';
 import {Service_Permissions} from '../services/service_permissions.js';
-export class Component_View_Administration{
+export class Component_View_Groups{
 	constructor(){
 		this.toast=new Component_Toast('Hello','info','right now');
 		this.header=this.createHeader();
@@ -13,7 +13,7 @@ export class Component_View_Administration{
 		this.container=this.createContainer();
 
 		this.menu=[
-			{name:'Administración',path:'administration',active:true}
+			{name:'Grupos',path:'groups',active:true}
 		];
 	}
 	createHeader(){
@@ -21,13 +21,13 @@ export class Component_View_Administration{
 		return header;
 	}
 	createForm(){
-		let form=new Component_UserForm();
+		let form=new Component_GroupForm();
 		form.toast=this.toast;
 		return form;
 	}
 	createList(form){
-		let list=new Component_ListUserForm(form);
-		list.requestUsers();
+		let list=new Component_ListGroupForm(form);
+		list.requestGroups();
 		list.toast=this.toast;
 		return list;
 	}

@@ -5,6 +5,7 @@ const morgan=require("morgan");
 const cors=require("cors");
 const indexRoutes=require("./routes/indexRoutes.js");
 const usersRoutes=require("./routes/usersRoutes.js");
+const groupsRoutes=require("./routes/groupsRoutes.js");
 const environment=require("./environments/environment.js");
 
 class Server{
@@ -23,6 +24,7 @@ class Server{
 	routes(){
 		this.app.use('/',indexRoutes);
 		this.app.use('/api/users',usersRoutes);
+		this.app.use('/api/groups',groupsRoutes);
 	}
 	start(){
 		this.app.listen(this.app.get('port'),()=>{

@@ -1,9 +1,11 @@
 'use strict';
 import {Component_Header} from './component_header.js';
 import {Component_List} from './component_list.js';
+import {Component_Toast} from './component_toast.js';
 import {Service_Permissions} from '../services/service_permissions.js';
 export class Component_View_Communication{
 	constructor(){
+		this.toast=new Component_Toast('Hello','info','right now');
 		this.header=this.createHeader();
 		this.controllers=this.createControllers();
 		this.list=this.createList();
@@ -32,6 +34,8 @@ export class Component_View_Communication{
 	}
 	createList(){
 		let list=new Component_List(this.controllers);
+		list.requestGroups();
+		list.toast=this.toast;
 		return list.get_component;	
 	}
 	createControllers(){

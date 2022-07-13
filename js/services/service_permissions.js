@@ -11,7 +11,8 @@ export class Service_Permissions{
 			case 'admin':
 				menu=[
 					{name:'Comunicación',path:'comunications',active:pathname=='comunications'},
-					{name:'Administración',path:'administration',active:pathname=='administration'}
+					{name:'Usuarios',path:'users',active:pathname=='users'},
+					{name:'Grupos',path:'groups',active:pathname=='groups'}
 				]
 				break;
 			case 'operator':

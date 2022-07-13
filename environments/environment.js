@@ -7,7 +7,8 @@ let environment_prod={
 	pttusb_port:3000,
 	pttusb_protocol:'pttusb-protocol',
 	freepbx_ip:'192.168.107.200',
-	freepbx_port:8089
+	freepbx_port:8089,
+	freepbx_sippassword:'12345'
 };
 
 let environment_dev={
@@ -17,7 +18,8 @@ let environment_dev={
 	pttusb_port:3000,
 	pttusb_protocol:'pttusb-protocol',
 	freepbx_ip:'192.168.107.23',
-	freepbx_port:8089
+	freepbx_port:8089,
+	freepbx_sippassword:'12345'
 };
 
 

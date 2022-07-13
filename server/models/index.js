@@ -1,6 +1,7 @@
 'use strict';
 const {Sequelize} = require('sequelize');
 const ObjUsers = require('./users-model.js');
+const ObjGroups = require('./groups-model.js');
 const environment = require('../environments/environment.js');
 class PostgresCnx{
 	cnx=null;
@@ -32,6 +33,7 @@ class PostgresCnx{
 	}
 	async syncUp(){
 		ObjUsers.create(this.cnx);
+		ObjGroups.create(this.cnx);
 		await this.cnx.sync({alter:true});
 	}
 }

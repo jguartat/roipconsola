@@ -6,78 +6,66 @@ import {Observer} from '../../libs/observerPattern/class/class_observer.js';
 import {service_Observer} from '../services/service_observers.js';
 export class Component_List{
 	constructor(HTML_Controllers){
-		this.objGroupList=this.consultGroups();
+		this.groupsService=new Service_Groups();
+		this.objGroupList={};
 		this.controllers=HTML_Controllers;
 		this.inputFilter=$(document.createElement('input'))
 			.addClass('form-control mb-2')
 			.attr('type','text')
 			.attr('placeholder','Filtrar');
-
+		this.list=$(document.createElement('div')).
+			addClass('list-group list-group-flush');
+		this.toast=null;//It is initialized from its parent component
 		this.connectAllGroupsObserver=new Observer();
 		this.disconnectAllGroupsObserver=new Observer();
+		this.changeGroupsListObserver= new Observer();
+		this.setObserverEvent();
 	}
-	consultGroups(){
-		let groups= new Service_Groups(),
-			jsonGroups=groups.get_groups,
-			objGroupList={};
-		for(let key in jsonGroups){
-			objGroupList[key]=new Cl_Group(key,jsonGroups[key]);
-		}
-		return objGroupList;
-	}
-	connectAll(){
-		for(let key in this.objGroupList){
-			if(!this.objGroupList[key].controller){
-				this.objGroupList[key].controller=new Component_ControllerPTT(this.objGroupList[key]);
-				let column=$(document.createElement('div'))
-					.addClass('col-12 col-md-12 col-lg-6');
-				column.append(this.objGroupList[key].controller.get_component);
-				this.controllers.find('.row.groupList').append(column);
-				this.objGroupList[key].controller.connect();
-				this.objGroupList[key].controller.closeEvent=()=>{
-					delete this.objGroupList[key].controller;
+	async requestGroups(){
+		try{
+			let objGroupList={},
+				promise=new Promise((resolve,reject)=>{
+				this.groupsService.getGroups(resolve,reject);
+			}),
+			result= await promise;
+			if(result.error.status==0){
+				result.data.forEach(groupdb=>{
+					let group=new Cl_Group(groupdb);
+					group.uuid=groupdb.uuid;
+					objGroupList[group.uuid]=group;
+				});
+			}else{
+				this.toast.set_component({
+					title:'Administración',
+					message:'No se pudo cargar la lista de grupos',
+					textTime:'justo ahora',
+					type:'danger'
+				});
+				this.toast.show();
+			}
+			this.objGroupList=objGroupList;
+			this.fill();
+		}catch(data){
+			let message='Usted no está autorizado para hacer ésta petición',
+				type='danger';
+			if(data.error.description.name=='TokenExpiredError'){
+				message="Su sesión ha terminado. ¡Vuelva a loguearse!";
+				type='warning';
+				service_Cookie.deleteAllCookies();
+				this.toast.set_hiddenEvent=()=>{
+					router.load('login');
 				}
 			}
+			this.toast.set_component({
+					title:'Administración',
+					message:message,
+					textTime:'justo ahora',
+					type:type
+				});
+			this.toast.show();
 		}
 	}
-	disconnectAll(){
-		for(let key in this.objGroupList){
-			if(this.objGroupList[key].controller){
-				this.objGroupList[key].controller.card.css({
-					'animation':'zoomOut',
-					'animation-duration':'0.3s'
-				});
-				this.objGroupList[key].controller.card.on('animationend',e=>{
-					$(e.target).parent().remove();
-				});
-				this.objGroupList[key].controller.disconnect();
-				//this.objGroupList[key].controller.card.parent().remove();
-				delete this.objGroupList[key].controller;
-			}
-		}
-	}
-	get get_component(){
-
-		this.connectAllGroupsObserver.set_trigger=(subject)=>{
-			console.log("subject cambio de valor: ",subject.value);
-			if(subject.value!=null){
-				this.connectAll();
-			}
-		}
-		service_Observer.connectAllGroupsObservable.subscribe(this.connectAllGroupsObserver);
-
-		this.disconnectAllGroupsObserver.set_trigger=(subject)=>{
-			console.log("subject cambio de valor: ",subject.value);
-			if(subject.value!=null){
-				this.disconnectAll();
-			}
-		}
-		service_Observer.disconnectAllGroupsObservable.subscribe(this.disconnectAllGroupsObserver);
-
-
-		let list=$(document.createElement('div')).
-			addClass('list-group list-group-flush');
-		list.append(this.inputFilter);
+	fill(){
 		for(let key in this.objGroupList){
 			let elem=$(document.createElement('a'))
 					.addClass('list-group-item list-group-item-action'),
@@ -100,7 +88,7 @@ export class Component_List{
 			elem.append(elemContent);
 			elem.append(elemDescription);
 			elem.append(elemExt);
-			list.append(elem);
+			this.list.append(elem);
 
 			elem.click(e=>{
 				/*Puede haber hecho esto:let controller=new Component_ControllerPTT(this.objGroupList[key])*/
@@ -134,9 +122,69 @@ export class Component_List{
 				elemContentHead.css({'color': 'black'});
 			});
 		}
+	}
+	connectAll(){
+		for(let key in this.objGroupList){
+			if(!this.objGroupList[key].controller){
+				this.objGroupList[key].controller=new Component_ControllerPTT(this.objGroupList[key]);
+				let column=$(document.createElement('div'))
+					.addClass('col-12 col-md-12 col-lg-6');
+				column.append(this.objGroupList[key].controller.get_component);
+				this.controllers.find('.row.groupList').append(column);
+				this.objGroupList[key].controller.connect();
+				this.objGroupList[key].controller.closeEvent=()=>{
+					delete this.objGroupList[key].controller;
+				}
+			}
+		}
+	}
+	disconnectAll(){
+		for(let key in this.objGroupList){
+			if(this.objGroupList[key].controller){
+				this.objGroupList[key].controller.card.css({
+					'animation':'zoomOut',
+					'animation-duration':'0.3s'
+				});
+				this.objGroupList[key].controller.card.on('animationend',e=>{
+					$(e.target).parent().remove();
+				});
+				this.objGroupList[key].controller.disconnect();
+				//this.objGroupList[key].controller.card.parent().remove();
+				delete this.objGroupList[key].controller;
+			}
+		}
+	}
+	setObserverEvent(){
+		this.changeGroupsListObserver.set_trigger=(subject)=>{
+			if(subject.value){
+				this.list.html("");
+				this.requestGroups();
+			}
+		};
+		service_Observer.changeGroupsListObservable.subscribe(this.changeGroupsListObserver);
+	}
+	get get_component(){
+
+		this.connectAllGroupsObserver.set_trigger=(subject)=>{
+			console.log("subject cambio de valor: ",subject.value);
+			if(subject.value!=null){
+				this.connectAll();
+			}
+		}
+		service_Observer.connectAllGroupsObservable.subscribe(this.connectAllGroupsObserver);
+
+		this.disconnectAllGroupsObserver.set_trigger=(subject)=>{
+			console.log("subject cambio de valor: ",subject.value);
+			if(subject.value!=null){
+				this.disconnectAll();
+			}
+		}
+		service_Observer.disconnectAllGroupsObservable.subscribe(this.disconnectAllGroupsObserver);
+
+		this.list.append(this.inputFilter);
 		this.inputFilter.keyup(e=>{
 			let filter=e.target.value.toLowerCase(),
-				list_aux=list.find('a'),
+				list_aux=this.list.find('a'),
 				datagroups=list_aux.toArray(),
 				fnNoMatch=(datagroup)=>{
 					return datagroup.text.toLowerCase().indexOf(filter)==-1;
@@ -152,6 +200,6 @@ export class Component_List{
 				list_aux.show();
 			}
 		});
-		return list;
+		return this.list;
 	}
 }

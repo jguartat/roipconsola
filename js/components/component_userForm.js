@@ -367,11 +367,6 @@ export class Component_UserForm{
 					type:type
 				});
 			this.toast.show();
-		}
-
-
-
-
-			
+		}	
 	}
 }

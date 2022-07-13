@@ -1,19 +1,105 @@
 'use strict';
+import {service_Cookie} from './service_cookie.js';
 import {environment} from '../../environments/environment.js';
 
 export class Service_Groups{
+	API_URI= '';
 	constructor(){
-		this.groups_={
-			'idabc1001':{'name':'WellscomUIO','ext':101,'description':'Quito','authorization_user':105,'sippassword':'12345','ipserver':environment.freepbx_ip,'portserver':environment.freepbx_port},
-			'idabc1003':{'name':'WellscomGYE','ext':103,'description':'Guayaquil','authorization_user':106,'sippassword':'12345','ipserver':environment.freepbx_ip,'portserver':environment.freepbx_port},
-			'idabc1008':{'name':'Josué','ext':108,'description':'Prueba softphone','authorization_user':115,'sippassword':'12345','ipserver':environment.freepbx_ip,'portserver':environment.freepbx_port},
-		}
-		this.groups={
-			'idabc1001':{'name':'Marfrisco','ext':101,'description':'Camaronera','authorization_user':1101,'sippassword':'12345','ipserver':environment.freepbx_ip,'portserver':environment.freepbx_port},
-			'idabc1003':{'name':'WellscomGYE','ext':102,'description':'Oficina','authorization_user':1102,'sippassword':'12345','ipserver':environment.freepbx_ip,'portserver':environment.freepbx_port}
-		}
+		this.API_URI=environment.api_uri;
 	}
-	get get_groups(){
-		return this.groups;
+	getToken(){
+		return service_Cookie.getCookie('accessToken');
+	}
+	getGroups(resolve,reject){
+		$.ajax({
+			type:"GET",
+			url:`${this.API_URI}/groups`,
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			resolve(data);
+		})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
+		.always();
+	}
+	getGroup(uuid,resolve,reject){
+		$.ajax({
+			type:"GET",
+			url:`${this.API_URI}/groups/${uuid}`,
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			resolve(data);
+		})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
+		.always();
+	}
+	saveGroup(user,resolve,reject){
+		$.ajax({
+			type:"POST",
+			url:`${this.API_URI}/groups`,
+			dataType:"json",
+			data:user,
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			resolve(data);
+		})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
+		.always();
+	}
+	deleteGroup(uuid,resolve,reject){
+		$.ajax({
+			type:"DELETE",
+			url:`${this.API_URI}/groups/${uuid}`,
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			resolve(data);
+		})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
+		.always();
+	}
+	updateGroup(uuid,user,resolve,reject){
+		$.ajax({
+			type:"PUT",
+			url:`${this.API_URI}/groups/${uuid}`,
+			dataType:"json",
+			data:user,
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			resolve(data);
+		})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
+		.always();	
 	}
 }

@@ -1,6 +1,7 @@
 'use strict';
 import {Component_View_Communication} from '../components/component_view_communication.js';
-import {Component_View_Administration} from '../components/component_view_administration.js';
+import {Component_View_Users} from '../components/component_view_users.js';
+import {Component_View_Groups} from '../components/component_view_groups.js';
 import {Component_View_Login} from '../components/component_view_login.js';
 import {Component_View_ChangePassword} from '../components/component_view_changepassword.js';
 import {Guard_login} from '../guards/guard_login.js';
@@ -18,8 +19,13 @@ export const routes=[
 		canActivate:[Guard_isUserLoggedIn]
 	},
 	{
-		path:'administration',
-		component:Component_View_Administration,
+		path:'users',
+		component:Component_View_Users,
+		canActivate:[Guard_isUserLoggedIn, Guard_isUserLoggedInAsAdmin]
+	},
+	{
+		path:'groups',
+		component:Component_View_Groups,
 		canActivate:[Guard_isUserLoggedIn, Guard_isUserLoggedInAsAdmin]
 	},
 	{
