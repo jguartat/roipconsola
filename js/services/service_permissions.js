@@ -12,7 +12,8 @@ export class Service_Permissions{
 				menu=[
 					{name:'Comunicación',path:'comunications',active:pathname=='comunications'},
 					{name:'Usuarios',path:'users',active:pathname=='users'},
-					{name:'Grupos',path:'groups',active:pathname=='groups'}
+					{name:'Grupos',path:'groups',active:pathname=='groups'},
+					{name:'Asignación',path:'groupsassignment',active:pathname=='groupsassignment'}
 				]
 				break;
 			case 'operator':

@@ -47,7 +47,7 @@ class GroupsModel{
 				{
 					unique:true,
 					fields:['ext'],
-					name: 'someIndex'
+					name: 'extIndex'
 				}
 			]
 		});

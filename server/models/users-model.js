@@ -30,7 +30,7 @@ class UsersModel{
 				{
 					unique:true,
 					fields:['email'],
-					name: 'someIndex'
+					name: 'emailIndex'
 				}
 			]
 		});

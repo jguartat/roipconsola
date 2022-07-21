@@ -2,6 +2,7 @@
 import {Component_View_Communication} from '../components/component_view_communication.js';
 import {Component_View_Users} from '../components/component_view_users.js';
 import {Component_View_Groups} from '../components/component_view_groups.js';
+import {Component_View_GroupsAssignment} from '../components/component_view_groupsassignment.js';
 import {Component_View_Login} from '../components/component_view_login.js';
 import {Component_View_ChangePassword} from '../components/component_view_changepassword.js';
 import {Guard_login} from '../guards/guard_login.js';
@@ -26,6 +27,11 @@ export const routes=[
 	{
 		path:'groups',
 		component:Component_View_Groups,
+		canActivate:[Guard_isUserLoggedIn, Guard_isUserLoggedInAsAdmin]
+	},
+	{
+		path:'groupsassignment',
+		component:Component_View_GroupsAssignment,
 		canActivate:[Guard_isUserLoggedIn, Guard_isUserLoggedInAsAdmin]
 	},
 	{

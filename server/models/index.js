@@ -2,6 +2,7 @@
 const {Sequelize} = require('sequelize');
 const ObjUsers = require('./users-model.js');
 const ObjGroups = require('./groups-model.js');
+const ObjMapUserGroups = require('./mapusergroups-model.js');
 const environment = require('../environments/environment.js');
 class PostgresCnx{
 	cnx=null;
@@ -34,7 +35,16 @@ class PostgresCnx{
 	async syncUp(){
 		ObjUsers.create(this.cnx);
 		ObjGroups.create(this.cnx);
+		ObjMapUserGroups.create(this.cnx);
+
+		ObjUsers.Users.hasOne(ObjMapUserGroups.MapUserGroups);
+		ObjMapUserGroups.MapUserGroups.belongsTo(ObjUsers.Users);
+
+		ObjGroups.Groups.hasOne(ObjMapUserGroups.MapUserGroups);
+		ObjMapUserGroups.MapUserGroups.belongsTo(ObjGroups.Groups);
+
 		await this.cnx.sync({alter:true});
+
 	}
 }
 

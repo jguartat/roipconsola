@@ -1,61 +1,40 @@
 'use strict';
 const bcrypt=require('bcrypt');
 const jsonwebtoken=require('jsonwebtoken');
-const {Sequelize, DataTypes, Models} = require('sequelize');
-const ObjGroups=require('../models/groups-model.js');
-const environment=require('../environments/environment.js');
 const ObjMapUserGroups=require('../models/mapusergroups-model.js');
+const environment=require('../environments/environment.js');
+const ObjUsers = require('../models/users-model.js');
+const ObjGroups = require('../models/groups-model.js');
 
-class GroupsControllers{
+class MapUserGroupsControllers{
 	constructor(){
 		this.secretkey=environment.secretkey;
 		this.tokenExpiresIn=24*60*60;
 	}
-	list_=async(req,res)=>{
-		console.log("lista de grupos");
-		let result={message:'',data:null,error:{status:0,description:""}};
-		try{
-			const groups= await ObjGroups.Groups.findAll({
-				attributes:{exclude:['createdAt','updatedAt']}
-			});
-			console.log(`All groups: ${JSON.stringify(groups,null,2)}`);
-			result.message=(groups.length>0)?'groups were found':'there are no groups to display';
-			result.data=groups;
-			res.status(200).json(result);
-		}
-		catch(err){
-			result.message='groups were not found';
-			result.error.status=1;
-			result.error.description=err;
-			res.status(500).json(result);
-		}
-	}
 	list=async(req,res)=>{
-		console.log("lista de grupos");
+		console.log("lista de mapeos");
 		let result={message:'',data:null,error:{status:0,description:""}};
 		try{
-			const groups= await ObjGroups.Groups.findAll({
+			const mappings= await ObjMapUserGroups.MapUserGroups.findAll({
 				attributes:{exclude:['createdAt','updatedAt']},
 				include:[
 					{
-						model:ObjMapUserGroups.MapUserGroups,
-						required:false,
-						attributes:['groupUuid']
+						model:ObjUsers.Users,
+						attributes:['email']
+					},
+					{
+						model:ObjGroups.Groups,
+						attributes:['name']
 					}
-				],
-				where:Sequelize.where(
-					Sequelize.col('mapusergroup.groupUuid'),
-					'IS',
-					null
-				)
+				]
 			});
-			console.log(`All groups: ${JSON.stringify(groups,null,2)}`);
-			result.message=(groups.length>0)?'groups were found':'there are no groups to display';
-			result.data=groups;
+			console.log(`All mappings: ${JSON.stringify(mappings,null,2)}`);
+			result.message=(mappings.length>0)?'mappings were found':'there are no mappings to display';
+			result.data=mappings;
 			res.status(200).json(result);
 		}
 		catch(err){
-			result.message='groups were not found';
+			result.message='mappings were not found';
 			result.error.status=1;
 			result.error.description=err;
 			res.status(500).json(result);
@@ -64,34 +43,34 @@ class GroupsControllers{
 	getOne=async(req,res)=>{
 		let result={message:'',data:null,error:{status:0,description:""}};
 		try{
-			let group=await ObjGroups.Groups.findOne({where:{uuid:req.params.uuid}});
-			if (group===null){
-				result.message='group not found';
+			let mapping=await ObjMapUserGroups.MapUserGroups.findOne({where:{uuid:req.params.uuid}});
+			if (mapping===null){
+				result.message='mapping not found';
 				result.error.status=1;
-				result.error.description='group is not in database'
+				result.error.description='mapping is not in database'
 				res.status(404).json(result);
 			}else{
-				result.message='group was found';
-				result.data=group;
+				result.message='mapping was found';
+				result.data=mapping;
 				result.error.status=0;
-				res.status(200).json(group);
+				res.status(200).json(mapping);
 			}
 		}catch(err){
-			result.message='group was not found';
+			result.message='mapping was not found';
 			result.error.status=1;
 			result.error.description=err;
 			res.status(500).json(result);
 		}
 	}
 	create=async(req,res)=>{
-		let group=ObjGroups.Groups.build(req.body);
+		let mapping=ObjMapUserGroups.MapUserGroups.build(req.body);
 		let result={message:'',error:{status:0,description:""}};
 		try{
-			await group.save();
-			result.message='group is saved';
+			await mapping.save();
+			result.message='mapping is saved';
 			res.status(200).json(result);
 		}catch(err){
-			result.message='group is not saved';
+			result.message='mapping is not saved';
 			result.error.status=1;
 			result.error.description=err;
 			res.status(500).json(result);
@@ -100,11 +79,11 @@ class GroupsControllers{
 	delete=async(req,res)=>{
 		let result={message:'',error:{status:0,description:""}};
 		try{
-			await ObjGroups.Groups.destroy({where:{uuid:req.params.uuid}});
-			result.message='group has been deleted';
+			await ObjMapUserGroups.MapUserGroups.destroy({where:{uuid:req.params.uuid}});
+			result.message='mapping has been deleted';
 			res.status(200).json(result);
 		}catch(err){
-			result.message='group has not been deleted';
+			result.message='mapping has not been deleted';
 			result.error.status=1;
 			result.error.description=err;
 			res.status(500).json(result);
@@ -114,11 +93,11 @@ class GroupsControllers{
 		req.body.admin=eval(req.body.admin);
 		let result={message:'',error:{status:0,description:""}};
 		try{
-			await ObjGroups.Groups.update(req.body,{where:{uuid:req.params.uuid}});
-			result.message='group has been updated';
+			await ObjMapUserGroups.MapUserGroups.update(req.body,{where:{uuid:req.params.uuid}});
+			result.message='mapping has been updated';
 			res.status(200).json(result);
 		}catch(err){
-			result.message='group has not been updated';
+			result.message='mapping has not been updated';
 			result.error.status=1;
 			result.error.description=err;
 			res.status(500).json(result);
@@ -152,5 +131,5 @@ class GroupsControllers{
 	}
 }
 
-const groupsControllers=new GroupsControllers();
-module.exports=groupsControllers;
+const mapUserGroupsControllers=new MapUserGroupsControllers();
+module.exports=mapUserGroupsControllers;
