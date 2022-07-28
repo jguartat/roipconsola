@@ -24,7 +24,9 @@ export class Component_ListUsersMonitoringGroups{
 		this.mapUserGroupsService=new Service_MapUserGroups();
 		this.toast=null;//It is initialized from its parent component
 		this.objUsersList={};
-		this.objMapUserGroupsList={};
+		this.objUserGroupsListToMap={};
+		this.addMappingObserver=new Observer();
+		this.setObserverEvent();
 	}
 	async requestUsers(){
 		try{
@@ -71,7 +73,7 @@ export class Component_ListUsersMonitoringGroups{
 			this.toast.show();
 		}
 	}
-	async requestMappings(){
+	async requestMappings(objJson){//objJson={fillmapping:true|false}
 		try{
 			let objMapUserGroupsList={},
 				promise=new Promise((resolve,reject)=>{
@@ -95,10 +97,11 @@ export class Component_ListUsersMonitoringGroups{
 				});
 				this.toast.show();
 			}
-			this.objMapUserGroupsList=objMapUserGroupsList;
-			this.fillMapping();
+			this.objUserGroupsListToMap=objMapUserGroupsList;
+			if(objJson.fillMapping){
+				this.fillMapping(this.objUserGroupsListToMap);
+			}
 		}catch(data){
-			console.log("mira josue data error: ",data);
 			let message='Usted no está autorizado para hacer ésta petición',
 				type='danger';
 			if(data.error.description.name=='TokenExpiredError'){
@@ -116,6 +119,19 @@ export class Component_ListUsersMonitoringGroups{
 					type:type
 				});
 			this.toast.show();
+		}
+	}
+	async resquestMappingsByUser(userUuid){
+		try{
+			let promise=new Promise((resolve,reject)=>{
+					this.mapUserGroupsService.getMappingsByUser(userUuid,resolve,reject);
+				}),
+				result=await promise;
+				return result.data;
+				
+		}catch(data){
+			console.log("resquestMappingsByUser: ",data);
+			return [];
 		}
 	}
 	createItemAccordion(key){
@@ -165,14 +181,14 @@ export class Component_ListUsersMonitoringGroups{
 			this.objMapUserGroups.userEmail=this.objUsersList[key].email;
 		});
 	}
-	createElementMapping(key){
+	createElementMapping(key,objMapUserGroupsList){
 		let elem=$(document.createElement('button'))
 				.addClass('btn btn-primary position-relative')
 				.attr('type','button')
 				.css({
 					'margin-right': '15px'
 				})
-				.text(this.objMapUserGroupsList[key].groupName),
+				.text(objMapUserGroupsList[key].groupName),
 			span=$(document.createElement('span'))
 				.addClass('position-absolute top-0 start-100 translate-middle');
 				
@@ -186,14 +202,37 @@ export class Component_ListUsersMonitoringGroups{
 
 		span.append(ico);
 		elem.append(span);
-		$(`#${this.objMapUserGroupsList[key].userUuid}`).append(elem);
+		$(`#${objMapUserGroupsList[key].userUuid}`).append(elem);
 
 		ico.click(e=>{
-			elem.remove();
-			this.deleteElementMapping($(e.target).attr('id'));
+			this.deleteElementMapping($(e.target).attr('id'),elem);
 		});
 	}
-	async deleteElementMapping(uuid){
+	async refreshMappingByUser(userUuid){
+		console.log("El uuid del usuario: ",userUuid);
+		let mappings=await this.resquestMappingsByUser(userUuid);
+		console.log("refreshMappingByUser: ",mappings);
+		let objMapUserGroupsListByUser={};
+		mappings.forEach(mappingdb=>{
+			let mapping=new Cl_MapUserGroups(mappingdb.userUuid,mappingdb.groupUuid);
+				mapping.uuid=mappingdb.uuid;
+				mapping.userEmail=mappingdb.user.email;
+				mapping.groupName=mappingdb.group.name;
+				objMapUserGroupsListByUser[mapping.uuid]=mapping;
+		});
+		$(`#${userUuid}`).html("");
+		this.fillMapping(objMapUserGroupsListByUser);
+	}
+	setObserverEvent(){
+		this.addMappingObserver.set_trigger=(subject)=>{
+			if(subject.value){
+				this.refreshMappingByUser(this.objMapUserGroups.userUuid);
+				this.requestMappings({fillmapping:false});
+			}
+		};
+		service_Observer.addMappingObservable.subscribe(this.addMappingObserver);
+	}
+	async deleteElementMapping(uuid,elem){
 		try{
 			let promise=new Promise((resolve,reject)=>{
 				this.mapUserGroupsService.deleteMapping(uuid,resolve,reject);	
@@ -202,12 +241,13 @@ export class Component_ListUsersMonitoringGroups{
 			if(result.error.status==0){
 				this.toast.set_component({
 					title:'Administración',
-					message:`${this.objMapUserGroupsList[uuid].groupName} ha quedado libre para asignar`,
+					message:`${this.objUserGroupsListToMap[uuid].groupName} ha quedado libre para asignar`,
 					textTime:'justo ahora',
 					type:'success'
 				});
 				this.toast.show();
-				//service_Observer.changeUsersListObservable.notify(true);
+				elem.remove();
+				service_Observer.removeMappingObservable.notify(true);
 			}else{
 				this.toast.set_component({
 					title:'Administración',
@@ -218,6 +258,7 @@ export class Component_ListUsersMonitoringGroups{
 				this.toast.show();
 			}
 		}catch(data){
+			console.log("borrame data al borrar mapping: ",data);
 			let message='Usted no está autorizado para hacer ésta petición',
 				type='danger';
 			if(data.error.description.name=='TokenExpiredError'){
@@ -242,9 +283,9 @@ export class Component_ListUsersMonitoringGroups{
 			this.createItemAccordion(key);
 		}
 	}
-	fillMapping(){
-		for(let key in this.objMapUserGroupsList){
-			this.createElementMapping(key);
+	fillMapping(objMapUserGroupsList){
+		for(let key in objMapUserGroupsList){
+			this.createElementMapping(key,objMapUserGroupsList);
 		}
 	}
 	get get_component(){

@@ -20,7 +20,8 @@ export class Component_ListGroupToAssign{
 		this.mappingService=new Service_MapUserGroups();
 		this.toast=null;//It is initialized from its parent component
 		this.objGroupsList={};
-		this.changeGroupsListObserver= new Observer();
+		this.removeMappingObserver=new Observer();
+		this.setObserverEvent();
 	}
 	async requestGroups(){
 		try{
@@ -78,8 +79,9 @@ export class Component_ListGroupToAssign{
 					.css({'font-size': '1rem','font-weight': 'normal'})
 					.text(`${this.objGroupsList[key].name}`),
 				elemContentIco=$(document.createElement('i'))
-					.addClass('bi bi-chevron-right').
-					css({'font-size': 'larger'}),
+					.addClass('bi bi-chevron-right')
+					.attr('id',key)
+					.css({'font-size': 'larger'}),
 				elemDescription=$(document.createElement('p'))
 					.addClass('mb-1')
 					.css({'font-size': '0.8rem','font-weight': 'normal'})
@@ -105,7 +107,7 @@ export class Component_ListGroupToAssign{
 			});
 
 			elemContentIco.click(e=>{
-				this.saveNewMapping(key);
+				this.saveNewMapping($(e.target).attr('id'),elem);
 			})
 			.mouseover(e=>{
 				elemContentIco.css({'color': 'green'});
@@ -116,7 +118,16 @@ export class Component_ListGroupToAssign{
 
 		}
 	}
-	async saveNewMapping(key){
+	setObserverEvent(){
+		this.removeMappingObserver.set_trigger=(subject)=>{
+			if(subject.value){
+				this.list.find('a').remove();
+				this.requestGroups();
+			}
+		};
+		service_Observer.removeMappingObservable.subscribe(this.removeMappingObserver);
+	}
+	async saveNewMapping(key,elem){
 		try{
 			this.objMapUserGroups.groupUuid=this.objGroupsList[key].uuid;
 			this.objMapUserGroups.groupName=this.objGroupsList[key].name;
@@ -144,7 +155,8 @@ export class Component_ListGroupToAssign{
 					type:'success'
 				});
 				this.toast.show();
-				service_Observer.changeUsersListObservable.notify(true);
+				elem.remove();
+				service_Observer.addMappingObservable.notify(true);
 			}else{
 				this.toast.set_component({
 					title:'Administración',

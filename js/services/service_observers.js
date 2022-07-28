@@ -13,6 +13,8 @@ export class Service_Observers{
 		this.connectToPTTusbObservable=new Observable(statePTT);
 		this.changeUsersListObservable=new Observable(false);
 		this.changeGroupsListObservable=new Observable(false);
+		this.removeMappingObservable=new Observable(false);
+		this.addMappingObservable=new Observable(false);
 	}
 }
 export var service_Observer=new Service_Observers();

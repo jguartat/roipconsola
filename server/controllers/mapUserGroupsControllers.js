@@ -53,10 +53,46 @@ class MapUserGroupsControllers{
 				result.message='mapping was found';
 				result.data=mapping;
 				result.error.status=0;
-				res.status(200).json(mapping);
+				res.status(200).json(result);
 			}
 		}catch(err){
 			result.message='mapping was not found';
+			result.error.status=1;
+			result.error.description=err;
+			res.status(500).json(result);
+		}
+	}
+	getByUser=async(req,res)=>{
+		console.log("getByUser params: ",req.params);
+		let result={message:'',data:null,error:{status:0,description:""}};
+		try{
+			let mappingUser=await ObjMapUserGroups.MapUserGroups.findAll({
+				attributes:{exclude:['createdAt','updatedAt']},
+				include:[
+					{
+						model:ObjUsers.Users,
+						attributes:['email']
+					},
+					{
+						model:ObjGroups.Groups,
+						attributes:['name']
+					}
+				],
+				where:{userUuid:req.params.userUuid}
+			});
+			if(mappingUser===null){
+				result.message='user mapping not found';
+				result.error.status=1;
+				result.error.description='user mapping is not in database'
+				res.status(404).json(result);
+			}else{
+				result.message='user mapping was found';
+				result.data=mappingUser;
+				result.error.status=0;
+				res.status(200).json(result);
+			}
+		}catch(err){
+			result.message='user mapping was not found';
 			result.error.status=1;
 			result.error.description=err;
 			res.status(500).json(result);

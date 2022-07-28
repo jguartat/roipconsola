@@ -31,7 +31,7 @@ export class Component_View_GroupsAssignment{
 	createUsersList(objMapUserGroups){
 		let list=new Component_ListUsersMonitoringGroups(objMapUserGroups);
 		list.requestUsers();
-		list.requestMappings();
+		list.requestMappings({fillMapping:true});
 		list.toast=this.toast;
 		return list;
 	}
