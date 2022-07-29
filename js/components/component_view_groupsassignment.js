@@ -35,13 +35,6 @@ export class Component_View_GroupsAssignment{
 		list.toast=this.toast;
 		return list;
 	}
-	async createUsersList_(objMapUserGroups){
-		let list=new Component_ListUsersMonitoringGroups(objMapUserGroups);
-		await list.requestUsers();
-		await list.requestMappings({fillMapping:true});
-		list.toast=this.toast;
-		return list;
-	}
 	createContainer(){
 		let container=$(document.createElement('div')).addClass('container mt-4'),
 			row=$(document.createElement('div')).addClass('row justify-content-center'),
