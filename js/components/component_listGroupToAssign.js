@@ -27,7 +27,7 @@ export class Component_ListGroupToAssign{
 		try{
 			let objGroupsList={},
 				promise=new Promise((resolve,reject)=>{
-					let listGroups= this.groupsService.getGroups(resolve,reject);	
+					let listGroups= this.groupsService.getUnassignedGroups(resolve,reject);
 				}),
 				result= await promise;
 			if(result.error.status==0){
@@ -48,7 +48,6 @@ export class Component_ListGroupToAssign{
 			this.objGroupsList=objGroupsList;
 			this.fill();
 		}catch(data){
-			console.log("mira josue: ",data);
 			let message='Usted no está autorizado para hacer ésta petición',
 				type='danger';
 			if(data.error.description.name=='TokenExpiredError'){

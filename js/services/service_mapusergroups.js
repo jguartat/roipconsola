@@ -64,6 +64,24 @@ export class Service_MapUserGroups{
 		})
 		.always();
 	}
+	getMappingsGroupsByUser(uuid,resolve,reject){
+		$.ajax({
+			type:"GET",
+			url:`${this.API_URI}/mappings/groupsByUser/${uuid}`,
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			resolve(data);
+		})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
+		.always();
+	}
 	saveMapping(mapping,resolve,reject){
 		$.ajax({
 			type:"POST",

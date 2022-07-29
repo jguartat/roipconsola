@@ -11,8 +11,7 @@ class GroupsControllers{
 		this.secretkey=environment.secretkey;
 		this.tokenExpiresIn=24*60*60;
 	}
-	list_=async(req,res)=>{
-		console.log("lista de grupos");
+	list=async(req,res)=>{
 		let result={message:'',data:null,error:{status:0,description:""}};
 		try{
 			const groups= await ObjGroups.Groups.findAll({
@@ -30,8 +29,7 @@ class GroupsControllers{
 			res.status(500).json(result);
 		}
 	}
-	list=async(req,res)=>{
-		console.log("lista de grupos");
+	unassignedList=async(req,res)=>{
 		let result={message:'',data:null,error:{status:0,description:""}};
 		try{
 			const groups= await ObjGroups.Groups.findAll({

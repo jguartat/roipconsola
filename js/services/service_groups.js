@@ -28,6 +28,24 @@ export class Service_Groups{
 		})
 		.always();
 	}
+	getUnassignedGroups(resolve,reject){
+		$.ajax({
+			type:"GET",
+			url:`${this.API_URI}/groups/unassignedList`,
+			dataType:"json",
+			headers:{'Authorization':`Bearer ${this.getToken()}`}
+		})
+		.done(function(data){
+			console.log(data);
+			resolve(data);
+		})
+		.fail(function(xhr,status,err){
+			console.log("Error: ",err);
+			console.log("Status: ",status);
+			reject(xhr.responseJSON);
+		})
+		.always();
+	}
 	getGroup(uuid,resolve,reject){
 		$.ajax({
 			type:"GET",

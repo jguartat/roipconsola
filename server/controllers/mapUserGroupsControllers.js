@@ -98,6 +98,37 @@ class MapUserGroupsControllers{
 			res.status(500).json(result);
 		}
 	}
+	getGroupsByUser=async(req,res)=>{
+		console.log("getByUser params: ",req.params);
+		let result={message:'',data:null,error:{status:0,description:""}};
+		try{
+			let mappingUser=await ObjMapUserGroups.MapUserGroups.findAll({
+				attributes:{exclude:['createdAt','updatedAt']},
+				include:[
+					{
+						model:ObjGroups.Groups
+					}
+				],
+				where:{userUuid:req.params.userUuid}
+			});
+			if(mappingUser===null){
+				result.message='user mapping not found';
+				result.error.status=1;
+				result.error.description='user mapping is not in database'
+				res.status(404).json(result);
+			}else{
+				result.message='user mapping was found';
+				result.data=mappingUser;
+				result.error.status=0;
+				res.status(200).json(result);
+			}
+		}catch(err){
+			result.message='user mapping was not found';
+			result.error.status=1;
+			result.error.description=err;
+			res.status(500).json(result);
+		}
+	}
 	create=async(req,res)=>{
 		let mapping=ObjMapUserGroups.MapUserGroups.build(req.body);
 		let result={message:'',error:{status:0,description:""}};

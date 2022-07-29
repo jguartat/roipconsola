@@ -1,12 +1,16 @@
 'use strict';
 import {Service_Groups} from '../services/service_groups.js';
+import {Service_MapUserGroups} from '../services/service_mapusergroups.js';
 import {Component_ControllerPTT} from './component_controllerPTT.js';
 import {Cl_Group} from '../class/class_group.js';
 import {Observer} from '../../libs/observerPattern/class/class_observer.js';
 import {service_Observer} from '../services/service_observers.js';
+import {service_Cookie} from '../services/service_cookie.js';
+import {service_Encryption} from '../services/service_encryption.js';
 export class Component_List{
 	constructor(HTML_Controllers){
 		this.groupsService=new Service_Groups();
+		this.mapUserGroupsService=new Service_MapUserGroups();
 		this.objGroupList={};
 		this.controllers=HTML_Controllers;
 		this.inputFilter=$(document.createElement('input'))
@@ -21,7 +25,7 @@ export class Component_List{
 		this.changeGroupsListObserver= new Observer();
 		this.setObserverEvent();
 	}
-	async requestGroups(){
+	async requestGroups_(){
 		try{
 			let objGroupList={},
 				promise=new Promise((resolve,reject)=>{
@@ -32,6 +36,52 @@ export class Component_List{
 				result.data.forEach(groupdb=>{
 					let group=new Cl_Group(groupdb);
 					group.uuid=groupdb.uuid;
+					objGroupList[group.uuid]=group;
+				});
+			}else{
+				this.toast.set_component({
+					title:'Administración',
+					message:'No se pudo cargar la lista de grupos',
+					textTime:'justo ahora',
+					type:'danger'
+				});
+				this.toast.show();
+			}
+			this.objGroupList=objGroupList;
+			this.fill();
+		}catch(data){
+			let message='Usted no está autorizado para hacer ésta petición',
+				type='danger';
+			if(data.error.description.name=='TokenExpiredError'){
+				message="Su sesión ha terminado. ¡Vuelva a loguearse!";
+				type='warning';
+				service_Cookie.deleteAllCookies();
+				this.toast.set_hiddenEvent=()=>{
+					router.load('login');
+				}
+			}
+			this.toast.set_component({
+					title:'Administración',
+					message:message,
+					textTime:'justo ahora',
+					type:type
+				});
+			this.toast.show();
+		}
+	}
+	async requestGroups(){
+		let dataUser=JSON.parse(service_Encryption.decrypt(service_Cookie.getCookie('dataUser')));
+		try{
+			let objGroupList={},
+				promise=new Promise((resolve,reject)=>{
+				this.mapUserGroupsService.getMappingsGroupsByUser(dataUser.uuid,resolve,reject);
+			}),
+			result= await promise;
+			console.log("grupos asignados del usuario: ",result);
+			if(result.error.status==0){
+				result.data.forEach(mappingdb=>{
+					let group=new Cl_Group(mappingdb.group);
+					group.uuid=mappingdb.group.uuid;
 					objGroupList[group.uuid]=group;
 				});
 			}else{

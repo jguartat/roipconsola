@@ -295,7 +295,7 @@ export class Component_ListUsersMonitoringGroups{
 				list_aux=this.accordion.find('.accordion-item'),
 				datagroups=list_aux.toArray(),
 				fnNoMatch=(datagroup)=>{
-					return datagroup.text.toLowerCase().indexOf(filter)==-1;
+					return datagroup.textContent.toLowerCase().indexOf(filter)==-1;
 				};
 				list_aux.show();
 			if(filter!=''){

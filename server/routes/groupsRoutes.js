@@ -9,6 +9,7 @@ class GroupsRoutes{
 	}
 	config(){
 		this.router.get('/',groupsControllers.verifyToken,groupsControllers.list);
+		this.router.get('/unassignedList',groupsControllers.verifyToken,groupsControllers.unassignedList);
 		this.router.get('/:uuid',groupsControllers.verifyToken,groupsControllers.getOne);
 		this.router.post('/',groupsControllers.verifyToken,groupsControllers.create);
 		this.router.delete('/:uuid',groupsControllers.verifyToken,groupsControllers.delete);

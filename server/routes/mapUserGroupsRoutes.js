@@ -11,6 +11,7 @@ class MapUserGroupsRoutes{
 		this.router.get('/',mapUserGroupsControllers.verifyToken,mapUserGroupsControllers.list);
 		this.router.get('/:uuid',mapUserGroupsControllers.verifyToken,mapUserGroupsControllers.getOne);
 		this.router.get('/byUser/:userUuid',mapUserGroupsControllers.verifyToken,mapUserGroupsControllers.getByUser);
+		this.router.get('/groupsByUser/:userUuid',mapUserGroupsControllers.verifyToken,mapUserGroupsControllers.getGroupsByUser);
 		this.router.post('/',mapUserGroupsControllers.verifyToken,mapUserGroupsControllers.create);
 		this.router.delete('/:uuid',mapUserGroupsControllers.verifyToken,mapUserGroupsControllers.delete);
 		this.router.put('/:uuid',mapUserGroupsControllers.verifyToken,mapUserGroupsControllers.update);
