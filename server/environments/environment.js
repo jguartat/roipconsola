@@ -8,7 +8,8 @@ let environment_prod={
 	postgres_dbname:'totemroip',
 	postgres_ip:'localhost',
 	postgres_port:5432,
-	system_accesskey:''
+	system_defaultUserAdmin:'admin@protectia.com',
+	system_defaultPasswordAdmin:'admin'
 };
 
 let environment_dev={
@@ -18,8 +19,10 @@ let environment_dev={
 	postgres_password:'j0$u3p0$79r3$',
 	postgres_dbname:'totemroip',
 	postgres_ip:'localhost',
-	postgres_port:5432
+	postgres_port:5432,
+	system_defaultUserAdmin:'admin@protectia.com',
+	system_defaultPasswordAdmin:'admin'
 };
 
-const environment=environment_prod;
+const environment=environment_dev;
 module.exports=environment;

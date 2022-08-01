@@ -1,5 +1,6 @@
 'use strict';
 const {Sequelize} = require('sequelize');
+const bcrypt=require('bcrypt');
 const ObjUsers = require('./users-model.js');
 const ObjGroups = require('./groups-model.js');
 const ObjMapUserGroups = require('./mapusergroups-model.js');
@@ -44,10 +45,27 @@ class PostgresCnx{
 		ObjMapUserGroups.MapUserGroups.belongsTo(ObjGroups.Groups);
 
 		await this.cnx.sync({alter:true});
-
+	}
+	async createUserDefault(){
+		let match={
+				where:{email:environment.system_defaultUserAdmin}
+			},
+			userDefault={
+				admin:true,
+				email:environment.system_defaultUserAdmin,
+				password:bcrypt.hashSync(environment.system_defaultPasswordAdmin,10)
+			};
+		let count=await ObjUsers.Users.count(match);
+		if(count==0){
+			const [instance,created]=await ObjUsers.Users.upsert(userDefault);
+			if(created){
+				console.log("User default created");
+			}
+		}
 	}
 }
 
 const postgresCnx=new PostgresCnx();
 postgresCnx.start();
 postgresCnx.syncUp();
+postgresCnx.createUserDefault();
