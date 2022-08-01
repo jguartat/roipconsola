@@ -17,7 +17,7 @@ class MapUserGroupsModel{
 			indexes:[
 				{
 					unique:true,
-					fields:['groupUuid']
+					fields:['userUuid','groupUuid']
 				}
 			]
 		});

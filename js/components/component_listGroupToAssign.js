@@ -27,7 +27,7 @@ export class Component_ListGroupToAssign{
 		try{
 			let objGroupsList={},
 				promise=new Promise((resolve,reject)=>{
-					let listGroups= this.groupsService.getUnassignedGroups(resolve,reject);
+					let listGroups= this.groupsService.getGroups(resolve,reject);
 				}),
 				result= await promise;
 			if(result.error.status==0){
@@ -154,7 +154,7 @@ export class Component_ListGroupToAssign{
 					type:'success'
 				});
 				this.toast.show();
-				elem.remove();
+				//elem.remove();
 				service_Observer.addMappingObservable.notify(true);
 			}else{
 				this.toast.set_component({
