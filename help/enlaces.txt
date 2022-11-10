@@ -36,13 +36,19 @@ Generar uuid
 	https://www.uuidgenerator.net/version4
 
 Para instalar nginx en sangoma
-	https://sourceexample.com/article/en/f475f01ecf2fea95b91d8e202f74611d/
-	https://www.youtube.com/watch?v=IOfKvc61tk4
-		sudo dhc client
-		sudo yum update
+	https://docs.nginx.com/nginx/admin-guide/installing-nginx/installing-nginx-open-source/
+	systemctl start nginx.service
 
-	pkill nginx
-	service nginx reload
-	service nginx stop
-	service nginx status
-	service nginx start
+Para hacer tethering con el celular usb
+	Compartir internet con el usb del celular
+	ip link set usb0 up
+	dhclient usb0
+
+Para el firewall del freepbx
+	https://wiki.freepbx.org/display/FPG/Firewall+Command+Line
+
+Detener fail2ban permanentemente en freepbx (Esto no lo hice y además no está recomendado)
+	https://community.freepbx.org/t/stop-fail2ban-permanentlyin-freepbx-13/39332/10
+	Esto nos llevó a pensar que existe un servicio fail2ban
+		Para detener el servicio fail2ban con el siguiente comando: sudo systemctl stop fail2ban.service
+
