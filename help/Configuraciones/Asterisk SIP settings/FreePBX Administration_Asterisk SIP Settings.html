@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://192.168.107.200/admin/config.php?display=sipsettings -->
+<html class="firsttypeofselector no-applicationcache geolocation history postmessage svg websockets webaudio localstorage sessionstorage websqldatabase webworkers hashchange audio canvas canvastext video webgl cssgradients multiplebgs opacity rgba inlinesvg supports hsla svgclippaths smil fontface generatedcontent textshadow indexeddb indexeddb-deletedatabase no-getusermedia cssanimations backgroundsize borderimage borderradius boxshadow csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox cssreflections csstransforms csstransforms3d csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>FreePBX Administration</title><meta name="robots" content="noindex"><link rel="shortcut icon" href="http://192.168.107.200/admin/images/favicon.ico"><meta name="referrer" content="always"><link href="./FreePBX Administration_Asterisk SIP Settings_files/bootstrap-3.3.7.min.css" rel="stylesheet" type="text/css"><link href="./FreePBX Administration_Asterisk SIP Settings_files/font-awesome.min-4.7.0.css" rel="stylesheet" type="text/css"><link href="./FreePBX Administration_Asterisk SIP Settings_files/bootstrap-table-dev.css" rel="stylesheet" type="text/css"><link href="./FreePBX Administration_Asterisk SIP Settings_files/bootstrap-table-reorder-rows.css" rel="stylesheet" type="text/css"><link href="./FreePBX Administration_Asterisk SIP Settings_files/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css"><link href="./FreePBX Administration_Asterisk SIP Settings_files/typehead.js-bootstrap3-0.2.3.css" rel="stylesheet" type="text/css"><link href="./FreePBX Administration_Asterisk SIP Settings_files/notie.css" rel="stylesheet" type="text/css"><link href="./FreePBX Administration_Asterisk SIP Settings_files/lessphp_731b09ff074435291c2a48d51e698fb47ba76be0.css" rel="stylesheet" type="text/css"><link rel="stylesheet" href="./FreePBX Administration_Asterisk SIP Settings_files/outdatedbrowser.min.css"><script async="" src="./FreePBX Administration_Asterisk SIP Settings_files/analytics.js.descarga"></script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/outdatedbrowser-1.1.3.min.js.descarga"></script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/jquery-3.1.1.min.js.descarga"></script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/selector-set-1.1.0.js.descarga"></script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/jquery.selector-set-0.2.2.js.descarga"></script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/class.js.descarga"></script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/jed-1.1.1.js.descarga"></script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/modgettext.js.descarga"></script><script>textdomain("sipsettings")</script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/FreePBX.js.descarga"></script><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="http://192.168.107.200/admin/assets/images/badge.png">
+<link rel="apple-touch-icon-precomposed" href="http://192.168.107.200/admin/assets/images/badge.png"></head><body><div id="page"><noscript><div class="attention">WARNING: Javascript is disabled in your browser. The FreePBX administration interface requires Javascript to run properly. Please enable javascript or switch to another  browser that supports it.</div></noscript><link href="./FreePBX Administration_Asterisk SIP Settings_files/sipsettings.css" rel="stylesheet" type="text/css"><div class="freepbx-navbar">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle navbar-left collapsed" data-toggle="collapse" data-target="#fpbx-menu-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="http://192.168.107.200/admin/config.php?display=sipsettings#">
+					<img src="./FreePBX Administration_Asterisk SIP Settings_files/tango.png" alt="FreePBX" title="FreePBX" id="MENU_BRAND_IMAGE_TANGO_LEFT" data-brand_image_freepbx_link_left="http://www.freepbx.org">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="fpbx-menu-collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="dropdown">
+			<a href="http://192.168.107.200/admin/config.php?display=sipsettings#" class="dropdown-toggle" data-toggle="dropdown">Admin</a>
+			<ul class="dropdown-menu" role="menu" style="max-height: 585px;"><li><a href="http://192.168.107.200/admin/config.php?display=ampusers" class=" ">Administrators</a></li><li><a href="http://192.168.107.200/admin/config.php?display=adv_recovery" class=" ">Advanced Recovery</a></li><li><a href="http://192.168.107.200/admin/config.php?display=allowlist" class=" ">Allowlist</a></li><li><a href="http://192.168.107.200/admin/config.php?display=cli" class=" ">Asterisk CLI</a></li><li><a href="http://192.168.107.200/admin/config.php?display=astmodules" class=" ">Asterisk Modules</a></li><li><a href="http://192.168.107.200/admin/config.php?display=phonebook" class=" ">Asterisk Phonebook</a></li><li><a href="http://192.168.107.200/admin/config.php?display=backup" class=" ">Backup &amp; Restore</a></li><li><a href="http://192.168.107.200/admin/config.php?display=blacklist" class=" ">Blacklist</a></li><li><a href="http://192.168.107.200/admin/config.php?display=bulkhandler" class=" ">Bulk Handler</a></li><li><a href="http://192.168.107.200/admin/config.php?display=superfecta" class=" ">CID Superfecta</a></li><li><a href="http://192.168.107.200/admin/config.php?display=callaccounting" class=" ">Call Accounting </a></li><li><a href="http://192.168.107.200/admin/config.php?display=cidlookup" class=" ">CallerID Lookup Sources</a></li><li><a href="http://192.168.107.200/admin/config.php?display=certman" class=" ">Certificate Management</a></li><li><a href="http://192.168.107.200/admin/config.php?display=cos" class=" ">Class of Service</a></li><li><a href="http://192.168.107.200/admin/config.php?display=configedit" class=" ">Config Edit</a></li><li><a href="http://192.168.107.200/admin/config.php?display=contactmanager" class=" ">Contact Manager</a></li><li><a href="http://192.168.107.200/admin/config.php?display=customdests" class=" ">Custom Destinations</a></li><li><a href="http://192.168.107.200/admin/config.php?display=customextens" class=" ">Custom Extensions</a></li><li><a href="http://192.168.107.200/admin/config.php?display=featurecodeadmin" class=" ">Feature Codes</a></li><li><a href="http://www.freepbx.org/support-and-professional-services" target="_blank" class=" ">FreePBX Support</a></li><li><a href="http://192.168.107.200/admin/config.php?display=modules" class=" ">Module Admin</a></li><li><a href="http://192.168.107.200/admin/config.php?display=irc" class=" ">Online Support</a></li><li><a href="http://192.168.107.200/admin/config.php?display=restapps" class=" ">Phone Apps</a></li><li><a href="http://192.168.107.200/admin/config.php?display=presencestate" class=" ">Presence State</a></li><li><a href="http://192.168.107.200/admin/config.php?display=queuepausecodes" class=" ">Queue Pause Codes</a></li><li><a href="http://192.168.107.200/admin/config.php?display=qrules" class=" ">Queue Penalty Rules</a></li><li><a href="http://192.168.107.200/admin/config.php?display=sangomaconnect" class=" ">SangomaConnect</a></li><li><a href="http://192.168.107.200/admin/config.php?display=smartoffice" class=" ">SmartOffice</a></li><li><a href="http://192.168.107.200/admin/config.php?display=soundlang" class=" ">Sound Languages</a></li><li><a href="http://192.168.107.200/admin/config.php?display=sysadmin" class=" ">System Admin</a></li><li><a href="http://192.168.107.200/admin/config.php?display=recordings" class=" ">System Recordings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=updates" class=" ">Updates</a></li><li><a href="http://192.168.107.200/admin/config.php?display=userman" class=" ">User Management</a></li><li><a href="http://192.168.107.200/admin/config.php?display=xmpp" class=" ">XMPP</a></li><li><a href="http://192.168.107.200/admin/config.php?display=zulu" class=" ">Zulu</a></li><li><a href="http://192.168.107.200/admin/config.php?display=cxpanel" class=" ">iSymphonyV3</a></li></ul></li><li class="dropdown">
+			<a href="http://192.168.107.200/admin/config.php?display=sipsettings#" class="dropdown-toggle" data-toggle="dropdown">Applications</a>
+			<ul class="dropdown-menu" role="menu" style="max-height: 585px;"><li><a href="http://192.168.107.200/admin/config.php?display=amd" class=" ">AMD Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=announcement" class=" ">Announcements</a></li><li><a href="http://192.168.107.200/admin/config.php?display=areminder" class=" ">Appointment Reminder</a></li><li><a href="http://192.168.107.200/admin/config.php?display=broadcast" class=" ">Broadcast</a></li><li><a href="http://192.168.107.200/admin/config.php?display=calendar" class=" ">Calendar</a></li><li><a href="http://192.168.107.200/admin/config.php?display=calendargroups" class=" ">Calendar Event Groups</a></li><li><a href="http://192.168.107.200/admin/config.php?display=daynight" class=" ">Call Flow Control</a></li><li><a href="http://192.168.107.200/admin/config.php?display=callrecording" class=" ">Call Recording</a></li><li><a href="http://192.168.107.200/admin/config.php?display=callback" class=" ">Callback</a></li><li><a href="http://192.168.107.200/admin/config.php?display=callerid" class=" ">CallerID Management</a></li><li><a href="http://192.168.107.200/admin/config.php?display=conferences" class=" ">Conferences</a></li><li><a href="http://192.168.107.200/admin/config.php?display=conferencespro" class=" ">Conferences Pro</a></li><li><a href="http://192.168.107.200/admin/config.php?display=disa" class=" ">DISA</a></li><li><a href="http://192.168.107.200/admin/config.php?display=directory" class=" ">Directory</a></li><li><a href="http://192.168.107.200/admin/config.php?display=dynroute" class=" ">Dynamic Routes</a></li><li><a href="http://192.168.107.200/admin/config.php?display=extensions" class=" ">Extensions</a></li><li><a href="http://192.168.107.200/admin/config.php?display=findmefollow" class=" ">Follow Me</a></li><li><a href="http://192.168.107.200/admin/config.php?display=ivr" class=" ">IVR</a></li><li><a href="http://192.168.107.200/admin/config.php?display=languages" class=" ">Languages</a></li><li><a href="http://192.168.107.200/admin/config.php?display=miscapps" class=" ">Misc Applications</a></li><li><a href="http://192.168.107.200/admin/config.php?display=miscdests" class=" ">Misc Destinations</a></li><li><a href="http://192.168.107.200/admin/config.php?display=oracle_connector" class=" ">Oracle Connector</a></li><li><a href="http://192.168.107.200/admin/config.php?display=paging" class=" ">Paging and Intercom</a></li><li><a href="http://192.168.107.200/admin/config.php?display=pannounce" class=" ">Park and Announce</a></li><li><a href="http://192.168.107.200/admin/config.php?display=parking" class=" ">Parking</a></li><li><a href="http://192.168.107.200/admin/config.php?display=pms" class=" ">Property Management</a></li><li><a href="http://192.168.107.200/admin/config.php?display=queuecallback" class=" ">Queue Callback</a></li><li><a href="http://192.168.107.200/admin/config.php?display=queueprio" class=" ">Queue Priorities</a></li><li><a href="http://192.168.107.200/admin/config.php?display=queues" class=" ">Queues</a></li><li><a href="http://192.168.107.200/admin/config.php?display=ringgroups" class=" ">Ring Groups</a></li><li><a href="http://192.168.107.200/admin/config.php?display=setcid" class=" ">Set CallerID</a></li><li><a href="http://192.168.107.200/admin/config.php?display=tts" class=" ">Text To Speech</a></li><li><a href="http://192.168.107.200/admin/config.php?display=timeconditions" class=" ">Time Conditions</a></li><li><a href="http://192.168.107.200/admin/config.php?display=timegroups" class=" ">Time Groups</a></li><li><a href="http://192.168.107.200/admin/config.php?display=vqueue" class=" ">Virtual Queues</a></li><li><a href="http://192.168.107.200/admin/config.php?display=vmblast" class=" ">Voicemail Blasting</a></li><li><a href="http://192.168.107.200/admin/config.php?display=vmnotify" class=" ">Voicemail Notifications</a></li><li><a href="http://192.168.107.200/admin/config.php?display=hotelwakeup" class=" ">Wake Up Calls</a></li><li><a href="http://192.168.107.200/admin/config.php?display=webcallback" class=" ">Web Callback</a></li></ul></li><li class="dropdown">
+			<a href="http://192.168.107.200/admin/config.php?display=sipsettings#" class="dropdown-toggle" data-toggle="dropdown">Connectivity</a>
+			<ul class="dropdown-menu" role="menu" style="max-height: 585px;"><li><a href="http://192.168.107.200/admin/config.php?display=api" class=" ">API</a></li><li><a href="http://192.168.107.200/admin/config.php?display=dahdichandids" class=" ">DAHDI Channel DIDs</a></li><li><a href="http://192.168.107.200/admin/config.php?display=dahdi" class=" ">DAHDi Config</a></li><li><a href="http://192.168.107.200/admin/config.php?display=firewall" class=" ">Firewall</a></li><li><a href="http://192.168.107.200/admin/config.php?display=did" class=" ">Inbound Routes</a></li><li><a href="http://192.168.107.200/admin/config.php?display=calllimit" class=" ">Outbound Call Limit</a></li><li><a href="http://192.168.107.200/admin/config.php?display=routing" class=" ">Outbound Routes</a></li><li><a href="http://192.168.107.200/admin/config.php?display=sipstation" class=" ">SIPSTATION</a></li><li><a href="http://192.168.107.200/admin/config.php?display=sms" class=" ">SMS Webhook</a></li><li><a href="http://192.168.107.200/admin/config.php?display=trunks" class=" ">Trunks</a></li><li><a href="http://192.168.107.200/admin/config.php?display=vega" class=" ">Vega Gateway Management</a></li><li><a href="http://192.168.107.200/admin/config.php?display=voipinnovations" class=" ">VoIPInnovations</a></li></ul></li><li><a href="http://192.168.107.200/admin/config.php?display=index">Dashboard</a></li><li class="dropdown">
+			<a href="http://192.168.107.200/admin/config.php?display=sipsettings#" class="dropdown-toggle" data-toggle="dropdown">Reports</a>
+			<ul class="dropdown-menu" role="menu" style="max-height: 585px;"><li><a href="http://192.168.107.200/admin/config.php?display=asteriskinfo" class=" ">Asterisk Info</a></li><li><a href="http://192.168.107.200/admin/config.php?display=logfiles" class=" ">Asterisk Logfiles</a></li><li><a href="http://192.168.107.200/admin/config.php?display=cdr" class=" ">CDR Reports</a></li><li><a href="http://192.168.107.200/admin/config.php?display=cel" class=" ">Call Event Logging</a></li><li><a href="http://192.168.107.200/admin/config.php?display=recording_report" class=" ">Call Recordings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=phpinfo" class=" ">PHP Info</a></li><li><a href="http://192.168.107.200/admin/config.php?display=pinset_report" class=" ">Pinsets Code Reports</a></li><li><a href="http://192.168.107.200/admin/config.php?display=printextensions" class=" ">Print Extensions</a></li><li><a href="http://192.168.107.200/admin/config.php?display=queuecallbackreport" class=" ">Queue Callback Report</a></li><li><a href="http://192.168.107.200/admin/config.php?display=qxact_scheduler" class=" ">Queue Report Scheduler </a></li><li><a href="http://192.168.107.200/admin/config.php?display=qxact_admin" class=" ">Queue Report Templates</a></li><li><a href="http://192.168.107.200/admin/config.php?display=qxact_reports" class=" ">Queue Reports</a></li><li><a href="http://192.168.107.200/admin/config.php?display=queuestats" class=" ">Queue Wallboard</a></li><li><a href="http://192.168.107.200/admin/config.php?display=voicemail_report" class=" ">Voicemail Reports</a></li><li><a href="http://192.168.107.200/admin/config.php?display=weakpasswords" class=" ">Weak Password Detection</a></li><li><a href="http://192.168.107.200/admin/config.php?display=cxpanel_menu" target="_blank" class=" ">iSymphonyV3 Panel</a></li></ul></li><li class="dropdown">
+			<a href="http://192.168.107.200/admin/config.php?display=sipsettings#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Settings</a>
+			<ul class="dropdown-menu" role="menu" style="max-height: 585px;"><li><a href="http://192.168.107.200/admin/config.php?display=advancedsettings" class=" ">Advanced Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=iaxsettings" class=" ">Asterisk IAX Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=logfiles_settings" class=" ">Asterisk Logfile Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=manager" class=" ">Asterisk Manager Users</a></li><li><a href="http://192.168.107.200/admin/config.php?display=arimanager" class=" ">Asterisk REST Interface Users</a></li><li><a href="http://192.168.107.200/admin/config.php?display=sipsettings" class=" active">Asterisk SIP Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=sangomacrmrest" class=" ">CRM API Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=sangomacrm" class=" ">CRM Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=endpoint" class=" ">EndPoint Manager</a></li><li><a href="http://192.168.107.200/admin/config.php?display=extensionsettings" class=" ">Extension Settings</a></li><li><a href="http://192.168.107.200/admin/config.php?display=fax" class=" ">Fax Configuration</a></li><li><a href="http://192.168.107.200/admin/config.php?display=filestore" class=" ">Filestore</a></li><li><a href="http://192.168.107.200/admin/config.php?display=music" class=" ">Music on Hold</a></li><li><a href="http://192.168.107.200/admin/config.php?display=pinsets" class=" ">PIN Sets</a></li><li><a href="http://192.168.107.200/admin/config.php?display=outroutemsg" class=" ">Route Congestion Messages</a></li><li><a href="http://192.168.107.200/admin/config.php?display=ttsengines" class=" ">Text To Speech Engines</a></li><li><a href="http://192.168.107.200/admin/config.php?display=voicemail" class=" ">Voicemail Admin</a></li><li><a href="http://192.168.107.200/admin/config.php?display=hotelwakeup_settings" class=" ">Wake Up Calls Settings</a></li></ul></li><li><a href="http://192.168.107.200/ucp" target="ucp">UCP</a></li>				</ul>
+			</div>
+			<ul class="stuck-right">
+									<li><a id="button_reload" class="btn btn-danger nav-button reload-btn" style="display: inline;">Apply Config</a></li>
+																			<li class="dropdown admin-btn">
+							<button class="btn dropdown-toggle nav-button" data-toggle="dropdown"><i class="fa fa-language"></i></button>
+							<ul id="fpbx_lang" class="dropdown-menu" role="menu" style="max-height: 585px;">
+																	<li class="disabled" data-lang="en_US"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">English (US)</a></li>
+																	<li data-lang="bg_BG"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Bulgarian (Bulgaria)</a></li>
+																	<li data-lang="cs"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Czech</a></li>
+																	<li data-lang="de_DE"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">German (Germany)</a></li>
+																	<li data-lang="en_GB"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">English (United Kingdom)</a></li>
+																	<li data-lang="es_ES"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Spanish (Spain)</a></li>
+																	<li data-lang="fa_IR"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Persian (Iran)</a></li>
+																	<li data-lang="fr_FR"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">French (France)</a></li>
+																	<li data-lang="he_IL"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Hebrew (Israel)</a></li>
+																	<li data-lang="hu_HU"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Hungarian (Hungary)</a></li>
+																	<li data-lang="it_IT"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Italian (Italy)</a></li>
+																	<li data-lang="ja_JP"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Japanese (Japan)</a></li>
+																	<li data-lang="nl_NL"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Dutch (Netherlands)</a></li>
+																	<li data-lang="pt_BR"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Portuguese (Brazil)</a></li>
+																	<li data-lang="pt_PT"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Portuguese (Portugal)</a></li>
+																	<li data-lang="ro_RO"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Romanian (Romania)</a></li>
+																	<li data-lang="ru_RU"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Russian (Russia)</a></li>
+																	<li data-lang="sv_SE"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Swedish (Sweden)</a></li>
+																	<li data-lang="uk_UA"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Ukrainian (Ukraine)</a></li>
+																	<li data-lang="vi"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Vietnamese</a></li>
+																	<li data-lang="zh_CN"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#">Chinese (China)</a></li>
+															</ul>
+						</li>
+										<button id="search-btn" class="btn nav-button"><i class="fa fa-search"></i></button>
+											<li class="dropdown admin-btn">
+							<button class="btn dropdown-toggle nav-button" data-toggle="dropdown"><i id="settings-cog" class="fa fa-cog" title=""></i></button>
+							<ul class="dropdown-menu" role="menu" style="max-height: 585px;">
+								<li role="presentation"><a>Hello, Admin</a></li>
+								<li role="presentation" class="divider"></li>
+								<li role="presentation" class="nav-bar-show active"><a title="Nav. Bar is always shown by default or not.">Keep Nav Bar Expanded</a></li>
+								<li><a id="user_logout" href="http://192.168.107.200/admin/config.php?display=sipsettings#">Logout</a></li>
+							</ul>
+						</li>
+												</ul>
+		</div>
+	</nav>
+</div>
+	<div class="" id="fpbxsearch">
+		<i class="fa fa-search"></i>
+		<span class="twitter-typeahead" style="position: relative; display: inline-block; direction: ltr;"><input type="text" class="form-control typeahead tt-hint" title="Quick Search &#39;/&#39;" readonly="" autocomplete="off" spellcheck="false" tabindex="-1" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"><input type="text" class="form-control typeahead tt-input" placeholder="Search" title="Quick Search &#39;/&#39;" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: open_sans; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none; right: auto;"><div class="tt-dataset-moduleSearch"></div><div class="tt-dataset-itemSearch"></div></span></span>
+	</div>
+<div id="page_body">
+<form autocomplete="off" action="http://192.168.107.200/admin/config.php?display=sipsettings" method="post" class="fpbx-submit" id="sipconfig" name="sipconfig">
+	<div class="container-fluid">
+		<h1>SIP Settings</h1>
+		<div class="panel panel-info">
+                  <div class="panel-heading">
+                    <div class="panel-title">
+			  <a href="http://192.168.107.200/admin/config.php?display=sipsettings#" data-toggle="collapse" data-target="#moreinfo">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                          </a>&nbsp;&nbsp;&nbsp;SIP driver informations		    </div>
+                  </div>
+                  <div class="panel-body collapse" id="moreinfo">
+			<p>Asterisk is currently using chan_pjsip for SIP Traffic.<br>You can change this on the Advanced Settings Page</p>
+		  </div>
+               </div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="fpbx-container">
+					<div class="display no-border">
+						<div class="nav-container">
+							<div class="scroller scroller-left"><i class="glyphicon glyphicon-chevron-left" style="display: none;"></i></div>
+							<div class="scroller scroller-right"><i class="glyphicon glyphicon-chevron-right" style="display: none;"></i></div>
+							<div class="wrapper">
+								<ul class="nav nav-tabs list" role="tablist">
+																			<li data-name="general" class="change-tab active"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#general" aria-controls="general" role="tab" data-toggle="tab" aria-expanded="true">General SIP Settings</a></li>
+																			<li data-name="pjsip" class="change-tab"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#pjsip" aria-controls="pjsip" role="tab" data-toggle="tab" aria-expanded="false">SIP Settings [chan_pjsip]</a></li>
+																	</ul>
+							</div>
+						</div>
+						<div class="tab-content display">
+															<div id="general" class="tab-pane active">
+									<input type="hidden" name="category" value="general">
+<input type="hidden" name="Submit" value="Submit">
+<div class="section-title" data-for="sssecurity">
+	<h3><i class="fa fa-minus"></i>Security Settings</h3>
+</div>
+<div class="section" data-id="sssecurity">
+	<!--Allow Anonymous Inbound SIP Calls-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="allowanon">Allow Anonymous Inbound SIP Calls</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="allowanon"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="radio" name="allowanon" id="allowanonyes" value="Yes">
+					<label for="allowanonyes">Yes</label>
+					<input type="radio" name="allowanon" id="allowanonno" value="No" checked="">
+					<label for="allowanonno">No</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="allowanon-help" class="help-block fpbx-help-block">Allowing Inbound Anonymous SIP calls means that you will allow any call coming in form an un-known IP source to be directed to the 'from-pstn' side of your dialplan. This is where inbound calls come in. Although FreePBX severely restricts access to the internal dialplan, allowing Anonymous SIP calls does introduced additional security risks. If you allow SIP URI dialing to your PBX or use services like ENUM, you will be required to set this to Yes for Inbound traffic to work. This is NOT an Asterisk sip.conf setting, it is used in the dialplan in conjuction with the Default Context. If that context is changed above to something custom this setting may be rendered useless as well as if 'Allow SIP Guests' is set to no.</span>
+			</div>
+		</div>
+	</div>
+	<!--END Allow Anonymous Inbound SIP Calls-->
+	<!--Allow SIP Guests-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="allowguest">Allow SIP Guests</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="allowguest"></i>
+						</div>
+						<div class="col-md-9 radioset">
+							<input id="allowguest-yes" type="radio" name="allowguest" value="yes">
+							<label for="allowguest-yes">Yes</label>
+							<input id="allowguest-no" type="radio" name="allowguest" value="no" checked="no">
+							<label for="allowguest-no">No</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="allowguest-help" class="help-block fpbx-help-block">When set Asterisk will allow Guest SIP calls and send them to the Default SIP context. Turning this off will keep anonymous SIP calls from entering the system. Doing such will also stop 'Allow Anonymous Inbound SIP Calls' from functioning. Allowing guest calls but rejecting the Anonymous SIP calls below will enable you to see the call attempts and debug incoming calls that may be mis-configured and appearing as guests.</span>
+			</div>
+		</div>
+	</div>
+	<!--END Allow SIP Guests-->
+	<!-- TLS Port Settings -->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="tlsowner">Default TLS Port Assignment</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="tlsowner"></i>
+				</div>
+				<div class="col-md-9 radioset">
+<input type="radio" name="tlsportowner" id="tls-sip" value="sip" disabled="">
+<label for="tls-sip">Chan SIP</label>
+<input type="radio" name="tlsportowner" id="tls-pjsip" value="pjsip" disabled="">
+<label for="tls-pjsip">PJSip</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="tlsowner-help" class="help-block fpbx-help-block" style="">This lets you explicitly control the SIP Protocol that listens on the default SIP TLS port (5061). If an option is not available, it is because that protocol is not enabled, or, that protocol does not have TLS enabled. If you change this, you will have to restart Asterisk</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section-title" data-for="ssnat">
+	<h3><i class="fa fa-minus"></i>NAT Settings</h3>
+</div>
+<div class="section" data-id="ssnat">
+	<!--External Address-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="externip">External Address</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="externip"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control localnet validate=ip" id="externip" name="externip" value="">
+							<button class="btn btn-default" id="autodetect">Detect Network Settings</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="externip-help" class="help-block fpbx-help-block">This address will be provided to clients if NAT is enabled and detected</span>
+			</div>
+		</div>
+	</div>
+	<!--END External Address-->
+		<!--Local Networks-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="localbnetsw">Local Networks</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="localbnetsw"></i>
+						</div>
+						<div class="col-md-9">
+							<div class="lnet form-group form-inline" data-nextid="1">
+								<input type="text" name="localnets[0][net]" class="form-control localnet network validate-ip" value=""> /
+								<input type="text" name="localnets[0][mask]" class="form-control netmask cidr validate-netmask" value="">
+							</div>
+														<input type="button" id="localnet-add" value="Add Local Network Field">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="localbnetsw-help" class="help-block fpbx-help-block">Local network settings in the form of ip/cidr or ip/netmask. For networks with more than 1 LAN subnets, use the Add Local Network Field button for more fields. Blank fields will be ignored.</span>
+			</div>
+		</div>
+	</div>
+	<!--END Local Networks-->
+</div>
+<div class="section-title" data-for="ssrtp">
+	<h3><i class="fa fa-minus"></i>RTP Settings</h3>
+</div>
+<div class="section" data-id="ssrtp">
+	<!--RTP Port Ranges-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="rtpw">RTP Port Ranges</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="rtpw"></i>
+						</div>
+						<div class="col-md-9">
+							<div class="row">
+								<div class="col-sm-1">
+									<label for="rtpstart"><b>Start:</b></label>
+								</div>
+								<div class="col-sm-11">
+									<input type="number" name="rtpstart" class="form-control validate-int" value="10000">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-1">
+									<label for="rtpend"><b>End:</b></label>
+								</div>
+								<div class="col-sm-11">
+									<input type="number" name="rtpend" class="form-control validate-int" value="20000">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="rtpw-help" class="help-block fpbx-help-block">The starting and ending RTP port range</span>
+			</div>
+		</div>
+	</div>
+	<!--END RTP Port Ranges-->
+	<!--RTP Checksums-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="rtpchecksums">RTP Checksums</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="rtpchecksums"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="radio" name="rtpchecksums" id="rtpchecksumsyes" value="yes" checked="">
+					<label for="rtpchecksumsyes">Yes</label>
+					<input type="radio" name="rtpchecksums" id="rtpchecksumsno" value="No">
+					<label for="rtpchecksumsno">No</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="rtpchecksums-help" class="help-block fpbx-help-block">Whether to enable or disable UDP checksums on RTP traffic</span>
+			</div>
+		</div>
+	</div>
+	<!--END RTP Checksums-->
+	<!--Strict RTP-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3 radioset">
+					<label class="control-label" for="strictrtp">Strict RTP</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="strictrtp"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="radio" name="strictrtp" id="strictrtpyes" value="Yes" checked="">
+					<label for="strictrtpyes">Yes</label>
+					<input type="radio" name="strictrtp" id="strictrtpno" value="No">
+					<label for="strictrtpno">No</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="strictrtp-help" class="help-block fpbx-help-block">This will drop RTP packets that do not come from the source of the RTP stream. It is unusual to turn this off</span>
+			</div>
+		</div>
+	</div>
+	<!--END Strict RTP-->
+	<!--RTP Timeout-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="rtptimeout">RTP Timeout</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="rtptimeout"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="number" class="form-control" id="rtptimeout" name="rtptimeout" value="30">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="rtptimeout-help" class="help-block fpbx-help-block">Terminate call if rtptimeout seconds of no RTP or RTCP activity on the audio channel when we're not on hold. This is to be able to hangup a call in the case of a phone disappearing from the net, like a powerloss or someone tripping over a cable.</span>
+			</div>
+		</div>
+	</div>
+	<!--END RTP Timeout-->
+	<!--RTP Hold Timeout-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="rtpholdtimeout">RTP Hold Timeout</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="rtpholdtimeout"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="number" class="form-control" id="rtpholdtimeout" name="rtpholdtimeout" value="300">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="rtpholdtimeout-help" class="help-block fpbx-help-block">Terminate call if rtpholdtimeout seconds of no RTP or RTCP activity on the audio channel when we're on hold (must be &gt; rtptimeout).</span>
+			</div>
+		</div>
+	</div>
+	<!--END RTP Hold Timeout-->
+	<!--RTP Keep Alive-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="rtpkeepalive">RTP Keep Alive</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="rtpkeepalive"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="number" class="form-control" id="rtpkeepalive" name="rtpkeepalive" value="0">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="rtpkeepalive-help" class="help-block fpbx-help-block">Send keepalives in the RTP stream to keep NAT open during periods where no RTP stream may be flowing (like on hold).</span>
+			</div>
+		</div>
+	</div>
+	<!--END RTP Keep Alive-->
+</div>
+<div class="section-title" data-for="ssmts">
+	<h3><i class="fa fa-minus"></i>Media Transport Settings</h3>
+</div>
+<div class="section" data-id="ssmts">
+	<!--STUN Server Address-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="stunaddr">STUN Server Address</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="stunaddr"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="stunaddr" name="stunaddr" value="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="stunaddr-help" class="help-block fpbx-help-block">Hostname or address for the STUN server used when determining the external IP address and port an RTP session can be reached at. The port number is optional. If omitted the default value of 3478 will be used. This option is blank by default. (A list of STUN servers: http://wiki.freepbx.org/x/YQCUAg)</span>
+			</div>
+		</div>
+	</div>
+	<!--END STUN Server Address-->
+	<!--TURN Server Address-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="turnaddr">TURN Server Address</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="turnaddr"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="turnaddr" name="turnaddr" value="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="turnaddr-help" class="help-block fpbx-help-block">Hostname or address for the TURN server to be used as a relay. The port number is optional. If omitted the default value of 3478 will be used. This option is blank by default.</span>
+			</div>
+		</div>
+	</div>
+	<!--END TURN Server Address-->
+	<!--TURN Server Username-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="turnusername">TURN Server Username</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="turnusername"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="turnusername" name="turnusername" value="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="turnusername-help" class="help-block fpbx-help-block">Username used to authenticate with TURN relay server. This option is disabled by default.</span>
+			</div>
+		</div>
+	</div>
+	<!--END TURN Server Username-->
+	<!--TURN Server Password-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="turnpassword">TURN Server Password</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="turnpassword"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="password" class="form-control clicktoedit" id="turnpassword" name="turnpassword" value="" readonly="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="turnpassword-help" class="help-block fpbx-help-block">Password used to authenticate with TURN relay server. This option is disabled by default.</span>
+			</div>
+		</div>
+	</div>
+	<!--END TURN Server Password-->
+</div>
+<div class="section-title" data-for="ice-blacklist">
+	<h3><i class="fa fa-minus"></i>ICE Blacklist</h3>
+</div>
+<div class="section" data-id="ice-blacklist">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<a data-toggle="collapse" data-target="#moreinfo-ice-blacklist" style="cursor:pointer;"><i class="glyphicon glyphicon-info-sign"></i></a>&nbsp;&nbsp;&nbsp;What is ICE Blacklist?</div>
+		</div>
+		<!--At some point we can probably kill this... Maybe make is a 1 time panel that may be dismissed-->
+		<div class="panel-body collapse" id="moreinfo-ice-blacklist">
+			<p>Subnets to exclude from ICE host, srflx and relay discovery. This is useful to optimize the ICE process where a system has multiple host address ranges and/or physical interfaces and certain of them are not expected to be used for RTP. For example, VPNs and local interconnections may not be suitable or necessary for ICE. Multiple subnets may be listed. If left unconfigured, all discovered host addresses are used.</p>
+			<p>The format for these overrides is: [address] / [subnet]</p>
+			<p>This is most commonly used for WebRTC</p>
+		</div>
+	</div>
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="">IP Addresses</label>
+						</div>
+						<div class="col-md-9">
+															<div class="form-group form-inline">
+									<input type="hidden" id="ice_blacklist_count" name="ice_blacklist_count[]" value="0"><input type="text" id="ice_blacklist_ip_0" name="ice_blacklist_ip_0" class="form-control ice-blacklist" value=""> /
+									<input type="text" id="ice_blacklist_subnet_0" name="ice_blacklist_subnet_0" class="form-control" value="">
+								</div>
+														<div id="ice-blacklist-buttons">
+								<div>
+									<button id="ice-blacklist-add" class="btn btn-default">Add Address</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section-title" data-for="ice-host-candidates">
+	<h3><i class="fa fa-minus"></i>ICE Host Candidates</h3>
+</div>
+<div class="section" data-id="ice-host-candidates">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<a data-toggle="collapse" data-target="#moreinfo-ice-host-candidates" style="cursor:pointer;"><i class="glyphicon glyphicon-info-sign"></i></a>&nbsp;&nbsp;&nbsp;What is ICE Host Candidates?</div>
+		</div>
+		<!--At some point we can probably kill this... Maybe make is a 1 time panel that may be dismissed-->
+		<div class="panel-body collapse" id="moreinfo-ice-host-candidates">
+			<p>When Asterisk is behind a static one-to-one NAT and ICE is in use, ICE will expose the server's internal IP address as one of the host candidates. Although using STUN (see the 'stunaddr' configuration option) will provide a publicly accessible IP, the internal IP will still be sent to the remote peer. To help hide the topology of your internal network, you can override the host candidates that Asterisk will send to the remote peer.</p>
+			<p>IMPORTANT: Only use this functionality when your Asterisk server is behind a one-to-one NAT and you know what you're doing. If you do define anything here, you almost certainly will NOT want to specify 'stunaddr' or 'turnaddr' above.</p>
+			<p>The format for these overrides is: [local address] =&gt; [advertised address]&gt;</p>
+			<p>This is most commonly used for WebRTC</p>
+		</div>
+	</div>
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="">Candidates</label>
+						</div>
+						<div class="col-md-9">
+															<div class="form-group form-inline">
+									<input type="hidden" id="ice_host_candidates_count" name="ice_host_candidates_count[]" value="0"><input type="text" id="ice_host_candidates_local_0" name="ice_host_candidates_local_0" class="form-control ice-host-candidate" value=""> =&gt; <input type="text" id="ice_host_candidates_advertised_0" name="ice_host_candidates_advertised_0" class="form-control" value="">
+								</div>
+														<div id="ice-host-candidates-buttons">
+								<button id="ice-host-candidates-add" class="btn btn-default">Add Address</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section-title" data-for="webrtc">
+	<h3><i class="fa fa-minus"></i>WebRTC Settings</h3>
+</div>
+<div class="section" data-id="webrtc">
+	<!--STUN Server Address-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="webrtcstunaddr">STUN Server Address</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="webrtcstunaddr"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="webrtcstunaddr" name="webrtcstunaddr" value="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="webrtcstunaddr-help" class="help-block fpbx-help-block">Hostname or address for the STUN server used when determining the external IP address and port an RTP session can be reached at. The port number is optional. If omitted the default value of 3478 will be used. This option is blank by default. (A list of STUN servers: http://wiki.freepbx.org/x/YQCUAg)</span>
+			</div>
+		</div>
+	</div>
+	<!--END STUN Server Address-->
+	<!--TURN Server Address-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="webrtcturnaddr">TURN Server Address</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="webrtcturnaddr"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="webrtcturnaddr" name="webrtcturnaddr" value="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="webrtcturnaddr-help" class="help-block fpbx-help-block">Hostname or address for the TURN server to be used as a relay. The port number is optional. If omitted the default value of 3478 will be used. This option is blank by default.</span>
+			</div>
+		</div>
+	</div>
+	<!--END TURN Server Address-->
+	<!--TURN Server Username-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="webrtcturnusername">TURN Server Username</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="webrtcturnusername"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="webrtcturnusername" name="webrtcturnusername" value="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="webrtcturnusername-help" class="help-block fpbx-help-block">Username used to authenticate with TURN relay server. This option is disabled by default.</span>
+			</div>
+		</div>
+	</div>
+	<!--END TURN Server Username-->
+	<!--TURN Server Password-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="webrtcturnpassword">TURN Server Password</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="webrtcturnpassword"></i>
+						</div>
+						<div class="col-md-9">
+							<input type="password" class="form-control clicktoedit" id="webrtcturnpassword" name="webrtcturnpassword" value="" readonly="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="webrtcturnpassword-help" class="help-block fpbx-help-block">Password used to authenticate with TURN relay server. This option is disabled by default.</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section-title" data-for="sscodecs">
+	<h3><i class="fa fa-minus"></i>Audio Codecs</h3>
+</div>
+<div class="section" data-id="sscodecs">
+
+	<!--T38 Pass-Through-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="t38pt_udptl">T38 Pass-Through</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="t38pt_udptl"></i>
+						</div>
+						<div class="col-md-9">
+							<select name="t38pt_udptl" class="form-control">
+								<option value="no" selected="">No</option>
+								<option value="yes">Yes</option>
+								<option value="fec">Yes with FEC</option>
+								<option value="redundancy">Yes with Redundancy</option>
+								<option value="none">Yes with no error correction</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="t38pt_udptl-help" class="help-block fpbx-help-block">Asterisk: t38pt_udptl. Enables T38 passthrough which makes faxes go through Asterisk without being processed.<ul><li>No - No passthrough</li><li>Yes - Enables T.38 with FEC error correction and overrides the other endpoint's provided value to assume we can send 400 byte T.38 FAX packets to it.</li><li>Yes with FEC - Enables T.38 with FEC error correction</li><li>Yes with Redundancy - Enables T.38 with redundancy error correction</li><li>Yes with no error correction - Enables T.38 with no error correction.</li></ul></span>
+			</div>
+		</div>
+	</div>
+	<!--END T38 Pass-Through-->
+
+	<!--Codecs-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="codecw">Codecs</label>
+						</div>
+						<div class="col-md-9">
+							<div class="panel panel-info panel-help"><div class="panel-heading collapsed" data-target="#633da084abb8e" data-toggle="collapse"><h3 class="panel-title"><span class="pull-left"><i class="fa fa-info-circle fa-lg fa-fw"></i></span>Helpful Information<span class="pull-right"><i class="chevron fa fa-fw"></i></span></h3></div><div id="633da084abb8e" class="panel-collapse collapse "><div class="panel-body">This is the default Codec setting for new Trunks and Extensions.</div></div></div><ul class="sortable ui-sortable"><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" value="1" name="voicecodecs[ulaw]" id="ulaw" class="audio-codecs" checked=""><label for="ulaw"> <small>ulaw</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" value="2" name="voicecodecs[alaw]" id="alaw" class="audio-codecs" checked=""><label for="alaw"> <small>alaw</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" value="3" name="voicecodecs[gsm]" id="gsm" class="audio-codecs" checked=""><label for="gsm"> <small>gsm</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" value="4" name="voicecodecs[g726]" id="g726" class="audio-codecs" checked=""><label for="g726"> <small>g726</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" value="5" name="voicecodecs[g722]" id="g722" class="audio-codecs" checked=""><label for="g722"> <small>g722</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[g723]" id="g723" class="audio-codecs"><label for="g723"> <small>g723</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[speex]" id="speex" class="audio-codecs"><label for="speex"> <small>speex</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[speex16]" id="speex16" class="audio-codecs"><label for="speex16"> <small>speex16</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[speex32]" id="speex32" class="audio-codecs"><label for="speex32"> <small>speex32</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[siren7]" id="siren7" class="audio-codecs"><label for="siren7"> <small>siren7</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[adpcm]" id="adpcm" class="audio-codecs"><label for="adpcm"> <small>adpcm</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[silk8]" id="silk8" class="audio-codecs"><label for="silk8"> <small>silk8</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[silk12]" id="silk12" class="audio-codecs"><label for="silk12"> <small>silk12</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[silk16]" id="silk16" class="audio-codecs"><label for="silk16"> <small>silk16</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[silk24]" id="silk24" class="audio-codecs"><label for="silk24"> <small>silk24</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[g719]" id="g719" class="audio-codecs"><label for="g719"> <small>g719</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[g729]" id="g729" class="audio-codecs"><label for="g729"> <small>g729</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin]" id="slin" class="audio-codecs"><label for="slin"> <small>slin</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin12]" id="slin12" class="audio-codecs"><label for="slin12"> <small>slin12</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin16]" id="slin16" class="audio-codecs"><label for="slin16"> <small>slin16</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin24]" id="slin24" class="audio-codecs"><label for="slin24"> <small>slin24</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin32]" id="slin32" class="audio-codecs"><label for="slin32"> <small>slin32</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin44]" id="slin44" class="audio-codecs"><label for="slin44"> <small>slin44</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin48]" id="slin48" class="audio-codecs"><label for="slin48"> <small>slin48</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin96]" id="slin96" class="audio-codecs"><label for="slin96"> <small>slin96</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[slin192]" id="slin192" class="audio-codecs"><label for="slin192"> <small>slin192</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[lpc10]" id="lpc10" class="audio-codecs"><label for="lpc10"> <small>lpc10</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[testlaw]" id="testlaw" class="audio-codecs"><label for="testlaw"> <small>testlaw</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[none]" id="none" class="audio-codecs"><label for="none"> <small>none</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[ilbc]" id="ilbc" class="audio-codecs"><label for="ilbc"> <small>ilbc</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[opus]" id="opus" class="audio-codecs"><label for="opus"> <small>opus</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[codec2]" id="codec2" class="audio-codecs"><label for="codec2"> <small>codec2</small> </label></a></li>
+<li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="voicecodecs[siren14]" id="siren14" class="audio-codecs"><label for="siren14"> <small>siren14</small> </label></a></li>
+</ul>						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--END Codecs-->
+</div>
+<div class="section-title" data-for="sscsvcodecs">
+	<h3><i class="fa fa-minus"></i> Video Codecs</h3>
+</div>
+<div class="section" data-id="sscsvcodecs">
+	<!--Video Support-->
+	<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="videosupport">Video Support</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="videosupport"></i>
+						</div>
+						<div class="col-md-9 radioset">
+							<input id="videosupport-yes" type="radio" name="videosupport" value="yes">
+							<label for="videosupport-yes">Enabled</label>
+							<input id="videosupport-no" type="radio" name="videosupport" value="no" checked="no">
+							<label for="videosupport-no">Disabled</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="videosupport-help" class="help-block fpbx-help-block">Check to enable and then choose allowed codecs. If you clear each codec and then add them one at a time, submitting with each addition, they will be added in order which will effect the codec priority.</span>
+			</div>
+		</div>
+	</div>
+	<!--END Video Support-->
+	<div class="video-codecs" style="display: none;">
+		<!--Video Codecs-->
+		<div class="element-container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-3">
+								<label class="control-label" for="vcwrap">Video Codecs</label>
+								<i class="fa fa-question-circle fpbx-help-icon" data-for="vcwrap"></i>
+							</div>
+							<div class="col-md-9">
+								<ul class="sortable video-codecs ui-sortable" style="display: none;"><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" value="0" name="vcodec[h264]" id="h264" class="audio-codecs" tabindex="1" checked=""><label for="h264"> <small>h264</small> </label></a></li><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" value="1" name="vcodec[mpeg4]" id="mpeg4" class="audio-codecs" tabindex="2" checked=""><label for="mpeg4"> <small>mpeg4</small> </label></a></li><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="vcodec[h261]" id="h261" class="audio-codecs" tabindex="3"><label for="h261"> <small>h261</small> </label></a></li><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="vcodec[h263]" id="h263" class="audio-codecs" tabindex="4"><label for="h263"> <small>h263</small> </label></a></li><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="vcodec[h265]" id="h265" class="audio-codecs" tabindex="5"><label for="h265"> <small>h265</small> </label></a></li><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="vcodec[h263p]" id="h263p" class="audio-codecs" tabindex="6"><label for="h263p"> <small>h263p</small> </label></a></li><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="vcodec[vp9]" id="vp9" class="audio-codecs" tabindex="7"><label for="vp9"> <small>vp9</small> </label></a></li><li class="ui-sortable-handle"><a><img src="./FreePBX Administration_Asterisk SIP Settings_files/arrow_up_down.png" height="16" width="16" border="0" alt="move" style="float:none; margin-left:-6px; margin-bottom:-3px;cursor:move"> <input type="checkbox" name="vcodec[vp8]" id="vp8" class="audio-codecs" tabindex="8"><label for="vp8"> <small>vp8</small> </label></a></li></ul>							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="vcwrap-help" class="help-block fpbx-help-block">Video Codecs</span>
+				</div>
+			</div>
+		</div>
+		<!--END Video Codecs-->
+		<!--Max Bit Rate-->
+		<div class="element-container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-3">
+								<label class="control-label" for="maxcallbitrate">Max Bit Rate</label>
+								<i class="fa fa-question-circle fpbx-help-icon" data-for="maxcallbitrate"></i>
+							</div>
+							<div class="col-md-9">
+								<div class="input-group">
+									<input type="number" class="form-control" id="maxcallbitrate" name="maxcallbitrate" value="384">
+									<span class="input-group-addon">kb/s</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="maxcallbitrate-help" class="help-block fpbx-help-block">Maximum bitrate for video calls in kb/s</span>
+				</div>
+			</div>
+		</div>
+		<!--END Max Bit Rate-->
+	</div>
+</div>
+								</div>
+															<div id="pjsip" class="tab-pane">
+									<input type="hidden" name="category" value="pjsip">
+<input type="hidden" name="Submit" value="Submit">
+<div class="alert alert-info">These settings apply only to SIP [chan_pjsip]</div>
+<div class="section-title" data-for="pjsmisc"><h3>
+	<i class="fa fa-minus"></i> Misc PJSip Settings</h3>
+</div>
+<div class="section" data-id="pjsmisc">
+	<!--Allow reload-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="allow_reload">Allow Transports Reload</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="allow_reload"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="radio" name="allow_reload" id="allow_reloadyes" value="yes">
+					<label for="allow_reloadyes">Yes</label>
+					<input type="radio" name="allow_reload" id="allow_reloadno" value="no" checked="">
+					<label for="allow_reloadno">No</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="allow_reload-help" class="help-block fpbx-help-block">Allow transports to be reloaded when the PBX is reloaded.  Enabling this is not recommended, and may lead to issues.</span>
+			</div>
+		</div>
+	</div>
+	<!--END Allow reload-->
+	<!--Enable Debug-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="pjsip_debug">Enable Debug</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="pjsip_debug"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="radio" name="pjsip_debug" id="pjsip_debugyes" value="yes">
+					<label for="pjsip_debugyes">Yes</label>
+					<input type="radio" name="pjsip_debug" id="pjsip_debugno" value="no" checked="">
+					<label for="pjsip_debugno">No</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="pjsip_debug-help" class="help-block fpbx-help-block">Enable/Disable SIP debug logging.</span>
+			</div>
+		</div>
+	</div>
+	<!--END Enable Debug-->
+	<!--Allow reload-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="pjsip_keep_alive_interval">Keep Alive Interval</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="pjsip_keep_alive_interval"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="number" class="form-control" name="pjsip_keep_alive_interval" id="pjsip_keep_alive_interval" value="90">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="pjsip_keep_alive_interval-help" class="help-block fpbx-help-block">The interval (in seconds) to send keepalives to active connection-oriented transports. <br> Default is 90. <br></span>
+			</div>
+		</div>
+	</div>
+	<!--END Allow reload-->
+
+		<!--Caller ID into Contact Header-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="use_callerid_contact">Caller ID into Contact Header</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="use_callerid_contact"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="radio" name="use_callerid_contact" id="use_callerid_contactyes" value="yes">
+					<label for="use_callerid_contactyes">Yes</label>
+					<input type="radio" name="use_callerid_contact" id="use_callerid_contactno" value="no" checked="">
+					<label for="use_callerid_contactno">No</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="use_callerid_contact-help" class="help-block fpbx-help-block"><i>use_callerid_contact</i> : Place caller-id information into Contact header. Default: no.</span>
+			</div>
+		</div>
+	</div>
+	<!--END Caller ID into Contact Header-->
+		
+	
+	<!--Taskprocessor Overload Trigger-->
+		<div class="element-container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="taskprocessor_overload_trigger">Taskprocessor Overload Trigger</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="taskprocessor_overload_trigger"></i>
+						</div>
+						<div class="col-md-9 radioset">
+							<input id="taskprocessor_overload_trigger-global" type="radio" name="taskprocessor_overload_trigger" value="global">
+							<label for="taskprocessor_overload_trigger-global">global</label>
+							<input id="taskprocessor_overload_trigger-pjsip_only" type="radio" name="taskprocessor_overload_trigger" value="pjsip_only" checked="pjsip_only">
+							<label for="taskprocessor_overload_trigger-pjsip_only">pjsip_only</label>
+							<input id="taskprocessor_overload_trigger-none" type="radio" name="taskprocessor_overload_trigger" value="none">
+							<label for="taskprocessor_overload_trigger-none">none</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="taskprocessor_overload_trigger-help" class="help-block fpbx-help-block">This option specifies the trigger the distributor will use for detecting taskprocessor overloads. When it detects an overload condition, the distrubutor will stop accepting new requests until the overload is cleared.<br> global - (default) Any taskprocessor overload will trigger.<br> pjsip_only - Only pjsip taskprocessor overloads will trigger.<br> none - No overload detection will be performed.</span>
+			</div>
+		</div>
+	</div>
+		<!--Taskprocessor Overload Trigger-->
+
+	<!--Show Advanced Settings-->
+	<div class="element-container">
+		<div class="row">
+			<div class="form-group">
+				<div class="col-md-3">
+					<label class="control-label" for="showadvanced">Show Advanced Settings</label>
+					<i class="fa fa-question-circle fpbx-help-icon" data-for="showadvanced"></i>
+				</div>
+				<div class="col-md-9 radioset">
+					<input type="radio" name="showadvanced" id="showadvancedyes" value="yes">
+					<label for="showadvancedyes">Yes</label>
+					<input type="radio" name="showadvanced" id="showadvancedno" value="no" checked="">
+					<label for="showadvancedno">No</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<span id="showadvanced-help" class="help-block fpbx-help-block">Show Advanced Settings</span>
+			</div>
+		</div>
+	</div>
+	 <div class="element-container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-3">
+                  <label class="control-label" for="pjsip_identifers_sortable">Endpoint Identifier Order </label>
+                  <i class="fa fa-question-circle fpbx-help-icon" data-for="pjsip_identifers_sortable"></i>
+                </div>
+                <div class="col-md-9">
+                  <ul id="pjsip_identifers_sortable" class="ui-sortable">
+                  				  <!-- -->
+                  <li class="ui-state-default btn ui-sortable-handle" id="EI_ip">ip</li>
+                  				  <!-- -->
+                  <li class="ui-state-default btn ui-sortable-handle" id="EI_username">username</li>
+                  				  <!-- -->
+                  <li class="ui-state-default btn ui-sortable-handle" id="EI_anonymous">anonymous</li>
+                  				  <!-- -->
+                  <li class="ui-state-default btn ui-sortable-handle" id="EI_header">header</li>
+                  				  <!-- -->
+                  <li class="ui-state-default btn ui-sortable-handle" id="EI_auth_username">auth_username</li>
+                                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span id="pjsip_identifers_sortable-help" class="help-block fpbx-help-block">Endpoint Identifier Order . The Default order is as follows:<ul><li>ip</li><li>username</li><li>anonymous</li><li>header</li><li>auth_username</li></ul><ul>Note : Changing this to get affected  may require asterisk restart</ul></span>
+          </div>
+        </div>
+      </div>
+	<!--END Show Advanced Settings-->
+</div>
+
+	<div class="section-title" data-for="pjtls"><h3>
+		<i class="fa fa-minus"></i> TLS/SSL/SRTP Settings</h3>
+	</div>
+	<div class="section" data-id="pjtls">
+				<div class="element-container">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-md-3">
+							<label class="control-label" for="pjsipcalistfile">Certificate Manager</label>
+							<i class="fa fa-question-circle fpbx-help-icon" data-for="pjsipcalistfile"></i>
+						</div>
+						<div class="col-md-9">
+							<select class="form-control" id="pjsipcalistfile" name="pjsipcertid">
+								<option value="">--Select a Certificate--</option>
+																	<option value="2">default</option>
+															</select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<span id="pjsipcalistfile-help" class="help-block fpbx-help-block">Select a certificate to use for the TLS transport. These are configured in the module Certificate Manager</span>
+					</div>
+				</div>
+			</div>
+				<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="method">SSL Method</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="method"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<select class="form-control" id="method" name="method">
+							<option value="default" selected="">Default</option>
+							<option value="tlsv1_1">tlsv1_1</option>
+                            <option value="tlsv1_2">tlsv1_2</option>
+							<option value="sslv2">sslv2 (Insecure)</option>
+							<option value="sslv3">sslv3 (Insecure)</option>
+							<option value="sslv23">sslv23 (Insecure)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="method-help" class="help-block fpbx-help-block">Method of SSL transport (TLS ONLY). The default is currently TLSv1, but may change with future releases.</span>
+				</div>
+			</div>
+		</div>
+		<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="verify_client">Verify Client</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="verify_client"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<input type="radio" name="verify_client" id="verify_clientyes" value="yes" checked="">
+						<label for="verify_clientyes">Yes</label>
+						<input type="radio" name="verify_client" id="verify_clientno" value="no">
+						<label for="verify_clientno">No</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="verify_client-help" class="help-block fpbx-help-block">Require verification of client certificate (TLS ONLY).</span>
+				</div>
+			</div>
+		</div>
+		<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="verify_server">Verify Server</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="verify_server"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<input type="radio" name="verify_server" id="verify_serveryes" value="yes" checked="">
+						<label for="verify_serveryes">Yes</label>
+						<input type="radio" name="verify_server" id="verify_serverno" value="no">
+						<label for="verify_serverno">No</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="verify_server-help" class="help-block fpbx-help-block">Require verification of server certificate (TLS ONLY).</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="section-title" data-for="pjstx"><h3>
+	<i class="fa fa-minus"></i> Transports</h3>
+</div>
+<div class="section" data-id="pjstx">
+	<div class="well well-info">
+		Note that the interface is only displayed for your information, and is not referenced by asterisk.					After you enable/disable a transport, asterisk needs to be <strong>restarted</strong>, not just reloaded.			</div>
+</div>
+
+				<div class="section-title" data-for="pjs.udp"><h3>
+					<i class="fa fa-minus"></i> udp</h3>
+				</div>
+				<div class="section" data-id="pjs.udp">
+			
+		<!--udp - 0.0.0.0 - All-->
+		<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="udpbindip-0.0.0.0">udp - 0.0.0.0 - All</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="udpbindip-0.0.0.0"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<input type="radio" class="btn-all btn-proto-udp" data-proto="udp" name="udpbindip-0.0.0.0" id="udpbindip-0.0.0.0yes" value="on" checked="">
+						<label for="udpbindip-0.0.0.0yes">Yes</label>
+						<input type="radio" class="btn-all btn-proto-udp" data-proto="udp" name="udpbindip-0.0.0.0" id="udpbindip-0.0.0.0no" value="off">
+						<label for="udpbindip-0.0.0.0no">No</label>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="udpbindip-0.0.0.0-help" class="help-block fpbx-help-block">Use udp - 0.0.0.0 - All</span>
+				</div>
+			</div>
+		</div>
+		<!--END udp - 0.0.0.0 - All-->
+		</div>
+				<div class="section-title" data-for="pjs.tcp"><h3>
+					<i class="fa fa-minus"></i> tcp</h3>
+				</div>
+				<div class="section" data-id="pjs.tcp">
+			
+		<!--tcp - 0.0.0.0 - All-->
+		<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="tcpbindip-0.0.0.0">tcp - 0.0.0.0 - All</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="tcpbindip-0.0.0.0"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<input type="radio" class="btn-all btn-proto-tcp" data-proto="tcp" name="tcpbindip-0.0.0.0" id="tcpbindip-0.0.0.0yes" value="on">
+						<label for="tcpbindip-0.0.0.0yes">Yes</label>
+						<input type="radio" class="btn-all btn-proto-tcp" data-proto="tcp" name="tcpbindip-0.0.0.0" id="tcpbindip-0.0.0.0no" value="off" checked="">
+						<label for="tcpbindip-0.0.0.0no">No</label>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="tcpbindip-0.0.0.0-help" class="help-block fpbx-help-block">Use tcp - 0.0.0.0 - All</span>
+				</div>
+			</div>
+		</div>
+		<!--END tcp - 0.0.0.0 - All-->
+		</div>
+				<div class="section-title" data-for="pjs.tls"><h3>
+					<i class="fa fa-minus"></i> tls</h3>
+				</div>
+				<div class="section" data-id="pjs.tls">
+			
+		<!--tls - 0.0.0.0 - All-->
+		<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="tlsbindip-0.0.0.0">tls - 0.0.0.0 - All</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="tlsbindip-0.0.0.0"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<input type="radio" class="btn-all btn-proto-tls" data-proto="tls" name="tlsbindip-0.0.0.0" id="tlsbindip-0.0.0.0yes" value="on">
+						<label for="tlsbindip-0.0.0.0yes">Yes</label>
+						<input type="radio" class="btn-all btn-proto-tls" data-proto="tls" name="tlsbindip-0.0.0.0" id="tlsbindip-0.0.0.0no" value="off" checked="">
+						<label for="tlsbindip-0.0.0.0no">No</label>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="tlsbindip-0.0.0.0-help" class="help-block fpbx-help-block">Use tls - 0.0.0.0 - All</span>
+				</div>
+			</div>
+		</div>
+		<!--END tls - 0.0.0.0 - All-->
+		</div>
+				<div class="section-title" data-for="pjs.ws"><h3>
+					<i class="fa fa-minus"></i> ws</h3>
+				</div>
+				<div class="section" data-id="pjs.ws">
+			
+		<!--ws - 0.0.0.0 - All-->
+		<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="wsbindip-0.0.0.0">ws - 0.0.0.0 - All</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="wsbindip-0.0.0.0"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<input type="radio" class="btn-all btn-proto-ws" data-proto="ws" name="wsbindip-0.0.0.0" id="wsbindip-0.0.0.0yes" value="on">
+						<label for="wsbindip-0.0.0.0yes">Yes</label>
+						<input type="radio" class="btn-all btn-proto-ws" data-proto="ws" name="wsbindip-0.0.0.0" id="wsbindip-0.0.0.0no" value="off" checked="">
+						<label for="wsbindip-0.0.0.0no">No</label>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="wsbindip-0.0.0.0-help" class="help-block fpbx-help-block">Use ws - 0.0.0.0 - All</span>
+				</div>
+			</div>
+		</div>
+		<!--END ws - 0.0.0.0 - All-->
+		</div>
+				<div class="section-title" data-for="pjs.wss"><h3>
+					<i class="fa fa-minus"></i> wss</h3>
+				</div>
+				<div class="section" data-id="pjs.wss">
+			
+		<!--wss - 0.0.0.0 - All-->
+		<div class="element-container">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-3">
+						<label class="control-label" for="wssbindip-0.0.0.0">wss - 0.0.0.0 - All</label>
+						<i class="fa fa-question-circle fpbx-help-icon" data-for="wssbindip-0.0.0.0"></i>
+					</div>
+					<div class="col-md-9 radioset">
+						<input type="radio" class="btn-all btn-proto-wss" data-proto="wss" name="wssbindip-0.0.0.0" id="wssbindip-0.0.0.0yes" value="on">
+						<label for="wssbindip-0.0.0.0yes">Yes</label>
+						<input type="radio" class="btn-all btn-proto-wss" data-proto="wss" name="wssbindip-0.0.0.0" id="wssbindip-0.0.0.0no" value="off" checked="">
+						<label for="wssbindip-0.0.0.0no">No</label>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<span id="wssbindip-0.0.0.0-help" class="help-block fpbx-help-block">Use wss - 0.0.0.0 - All</span>
+				</div>
+			</div>
+		</div>
+		<!--END wss - 0.0.0.0 - All-->
+		</div>
+			<div class="section-title" data-for="pjsbind.udp"><h3>
+				<i class="fa fa-minus"></i> 0.0.0.0 (udp)</h3>
+			</div>
+			<div class="section" data-id="pjsbind.udp">
+			
+				<!--Port to Listen On-->
+				<div class="element-container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-3">
+										<label class="control-label" for="udpport0000">Port to Listen On</label>
+										<i class="fa fa-question-circle fpbx-help-icon" data-for="udpport0000"></i>
+									</div>
+									<div class="col-md-9">
+										<input type="text" class="form-control port" data-orig="5060" data-ip="0.0.0.0" id="udpport0000" name="udpport-0.0.0.0" value="5060">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<span id="udpport0000-help" class="help-block fpbx-help-block">The port that this transport should listen on</span>
+						</div>
+					</div>
+				</div>
+				<!--END Port to Listen On-->
+				
+				<!--Domain the transport comes from-->
+				<div class="element-container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-3">
+										<label class="control-label" for="udpdomain0000">Domain the transport comes from</label>
+										<i class="fa fa-question-circle fpbx-help-icon" data-for="udpdomain0000"></i>
+									</div>
+									<div class="col-md-9">
+										<input type="text" class="form-control domain" data-orig="" data-ip="0.0.0.0" id="udpdomain0000" name="udpdomain-0.0.0.0" value="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<span id="udpdomain0000-help" class="help-block fpbx-help-block">Typically used with SIP calling. Example user@domain, where domain is the value that would be entered here</span>
+						</div>
+					</div>
+				</div>
+				<!--END Domain the transport comes from-->
+				
+				<!--External IP Address-->
+				<div class="element-container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-3">
+										<label class="control-label" for="udpextip0000">External IP Address</label>
+										<i class="fa fa-question-circle fpbx-help-icon" data-for="udpextip0000"></i>
+									</div>
+									<div class="col-md-9">
+										<input type="text" class="form-control extip" data-orig="" data-ip="0.0.0.0" id="udpextip0000" name="udpextip-0.0.0.0" value="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<span id="udpextip0000-help" class="help-block fpbx-help-block">If blank, will use the default settings</span>
+						</div>
+					</div>
+				</div>
+				<!--END External IP Address-->
+				
+				<!--Local network-->
+				<div class="element-container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-3">
+										<label class="control-label" for="udplocalnet0000">Local network</label>
+										<i class="fa fa-question-circle fpbx-help-icon" data-for="udplocalnet0000"></i>
+									</div>
+									<div class="col-md-9">
+										<input type="text" class="form-control localnet" data-orig="" data-ip="0.0.0.0" id="udplocalnet0000" name="udplocalnet-0.0.0.0" value="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<span id="udplocalnet0000-help" class="help-block fpbx-help-block">You may use this to to define an additional local network per interface.</span>
+						</div>
+					</div>
+				</div>
+				<!--END Local network-->
+				
+			</div>
+										</div>
+													</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p><br><br></p>
+	</div>
+</form>
+
+<script>
+var timezone = 'UTC';
+var language = 'en_US';
+var UIDEFAULTLANG = 'es_ES';
+var PHPTIMEZONE = 'UTC';
+var datetimeformat = 'llll';
+var dateformat = 'l';
+var timeformat = 'LT';
+</script>
+</div></div><div id="footer"><hr><div id="action-bar" class=""><div id="action-buttons"><button id="action-bar-hide" class="btn"><i class="fa fa-angle-double-right"></i></button><input name="submit" type="submit" value="Submit" id="submit"><input name="reset" type="submit" value="Reset" id="reset"></div></div><div id="footer_content" class="row"><div class="col-md-4">
+	<a target="_blank" href="http://www.freepbx.org/"><img id="footer_logo1" src="./FreePBX Administration_Asterisk SIP Settings_files/freepbx_small.png" alt="FreePBX®">
+	</a>
+	</div><div class="col-md-4" id="footer_text"><a href="http://www.freepbx.org/" target="_blank">FreePBX</a> is a registered trademark of<br><a href="http://www.freepbx.org/copyright.html" target="_blank"> Sangoma Technologies Inc.</a><br>FreePBX 16.0.21.3 is licensed under the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank"> GPL</a><br><a href="http://www.freepbx.org/copyright.html" target="_blank">Copyright© 2007-2022</a></div><div class="col-md-4">
+	<a target="_blank" href="http://www.sangoma.com/"><img id="footer_logo" src="./FreePBX Administration_Asterisk SIP Settings_files/sangoma-horizontal_thumb.png" alt="www.sangoma.com">
+	</a>
+	</div></div></div>
+<script type="text/javascript">var fpbx={"conf":{"AS_DISPLAY_FRIENDLY_NAME":1,"AS_DISPLAY_HIDDEN_SETTINGS":0,"AS_DISPLAY_READONLY_SETTINGS":0,"AS_OVERRIDE_READONLY":0,"HTTPENABLESTATIC":0,"HTTPENABLED":1,"HTTPTLSENABLE":1,"HTTPWEBSOCKETMODE":"pjsip","HTTPBINDADDRESS":"::","HTTPBINDPORT":8088,"HTTPPREFIX":"","HTTPTLSBINDADDRESS":"::","HTTPTLSBINDPORT":8089,"TLSDISABLEV1":1,"TLSDISABLEV11":0,"TLSDISABLEV12":0,"HTTPTLSCERTFILE":"\/etc\/asterisk\/keys\/integration\/certificate.pem","HTTPTLSPRIVATEKEY":"\/etc\/asterisk\/keys\/integration\/webserver.key","HTTPSESSIONINACTIVITY":30000,"HTTPSESSIONKEEPALIVE":15000,"HTTPSESSIONLIMIT":100,"ASTMGRWRITETIMEOUT":5000,"ENABLE_ARI":1,"FPBX_ARI_USER":"freepbxuser","ARI_ALLOWED_ORIGINS":"*","FPBX_ARI_PASSWORD":"391ad058e982a2f925c900129a66d8cc","ENABLE_ARI_PP":0,"ARI_WS_WRITE_TIMEOUT":100,"CA_CALL_DECK_PRIORITY":"Trunks","DAYNIGHTTCHOOK":0,"CALLREC_BEEP_PERIOD":"","CALL_REC_OPTION":1,"CEL_ENABLED":1,"CELDBNAME":"","CELDBTABLENAME":"","CERT_DAYS_VAL":"730","FORCEALLOWCONFRECORDING":0,"ENABLE_FAVORITE_CONTACTS":0,"CONTACTMANLOOKUPLENGTH":7,"JOBSRANDOMSLEEP":0,"FWJOBS_LOGS":0,"DAHDISHOWDIGITALCHANS":0,"DAHDIEXEC":"\/etc\/init.d\/dahdi","DAHDIMODULESLOC":"\/etc\/dahdi\/modules","DAHDIDISABLEWRITE":1,"DAHDIMODPROBELOC":"\/etc\/modprobe.d\/dahdi.conf","DAHDIECHOCAN":"oslec","DAHDISYSTEMLOC":"\/etc\/dahdi\/system.conf","DAHDIMOCKHW":0,"SYS_STATS_DISABLE":0,"VIEW_FW_STATUS":1,"SYS_STATS_MAXAGE":50,"FORCE_JS_CSS_IMG_DOWNLOAD":0,"AMPLOCALBIN":"","FPBXDBUGFILE":"\/var\/log\/asterisk\/freepbx_dbug","DEVEL":0,"FPBXDBUGDISABLE":1,"DISABLE_CSS_AUTOGEN":0,"MODULEADMIN_SKIP_CACHE":0,"DISPLAY_MONITOR_TRUNK_FAILURES_FIELD":0,"JQMIGRATE":1,"ENABLE_MIRROR_LOG":0,"FPBXPERFLOGGING":0,"DEVELRELOAD":0,"MIXMON_POST":"","POST_RELOAD_DEBUG":0,"POST_RELOAD":"","PRE_RELOAD":"","DIE_FREEPBX_VERBOSE":0,"USE_PACKAGED_JS":1,"DEVICE_STRONG_SECRETS":1,"DEVICE_REMOVE_MAILBOX":0,"DEVICE_SIP_CANREINVITE":"no","DEVICE_SIP_DTMF":"rfc2833","DEVICE_SIP_TRUSTRPID":"yes","DEVICE_SIP_SENDRPID":"pai","DEVICE_SIP_NAT":"yes","DEVICE_SIP_ENCRYPTION":"no","DEVICE_SIP_QUALIFYFREQ":60,"DEVICE_QUALIFY":"yes","DEVICE_ALLOW":"","DEVICE_DISALLOW":"","DEVICE_CALLGROUP":"","DEVICE_PICKUPGROUP":"","DIAL_OPTIONS":"HhTtr","TRUNK_OPTIONS":"T","TRANSFER_CONTEXT":"from-internal-xfer","ATTTRANSALERTINFO":"inherit","BLINDTRANSALERTINFO":"inherit","BLOCK_OUTBOUND_TRUNK_CNAM":0,"CFRINGTIMERDEFAULT":"0","REC_POLICY":"caller","ASTCONFAPP":"app_confbridge","ZAP2DAHDICOMPAT":1,"TONEZONE":"us","ENABLECW":1,"DISABLECUSTOMCONTEXTS":0,"INBOUND_NOTRANS":1,"OUTBOUND_CID_UPDATE":1,"OUTBOUND_DIAL_UPDATE":1,"CONNECTEDLINE_PRESENCESTATE":1,"DITECH_VQA_INBOUND":"7","DITECH_VQA_OUTBOUND":"7","DYNAMICHINTS":0,"RFC7462":1,"CONCURRENCYLIMITDEFAULT":"3","FCBEEPONLY":0,"FORCE_INTERNAL_AUTO_ANSWER_ALL":0,"DIVERSIONHEADER":0,"INTERNALALERTINFO":"inherit","DEFAULT_INTERNAL_AUTO_ANSWER":"disabled","LAUNCH_AGI_AS_FASTAGI":1,"NOOPTRACE":"0","CWINUSEBUSY":1,"CID_PREPEND_REPLACE":1,"ASTSTOPPOLLINT":"2","RINGTIMER":"15","ASTSIPDRIVER":"chan_pjsip","TIMEFORMAT":"12 Hour Format","TRUNK_RING_TIMER":300,"AMPBADNUMBER":1,"DIALPARTIESDIALPLAN":0,"USEGOOGLEDNSFORENUM":0,"ASTSTOPTIMEOUT":"120","ASTAGIDIR":"\/var\/lib\/asterisk\/agi-bin","ASTVARLIBDIR":"\/var\/lib\/asterisk","ASTETCDIR":"\/etc\/asterisk","ASTLOGDIR":"\/var\/log\/asterisk","ASTMODDIR":"\/usr\/lib64\/asterisk\/modules","ASTRUNDIR":"\/var\/run\/asterisk","ASTSPOOLDIR":"\/var\/spool\/asterisk","AMPPLAYBACK":"\/var\/lib\/asterisk\/playback","CERTKEYLOC":"\/etc\/asterisk\/keys","AMPCGIBIN":"\/var\/www\/cgi-bin","AMPBIN":"\/var\/lib\/asterisk\/bin","AMPSBIN":"\/usr\/sbin","AMPWEBROOT":"\/var\/www\/html","MOHDIR":"moh","MIXMON_DIR":"","FOPWEBROOT":"cxpanel","FOLLOWME_AUTO_CREATE":0,"FOLLOWME_DISABLED":1,"FOLLOWME_TIME":"20","FOLLOWME_PRERING":"7","FOLLOWME_RG_STRATEGY":"ringallv2-prim","FPBXOPMODE":"advanced","BADDESTABORT":0,"XTNCONFLICTABORT":0,"CHECKREFERER":1,"ENABLEOLDDIALPATTERNS":0,"SERVERINTITLE":0,"CUSTOMASERROR":1,"RELOADCONFIRM":1,"MODULEADMINEDGE":0,"SHOWLANGUAGE":1,"SIPSECRETSIZE":32,"USE_FREEPBX_MENU_CONF":0,"MODULEADMINWGET":0,"AST_APP_VQA":"","ASTVERSION":"16.25.0","CACHE_CLEANUP_DAYS":30,"NOTICE_BROWSER_STATS":1,"mainstyle_css_generated":"","MODULE_REPO":"https:\/\/mirror.freepbx.org","SESSION_TIMEOUT":2592000,"SIPUSERAGENT":"FPBX","VIEW_ZEND_CONFIG":"views\/zend_config.php","PAGINGMAXPARTICIPANTS":40,"DPMAapps_LOG":0,"ENABLE_RESTAPPS_TOKEN_SEC":0,"PM2DISABLELOG":0,"PM2PROXY":"http:\/\/mirror.freepbx.org:6767\/","PM2SHELL":"\/bin\/bash","PM2USECACHE":1,"PM2USEPROXY":0,"PROXY_ENABLED":0,"PROXY_ADDRESS":"","PROXY_USERNAME":"","PROXY_PASSWORD":"","DASHBOARD_OVERRIDE":"","DASHBOARD_OVERRIDE_BASIC":"","VQPLUSRETENTION":"20","QSTATSDATARETENTION":30,"QSTATSSYNCCUTOFF":"1 week","QUEUES_PESISTENTMEMBERS":1,"QUEUES_SHARED_LASTCALL":1,"QUEUES_UPDATECDR":0,"QUEUES_MIX_MONITOR":1,"QUEUES_EVENTS_WHEN_CALLED_DEFAULT":0,"QUEUES_EVENTS_MEMEBER_STATUS_DEFAULT":0,"QXACTDATARETENTION":90,"QXACTREMOTEDBTABLENAME":"","CDRUSEGMT":0,"EXTENSION_LIST_RINGGROUPS":0,"CRM_CACHE_EXPIRE":300,"CRM_CUSTOM_URL":"","CRM_LOG":1,"CRM_AUTH_URL":"https:\/\/api.sangoma.com\/crmauth","SANGOMACONNECTBINDADDRESS":"127.0.0.1","SANGOMACONNECTENABLED":0,"SANGOMACONNECTCLOUDTOKEN":"","SANGOMACONNECTCOMMANDTOKEN":"98628c1d81aa2b922c42325ba00728314410761f","SANGOMACONNECTDOMAIN":"","SANGOMACONNECTLICENSE":"{\"org_id\":null,\"org_name\":null}","SANGOMACONNECTBINDPORT":8443,"SANGOMACONNECTTLSCERTFILE":"","SANGOMACONNECTTLSPRIVATEKEY":"","SS_API_URL":"https:\/\/push2.schmoozecom.com\/sipstation","ENABLE_SS_PJSIP":1,"IOTENABLED":1,"IOTEXPOSEWEB":0,"IOTCLOUDTOKEN":"","IOTCOMMANDTOKEN":"7af82358eee4ab5632c4924fb196099fa1bdc356","IOTDOMAIN":"","IOTLICENSE":"{\"location_limit\":100,\"zone_limit\":100,\"scene_limit\":100,\"group_limit\":1000,\"door_limit\":100,\"org_id\":null,\"org_name\":null}","IOTBINDPORT":3443,"IOTTLSCERTFILE":"","IOTTLSPRIVATEKEY":"","PDFAUTHOR":"www.freepbx.org","BRAND_IMAGE_FAVICON":"images\/favicon.ico","BRAND_IMAGE_TANGO_LEFT":"images\/tango.png","BRAND_TITLE":"FreePBX Administration","BRAND_IMAGE_FREEPBX_FOOT":"images\/freepbx_small.png","BRAND_IMAGE_SPONSOR_FOOT":"images\/sangoma-horizontal_thumb.png","BRAND_FREEPBX_ALT_LEFT":"FreePBX","BRAND_FREEPBX_ALT_FOOT":"FreePBX&reg;","BRAND_SPONSOR_ALT_FOOT":"www.sangoma.com","BRAND_IMAGE_FREEPBX_LINK_LEFT":"http:\/\/www.freepbx.org","BRAND_IMAGE_FREEPBX_LINK_FOOT":"http:\/\/www.freepbx.org","BRAND_IMAGE_SPONSOR_LINK_FOOT":"http:\/\/www.sangoma.com","BRAND_CSS_ALT_MAINSTYLE":"","BRAND_CSS_ALT_POPOVER":"","BRAND_CSS_CUSTOM":"","VIEW_FREEPBX_ADMIN":"views\/freepbx_admin.php","VIEW_FREEPBX":"views\/freepbx.php","VIEW_FREEPBX_RELOAD":"views\/freepbx_reload.php","VIEW_FREEPBX_RELOADBAR":"views\/freepbx_reloadbar.php","VIEW_WELCOME":"views\/welcome.php","VIEW_WELCOME_NONMANAGER":"views\/welcome_nomanager.php","VIEW_MENUITEM_DISABLED":"views\/menuitem_disabled.php","VIEW_NOACCESS":"views\/noaccess.php","VIEW_UNAUTHORIZED":"views\/unauthorized.php","VIEW_BAD_REFFERER":"views\/bad_refferer.php","VIEW_LOGGEDOUT":"views\/loggedout.php","VIEW_PANEL":"views\/panel.php","VIEW_REPORTS":"views\/reports.php","VIEW_MENU":"views\/menu.php","VIEW_OBE":"views\/obe.php","VIEW_BETA_NOTICE":"views\/beta_notice.php","JQUERY_CSS":"assets\/css\/jquery-ui.css","VIEW_LOGIN":"views\/login.php","VIEW_HEADER":"views\/header.php","VIEW_FOOTER":"views\/footer.php","VIEW_POPOVER_JS":"views\/popover_js.php","VIEW_UCP_FOOTER_CONTENT":"views\/dashfootercontent.php","VIEW_UCP_ICONS_FOLDER":"assets\/icons","BRAND_ALT_JS":"","DASHBOARD_FREEPBX_BRAND":"FreePBX","VIEW_FOOTER_CONTENT":"views\/footer_content.php","FREEI221":1,"WHICH_asterisk":"\/usr\/sbin\/asterisk","WHICH_at":"\/usr\/bin\/at","WHICH_ffmpeg":"\/usr\/bin\/ffmpeg","WHICH_fwconsole":"\/usr\/sbin\/fwconsole","WHICH_ipset":"\/usr\/sbin\/ipset","WHICH_lame":"\/usr\/bin\/lame","WHICH_mailq":"\/usr\/bin\/mailq","WHICH_mpg123":"\/usr\/bin\/mpg123","WHICH_netstat":"\/usr\/bin\/netstat","WHICH_openssl":"\/usr\/bin\/openssl","WHICH_sox":"\/usr\/bin\/sox","WHICH_touch":"\/usr\/bin\/touch","AMPSYSLOGLEVEL":"FILE","AMPDISABLELOG":0,"LOG_OUT_MESSAGES":1,"AUTOMODULEUPDATESANDRELOAD":0,"AMPSHOWUPDATESONSSH":0,"LOG_NOTIFICATIONS":1,"MDATETIMEFORMAT":"llll","MDATEFORMAT":"l","FPBX_LOG_FILE":"\/var\/log\/asterisk\/freepbx.log","MTIMEFORMAT":"LT","PHP_CONSOLE":0,"PHP_CONSOLE_PASSWORD":"batteryhorsestaple","PHP_ERROR_HANDLER_OUTPUT":"freepbxlog","PHP_ERROR_LEVEL":"ALL_NOSTRICTNOTICE","AGGRESSIVE_DUPLICATE_CHECK":0,"AMPEXTENSIONS":"extensions","EXPOSE_ALL_FEATURE_CODES":0,"AUTHTYPE":"usermanager","AMP_ACCESS_DB_CREDS":0,"FORCED_ASTVERSION":"","BROWSER_STATS":1,"CACHERTCLASSES":1,"MIXMON_FORMAT":"wav","UIDEFAULTLANG":"es_ES","SIGNATURECHECK":1,"AMPTRACKENABLE":1,"REMOTEUNLOCK":0,"AMPWEBADDRESS":"","PHPTIMEZONE":"UTC","FREEPBX_SYSTEM_IDENT_REM_DASHBOARD_HELP":"no","RSSFEEDS":"http:\/\/www.freepbx.org\/rss.xml\nhttp:\/\/feeds.feedburner.com\/InsideTheAsterisk","FREEPBX_SYSTEM_IDENT":"VoIP Server","AMPENGINE":"asterisk","USE_GOOGLE_CDN_JS":0,"TCMAINT":1,"TCINTERVAL":"60","NODEJSENABLED":1,"NODEJSTLSENABLED":1,"NODEJSBINDADDRESS":"::","NODEJSBINDPORT":8001,"NODEJSHTTPSBINDADDRESS":"::","NODEJSHTTPSBINDPORT":8003,"NODEJSTLSCERTFILE":"\/etc\/asterisk\/keys\/integration\/certificate.pem","NODEJSTLSPRIVATEKEY":"\/etc\/asterisk\/keys\/integration\/webserver.key","UCPCHANGEPASSWORD":1,"UCPCHANGEUSERNAME":1,"UCPRSSFEEDS":"","UCPSESSIONTIMEOUT":"30","AMPUSERMANEMAILFROM":"","VEGA_CACHE_EXPIRE":300,"VEGA_ACCESS_TIMEOUT":5,"VMX_CONTEXT":"from-internal","VMX_LOOPDEST_CONTEXT":"","VMX_LOOPDEST_EXT":"dovm","VMX_LOOPDEST_PRI":1,"VMX_PRI":1,"VMX_TIMEDEST_CONTEXT":"","VMX_TIMEDEST_EXT":"dovm","VMX_TIMEDEST_PRI":1,"USERESMWIBLF":1,"VM_SHOW_IMAP":0,"UCP_MESSAGE_LIMIT":3000,"ENABLE_VI_PJSIP":1,"VI_API_URL":"https:\/\/backoffice.voipinnovations.com\/sipstation","ZULUENABLED":1,"ZULUMAXVIDEOSTREAMS":8,"ZULURTCMAXPORT":59999,"ZULURTCMINPORT":40000,"ZULUBINDADDRESS":"0.0.0.0","ZULUBINDPORT":8002,"ZULUCOMMANDBINDPORT":7999,"ZULUCOMMANDTOKEN":"a9d9c5866bb64d9568c213f2a4c163b5504a6276","ZULUCONFERENCEPREFIX":"*89","ZULUTLSCERTFILE":"\/etc\/asterisk\/keys\/integration\/certificate.pem","ZULUTLSPRIVATEKEY":"\/etc\/asterisk\/keys\/integration\/webserver.key","USEDEVSTATE":1,"USEQUEUESTATE":1,"ALWAYS_SHOW_DEVICE_DETAILS":1,"AST_FUNC_DEVICE_STATE":"DEVICE_STATE","AST_FUNC_EXTENSION_STATE":"EXTENSION_STATE","AST_FUNC_PRESENCE_STATE":"PRESENCE_STATE","AST_FUNC_SHARED":"SHARED","AST_FUNC_CONNECTEDLINE":"CONNECTEDLINE","AST_FUNC_MASTER_CHANNEL":"MASTER_CHANNEL","datasource":"","text_dir":"ltr","uniqueid":"bcf8df02-ecb0-47df-b303-d77e914bbe51","dist":{"pbx_type":"freepbxdistro","pbx_version":"12.7.8-2204-1.sng7"},"ver":"16.0.21.3","reload_needed":true,"brandid":"freepbxdistro","modules":{"sysadmin":{"deployment_id":false,"zendid":null,"machineid":"88:AE:1D:FD:93:A7"}}},"msg":{"framework":{"reload_unidentified_error":" error(s) occurred, you should view the notification log on the dashboard or main screen to check for more details.","close":"Close","continuemsg":"Continue","cancel":"Cancel","retry":"Retry","update":"Update","save":"Save","bademail":"Invalid email address","updatenotifications":"Update Notifications","securityissue":"Security Issue","validation":{"duplicate":" extension number already in use by: ","delete":"Are you sure you want to delete this?"},"noupdates":"Are you sure you want to disable automatic update notifications? This could leave your system at risk to serious security vulnerabilities. Enabling update notifications will NOT automatically install them but will make sure you are informed as soon as they are available.","noupemail":"Are you sure you don't want to provide an email address where update notifications will be sent. This email will never be transmitted off the PBX. It is used to send update and security notifications when they are detected.","invalid_responce":"Error: Did not receive valid response from server","invalid_response":"Error: Did not receive valid response from server","validateSingleDestination":{"required":"Please select a \"Destination\"","error":"Custom Goto contexts must contain the string \"custom-\".  ie: custom-app,s,1"},"weakSecret":{"length":"The secret must be at minimum six characters in length.","types":"The secret must contain at least two numbers and two letters."}}}};
+var extmap={"101":"Extensi\u00f3n del Usuario: 101","102":"Extensi\u00f3n del Usuario: 102","1101":"Extensi\u00f3n del Usuario: 1101","1102":"Extensi\u00f3n del Usuario: 1102","*38":"C\u00f3digo de la caracter\u00edstica: allowlist_add (allowlist:Add a number to the allowlist)","*40":"C\u00f3digo de la caracter\u00edstica: allowlist_last (allowlist:Add the last caller to the allowlist)","*41":"C\u00f3digo de la caracter\u00edstica: allowlist_pause_toggle (allowlist:Pause or unpause Allowlist checking)","*39":"C\u00f3digo de la caracter\u00edstica: allowlist_remove (allowlist:Remove a number from the allowlist)","*30":"C\u00f3digo de la caracter\u00edstica: blacklist_add (blacklist:Blacklist a number)","*32":"C\u00f3digo de la caracter\u00edstica: blacklist_last (blacklist:Blacklist the last caller)","*31":"C\u00f3digo de la caracter\u00edstica: blacklist_remove (blacklist:Remove a number from the blacklist)","*72":"C\u00f3digo de la caracter\u00edstica: cfon (callforward:Call Forward All Activate)","*73":"C\u00f3digo de la caracter\u00edstica: cfoff (callforward:Call Forward All Deactivate)","*93":"C\u00f3digo de la caracter\u00edstica: cfpon (callforward:Call Forward All Prompting Activate)","*74":"C\u00f3digo de la caracter\u00edstica: cfoff_any (callforward:Call Forward All Prompting Deactivate)","*90":"C\u00f3digo de la caracter\u00edstica: cfbon (callforward:Call Forward Busy Activate)","*91":"C\u00f3digo de la caracter\u00edstica: cfboff (callforward:Call Forward Busy Deactivate)","*94":"C\u00f3digo de la caracter\u00edstica: cfbpon (callforward:Call Forward Busy Prompting Activate)","*92":"C\u00f3digo de la caracter\u00edstica: cfboff_any (callforward:Call Forward Busy Prompting Deactivate)","*52":"C\u00f3digo de la caracter\u00edstica: cfuon (callforward:Call Forward No Answer\/Unavailable Activate)","*53":"C\u00f3digo de la caracter\u00edstica: cfuoff (callforward:Call Forward No Answer\/Unavailable Deactivate)","*95":"C\u00f3digo de la caracter\u00edstica: cfupon (callforward:Call Forward No Answer\/Unavailable Prompting Activate)","*96":"C\u00f3digo de la caracter\u00edstica: cf_toggle (callforward:Call Forward Toggle)","*70":"C\u00f3digo de la caracter\u00edstica: cwon (callwaiting:Call Waiting - Activate)","*71":"C\u00f3digo de la caracter\u00edstica: cwoff (callwaiting:Call Waiting - Deactivate)","*87":"C\u00f3digo de la caracter\u00edstica: conf_status (conferences:Conference Status)","*10":"C\u00f3digo de la caracter\u00edstica: app-contactmanager-sd (contactmanager:Contact Manager Speed Dials)","*8":"C\u00f3digo de la caracter\u00edstica: pickupexten (core:Asterisk General Call Pickup)","**":"C\u00f3digo de la caracter\u00edstica: disconnect (core:In-Call Asterisk Disconnect Code)","*2":"C\u00f3digo de la caracter\u00edstica: atxfer (core:In-Call Asterisk Attended Transfer)","##":"C\u00f3digo de la caracter\u00edstica: blindxfer (core:In-Call Asterisk Blind Transfer)","*1":"C\u00f3digo de la caracter\u00edstica: automon (core:In-Call Asterisk Toggle Call Recording)","7777":"C\u00f3digo de la caracter\u00edstica: simu_pstn (core:Simulate Incoming Call)","*35":"C\u00f3digo de la caracter\u00edstica: senddictate (dictate:Email completed dictation)","*34":"C\u00f3digo de la caracter\u00edstica: dodictate (dictate:Perform dictation)","*78":"C\u00f3digo de la caracter\u00edstica: dnd_on (donotdisturb:DND Activate)","*79":"C\u00f3digo de la caracter\u00edstica: dnd_off (donotdisturb:DND Deactivate)","*76":"C\u00f3digo de la caracter\u00edstica: dnd_toggle (donotdisturb:DND Toggle)","666":"C\u00f3digo de la caracter\u00edstica: simu_fax (fax:Dial System FAX)","*21":"C\u00f3digo de la caracter\u00edstica: fmf_toggle (findmefollow:Findme Follow Toggle)","*68":"C\u00f3digo de la caracter\u00edstica: hotelwakeup (hotelwakeup:Wake Up Calls)","*69":"C\u00f3digo de la caracter\u00edstica: calltrace (infoservices:Call Trace)","*43":"C\u00f3digo de la caracter\u00edstica: echotest (infoservices:Echo Test)","*65":"C\u00f3digo de la caracter\u00edstica: speakextennum (infoservices:Speak Your Exten Number)","*60":"C\u00f3digo de la caracter\u00edstica: speakingclock (infoservices:Speaking Clock)","*80":"C\u00f3digo de la caracter\u00edstica: intercom-prefix (paging:Intercom prefix)","*54":"C\u00f3digo de la caracter\u00edstica: intercom-on (paging:User Intercom Allow)","*55":"C\u00f3digo de la caracter\u00edstica: intercom-off (paging:User Intercom Disallow)","*88":"C\u00f3digo de la caracter\u00edstica: parkto (parking:Park to your Assigned Lot)","*85":"C\u00f3digo de la caracter\u00edstica: parkedcall (parking:Pickup ParkedCall Prefix)","*86":"C\u00f3digo de la caracter\u00edstica: park (parkpro:Force Park into Private Lot)","*37":"C\u00f3digo de la caracter\u00edstica: Mini-bar (PMS:Add a product from mini-bar for a room.)","*36":"C\u00f3digo de la caracter\u00edstica: clean (PMS:Change status to clean for a room.)","*44":"C\u00f3digo de la caracter\u00edstica: Housekeeping Service (PMS:Send a message number to the receptionist.)","*45":"C\u00f3digo de la caracter\u00edstica: que_toggle (queues:Allow Dynamic Members of a Queue to login or logout. See the Queues Module for how to assign a Dynamic Member to a Queue.)","*47":"C\u00f3digo de la caracter\u00edstica: que_callers (queues:Playback Queue Caller Count)","*46":"C\u00f3digo de la caracter\u00edstica: que_pause_toggle (queues:Queue Pause Toggle)","*992":"C\u00f3digo de la caracter\u00edstica: restapphint (restapps:Phone App Hints)","*98":"C\u00f3digo de la caracter\u00edstica: dialvoicemail (voicemail:Dial Voicemail)","*":"C\u00f3digo de la caracter\u00edstica: directdialvoicemail (voicemail:Direct Dial Prefix)","*97":"C\u00f3digo de la caracter\u00edstica: myvoicemail (voicemail:My Voicemail)","70":"ParkPlus:  ParkCall Default Lot","71":"ParkPlus:  PickupSlot Default Lot","72":"ParkPlus:  PickupSlot Default Lot","73":"ParkPlus:  PickupSlot Default Lot","74":"ParkPlus:  PickupSlot Default Lot","75":"ParkPlus:  PickupSlot Default Lot","76":"ParkPlus:  PickupSlot Default Lot","77":"ParkPlus:  PickupSlot Default Lot","78":"ParkPlus:  PickupSlot Default Lot"};$(document).click();</script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/pbxlib_0c17274734fa41240d36e3e7ac52debdd4283a03.js.descarga"></script><div id="notie-alert-outer"><div id="notie-alert-inner"><div id="notie-alert-content"><span id="notie-alert-text"></span></div></div></div><div id="notie-force-outer"><div id="notie-force-inner"><span id="notie-force-text"></span></div><div id="notie-force-button"></div></div><div id="notie-force-background" class="notie-transition"></div><div id="notie-confirm-outer"><div id="notie-confirm-inner"><span id="notie-confirm-text"></span></div><div id="notie-confirm-yes"><span id="notie-confirm-text-yes"></span></div><div id="notie-confirm-no"><span id="notie-confirm-text-no"></span></div></div><div id="notie-confirm-background" class="notie-transition"></div><div id="notie-input-outer"><div id="notie-input-inner"><span id="notie-input-text"></span></div><input id="notie-input-field"><div id="notie-input-yes"><span id="notie-input-text-yes"></span></div><div id="notie-input-no"><span id="notie-input-text-no"></span></div></div><div id="notie-input-background" class="notie-transition"></div><div id="notie-select-outer"><div id="notie-select-inner"><span id="notie-select-text"></span></div><div id="notie-select-choices"></div><div id="notie-select-cancel"></div></div><div id="notie-select-background" class="notie-transition"></div><div id="notie-date-outer"><div id="notie-date-selector"><div class="notie-date-up"><div class="notie-date-arrow-up"></div></div><div class="notie-date-up"><div class="notie-date-arrow-up"></div></div><div class="notie-date-up"><div class="notie-date-arrow-up"></div></div><div class="notie-date-text"></div><div class="notie-date-text"></div><div class="notie-date-text"></div><div class="notie-date-down"><div class="notie-date-arrow-down"></div></div><div class="notie-date-down"><div class="notie-date-arrow-down"></div></div><div class="notie-date-down"><div class="notie-date-arrow-down"></div></div></div><div id="notie-date-inner"><div id="notie-date-yes"></div><div id="notie-date-no"></div></div></div><div id="notie-date-background" class="notie-transition"></div><script>moment.locale('en_US');</script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/sipsettings.js.descarga"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-1862516-7', 'auto');ga('set', 'dimension1', fpbx.conf.dist.pbx_type);ga('set', 'dimension2', fpbx.conf.dist.pbx_version);ga('set', 'dimension3', fpbx.conf.ASTVERSION);ga('set', 'dimension4', fpbx.conf.ver);ga('set', 'dimension5', $.urlParam('display'));ga('set', 'dimension6', fpbx.conf.uniqueid);ga('send', 'pageview');</script><script type="text/javascript" src="./FreePBX Administration_Asterisk SIP Settings_files/activation.js.descarga"></script>
+<script src="./FreePBX Administration_Asterisk SIP Settings_files/module-purchasing.js.descarga" onload="freepbxModulePurchasing(&quot;https://katanafpbx.schmoozecom.com&quot;)" async=""></script>
+<script type="text/javascript">
+function addLoadEvent(func) {
+  var oldonload = window.onload;
+  if (typeof window.onload != 'function') {
+    window.onload = func;
+  } else {
+    window.onload = function() {
+      if (oldonload) {
+        oldonload();
+      }
+      func();
+    }
+  }
+}
+//call plugin function after DOM ready
+addLoadEvent(function(){
+  outdatedBrowser({
+    bgColor: '#f25648',
+    color: '#ffffff',
+    lowerThan: 'IE10',
+    languagePath: ''
+  })
+});
+</script>
+<div id="outdated">
+  <h6>Your browser is out-of-date!</h6>
+  <p>FreePBX requires a new browser to function correctly. You can still use FreePBX with the browser you currently have but your experience may be diminished and is not supported<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now</a></p>
+  <p class="last"><a href="http://192.168.107.200/admin/config.php?display=sipsettings#" id="btnCloseUpdateBrowser" title="Close">×</a></p>
+</div>
+  
+  <script>
+  $(window.console).ready(function(){
+    console.log(("%c%s"), "color: green; font-size: large","FreePBX");
+    console.log(("Thankyou for using %s"),"FreePBX");
+    
+    console.log("If you find bugs you may file a report at http://issues.freepbx.org");
+    console.log("For developer resources visit: http://wiki.freepbx.org/x/BAAQ");
+    
+    console.log(("Framework: %s"),"16.0.21.3");
+    console.log(("Module Name: %s"),"sipsettings");
+    console.log(("Module Version: %s"),"16.0.23");
+    
+  });
+  </script>
+
+</body></html>
